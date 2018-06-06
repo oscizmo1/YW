@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1D19B5AE-9350-474D-BFC4-C32EAF343874}</ProjectGuid>
+    <RootNamespace>GaonNuri</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <ProjectName>GaonNuri</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\..\YWDSP\Bin_CIM\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\..\Temp\Obj\$(SolutionName)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Lib;$(IncludePath)</IncludePath>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Automation.cpp" />
+    <ClCompile Include="CimClass\EquipFunction.cpp" />
+    <ClCompile Include="GaonNuri.cpp" />
+    <ClCompile Include="GaonNuriDoc.cpp" />
+    <ClCompile Include="GaonNuriView.cpp" />
+    <ClCompile Include="Lib\GxGUI\GxIniFile.cpp" />
+    <ClCompile Include="Lib\GxGUI\GxUICtrl.cpp" />
+    <ClCompile Include="Lib\GxLog.cpp" />
+    <ClCompile Include="Lib\GxSocket\GxCommDefine.cpp" />
+    <ClCompile Include="Lib\GxSocket\GxDataStructure.cpp" />
+    <ClCompile Include="Lib\GxSocket\GxSockClient.cpp" />
+    <ClCompile Include="Lib\GxSocket\GxSockServer.cpp" />
+    <ClCompile Include="MachineClass\UnitStatus.cpp" />
+    <ClCompile Include="MachineClass\UnitStatusBank.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="PublicClass\ReportCtrl.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="PublicClass\DataSocket.cpp" />
+    <ClCompile Include="PublicClass\FileSupport.cpp" />
+    <ClCompile Include="PublicClass\Ini.cpp" />
+    <ClCompile Include="PublicClass\LogCtrl.cpp" />
+    <ClCompile Include="PublicClass\Token.cpp" />
+    <ClCompile Include="CimClass\DataStructure.cpp" />
+    <ClCompile Include="CimClass\SettingParam.cpp" />
+    <ClCompile Include="ViewBase.cpp" />
+    <ClCompile Include="ViewCIM.cpp" />
+    <ClCompile Include="ViewECM.cpp" />
+    <ClCompile Include="ViewFDC.cpp" />
+    <ClCompile Include="ViewRMS.cpp" />
+    <ClCompile Include="ViewSETTING.cpp" />
+    <ClCompile Include="DlgBarMenu.cpp" />
+    <ClCompile Include="DlgBarTitle.cpp" />
+    <ClCompile Include="DlgSockStatus.cpp" />
+    <ClCompile Include="XComProCtrl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Automation.h" />
+    <ClInclude Include="CimClass\EquipFunction.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="GaonNuri.h" />
+    <ClInclude Include="GaonNuriDoc.h" />
+    <ClInclude Include="GaonNuriView.h" />
+    <ClInclude Include="Lib\GxCallback.h" />
+    <ClInclude Include="Lib\GxGUI\GxButtonEx.h" />
+    <ClInclude Include="Lib\GxGUI\GxIniFile.h" />
+    <ClInclude Include="Lib\GxGUI\GxStaticEx.h" />
+    <ClInclude Include="Lib\GxGUI\GxUICtrl.h" />
+    <ClInclude Include="Lib\GxLog.h" />
+    <ClInclude Include="Lib\GxSocket\GxCommDefine.h" />
+    <ClInclude Include="Lib\GxSocket\GxDataStructure.h" />
+    <ClInclude Include="Lib\GxSocket\GxSockClient.h" />
+    <ClInclude Include="Lib\GxSocket\GxSockServer.h" />
+    <ClInclude Include="MachineClass\MachineDefine.h" />
+    <ClInclude Include="MachineClass\UnitStatus.h" />
+    <ClInclude Include="MachineClass\UnitStatusBank.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="PublicClass\ReportCtrl.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="PublicClass\DataSocket.h" />
+    <ClInclude Include="PublicClass\FileSupport.h" />
+    <ClInclude Include="PublicClass\Ini.h" />
+    <ClInclude Include="PublicClass\LogCtrl.h" />
+    <ClInclude Include="PublicClass\Token.h" />
+    <ClInclude Include="CimClass\DataStructure.h" />
+    <ClInclude Include="CimClass\SettingParam.h" />
+    <ClInclude Include="ViewBase.h" />
+    <ClInclude Include="ViewCIM.h" />
+    <ClInclude Include="ViewECM.h" />
+    <ClInclude Include="ViewFDC.h" />
+    <ClInclude Include="ViewRMS.h" />
+    <ClInclude Include="ViewSETTING.h" />
+    <ClInclude Include="DlgBarMenu.h" />
+    <ClInclude Include="DlgBarTitle.h" />
+    <ClInclude Include="DlgSockStatus.h" />
+    <ClInclude Include="XComProCtrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\18.ico" />
+    <None Include="res\20.ico" />
+    <None Include="res\27.ico" />
+    <None Include="res\42.ico" />
+    <None Include="res\55_32x32.png" />
+    <None Include="res\Aha-Soft-Large-Time-Alarm-clock.ico" />
+    <None Include="res\Aha-Soft-Large-Time-Network-time.ico" />
+    <None Include="res\computer_48.ico" />
+    <None Include="res\Exit.ico" />
+    <None Include="res\GaonNuri.ico" />
+    <None Include="res\GaonNuri.rc2" />
+    <None Include="res\GaonNuriDoc.ico" />
+    <None Include="res\icon1.ico" />
+    <None Include="res\icon2.ico" />
+    <None Include="res\Iconlicious-Misc-Monitor.ico" />
+    <None Include="res\Iconlicious-Misc-Settings.ico" />
+    <None Include="res\Iconlicious-Misc-Tv.ico" />
+    <None Include="res\LedOff.bmp" />
+    <None Include="res\LedOn.bmp" />
+    <None Include="res\PerfCenterCpl.ico" />
+    <None Include="res\RectOff.bmp" />
+    <None Include="res\RectOn.bmp" />
+    <None Include="res\SAMSUNG.bmp" />
+    <None Include="res\spanner_48.ico" />
+    <None Include="res\Tools4.ico" />
+    <None Include="res\YWDSP.bmp" />
+    <None Include="res\ywdsp2.bmp" />
+    <None Include="UpdaetList.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GaonNuri.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="GaonNuri.rc" _x007B_0A362345-2E5E-11D3-85BF-00105AC8B715_x007D_="CIledrectanglex1" _x007B_0A362353-2E5E-11D3-85BF-00105AC8B715_x007D_="CIledroundx1" _x007B_0A36238C-2E5E-11D3-85BF-00105AC8B715_x007D_="CIswitchledx_remote" _x007B_27E1C61A-7770-4D80-932A-93B7FC45008C_x007D_="CIeditx1" _x007B_648A5600-2C6E-101B-82B6-000000000014_x007D_="CMscomm1" _x007B_717B131F-E3DD-4053-87A6-C4E2B2E983C2_x007D_="CExcomctrl1" _x007B_DB219F84-D34E-11D3-85C2-00A0CC3A58C9_x007D_="CIpercentbarx1" _x007B_EBF31E97-980B-4C2B-9645-8FEBD518356B_x007D_="CIlabelx2" _x007B_560F8BBF-A69A-4320-82A3-EE167D16559E_x007D_="CXComProCtrl" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,602 @@
+================================================================================
+    Update History 
+================================================================================
+작성 예)
+#Version	[NickName]
+1. Update 내용
+  - Upate 상세 내용 및 설명, 관련 Source code
+================================================================================
+#Y_M_MTP_18.05.31.01	[OSC]
+1. TPOC 기준으로 폴더 셋팅
+
+#Y_M_MTP_18.05.28.01	[OSC]
+1. 1Cell만 들어와도 Vacuum을 2채널 다 키는 버그 수정
+2. PDT IF 시작시 Cell이 없을 경우 Vacuum Off하지 않는 버그 수정
+3. PDT Interface 도중에 Restart할 경우 잠시 PDT Interface가 중단되어 버리는 버그 수정
+
+#Y_M_MTP_18.05.17.01	[CDTRUONG]
+1. IDD_DLG_LOSSTIME_TP UI 위치 변경했던 것을 완복
+2. 강원호 프로 요청, CROWN MODEL 진행시 OPTION CHECK 10까지 CELL LOG에서 추가
+
+#Y_M_MTP_18.05.15.01	[CDTRUONG]
+1. IDD_DLG_LOSSTIME_TP UI 위치 변경
+
+#Y_M_MTP_18.04.02.01	[KYJ]
+1. TP 이상보고 버퍼 셀 유무 체크 주석 처리
+
+#Y_M_MTP_18.03.28.01	[KYJ]
+1. Main UI Product ID 추가 / 강원호 선임 요청사항
+
+#Y_M_MTP_18.03.14.01	[KYJ]
+1. TX HOST VERSION / m_strTXFPGAVersion  ->  m_strTXCPLDVersion 수정
+2. A ZONE TACT TIME START 수정
+3. Cell mixing 조건 추가 / 강원호 선임 요청사항
+
+#Y_M_MTP_18.02.01.01	[KYJ]
+1. PDT AB RULE 체크 기능 임시 주석처리
+2. 강호원 선임 요청사항 NGNAME 수정
+
+#Y_M_MTP_18.01.31.02	[PKJ]
+1. Robot Status interlock 회피 더 추가
+2. PDT AB RULE 체크 기능 추가
+3. 에러로그에 EQPID 추가
+
+#Y_M_MTP_18.01.31.01	[PKJ]
+1. Robot Status interlock 회피
+
+#Y_M_MTP_18.01.29.01	[PKJ]
+1. MID ALPM 255 IBAT 항목추가
+2. MCR reading fail 시 초기값 미지정으로 인한 버그 수정
+3. 스크랩시에도 셀로그 적음
+4. 김현규책임 요청 L 보고를 R로 옵션처리 == 오타버그 수정
+
+#Y_M_MTP_18.01.27.01	[PKJ]
+1. NOT USE 선택하면 셀로그에 남긴다
+
+#Y_M_MTP_18.01.25.02	[PKJ]
+1. PDT Interface time out alarm 30->120
+
+#Y_M_MTP_18.01.25.01	[PKJ]
+1. 20180114 NG 판정 통계 UI 추가
+
+#Y_M_MTP_18.01.23.01	[PKJ]
+1.cellionfomation, jobprocess 페일시 라스트 리절트 정리 버그 수정
+
+#Y_M_MTP_18.01.23.01	[PKJ]
+1.Cell Mixing 처리(강원호 선임) 010도 추가
+2.CELL INFO, JOB PROCESS Cellid 추가
+3.cellionfomation, jobprocess 페일시 라스트 리절트 정리
+
+#Y_M_MTP_18.01.22.01	[PKJ]
+1.Cell Mixing 처리(강원호 선임) 005도 추가
+2.리트라이 셀도 아닌데 리트라이 셀로 인식하는 보그 테스트 중
+
+#Y_M_MTP_18.01.21.01	[PKJ]
+1. NG 판정 통계 UI 추가 Azone, MTPWrite, MTPVerify 별로 정리
+
+#Y_M_MTP_18.01.20.01	[PKJ]
+1.Cell Mixing 처리(강원호 선임)
+2.유닛인터락 발생 후 다른채널에서 발생하면 이전꺼까지 보고하는 버그 수정
+
+#Y_M_MTP_18.01.19.01	[PKJ]
+1.김현규책임 요청 L 보고를 R로 옵션처리
+
+#Y_M_MTP_18.01.18.01	[PKJ]
+1. TMD MACHING 특정 ProductID일때 전문자열 비교
+2. 1,2 채널 NOTUSE 버그 수정
+3. Function List MCR UNUSE 일경우 트랙킹 버그 수정
+
+#Y_M_MTP_18.01.17.01	[PKJ]
+1. Tmd Version 추가 테스트 완료(강원호 선임 확인)
+
+#Y_M_MTP_18.01.17.01	[OSC]
+1. 계속 빌드되는 현상 조치
+
+#Y_M_MTP_18.01.15.01	[PKJ]
+1. Tmd Version 추가 테스트 완료
+
+#Y_M_MTP_18.01.14.01	[PKJ]
+1. NG 판정 통계 UI 추가
+
+#Y_M_MTP_18.01.13.01	[PKJ]
+1. Cell infomation NG 시 Job Process 로 Last Result 남는 버그 수정
+2. Tmd Version 추가
+
+#Y_M_MTP_18.01.09.02	[PKJ]
+1. NOT USE -> No 시 다시 원복 해줌
+
+#Y_M_MTP_18.01.08.01	[OSC]
+1. AB리트라이 안되는 현상 관련 컨셉 일부 수정
+	- Add하기 전에 1개 Remove한 다음 Add하도록 변경
+	- 기존 Find에서 All TrackOut 하는 거 주석
+	- LoadingStop시 Retry List도 클리어
+
+#Y_M_MTP_18.01.07.03	[PKJ]
+1. 신호기 로그에서 MTP 측정 값 가지고와서 셀로그에 넣기
+
+#Y_M_MTP_18.01.07.02	[PKJ]
+1. Teminal MSG 10개 리스트로 표시 버그 수정
+
+#Y_M_MTP_18.01.07.01	[PKJ]
+1. Remote Mode 가 아니면 팝업 발생
+
+#Y_M_MTP_17.12.28.02	[OSC]
+1. 생산수량 화면에서 내부 시간이 변경이 안되 불러오지 못하는 버그 수정
+
+#Y_M_MTP_18.01.01.01	[PKJ]
+1. Teminal MSG 10개 리스트로 표시
+2. MAX일때 배열크기 넘어가는 버그 수정
+
+#Y_M_MTP_17.12.28.01	[OSC]
+1. 단동에서 CellLoading 결과가 화면에 표시 안되는 버그 수정
+
+#Y_M_MTP_17.12.26.01	[OSC]
+1. 프로그램 실행이 완료되지 않으면 PDT_IF Thread 멈춰있도록 수정
+
+#Y_M_MTP_17.12.25.01	[OSC]
+1. GaonNuri에 맞춰 불필요 메세지 정리
+
+#Y_M_MTP_17.12.23.02	[OSC]
+1. PDT_IF_ArmStatus_Check 중복 체크하는 구문 수정
+2. CConfigNGAlarmLimit를 List Type으로 변경
+3. MTP Data Reading 구문 구현 중
+4. Cell Backup/Restore 구현 중
+
+#Y_M_MTP_17.12.23.01	[KYJ][JKY]
+1. RepeatNGAlarm UI 생성
+
+#Y_M_MTP_17.12.22.02	[OSC]
+1. USER LOADING STOP 구현
+
+#Y_M_MTP_17.12.22.01	[OSC]
+1. PDT LOADING STOP BIT 시퀀스 구현
+2. 생산종료시 TrackOut 가능한건 TrackOut 하도록 수정
+3. PDT Robot Alarm발생하여 정지시 다시 시작하면 SURVIVAL이 안사는 버그 수정 
+
+#Y_M_MTP_17.12.21.02	[OSC]
+1. LOADING STOP BIT 및 함수 생성
+2. CellInfo NG인데도 TIME_OUT으로 표기되는 버그 수정
+
+#Y_M_MTP_17.12.21.01	[OSC][JKY]
+1. First Contact 결과 판정 기준 변경
+2. Product 기록 오류 수정
+3. Main UI에 Contact율 표시
+
+#Y_M_MTP_17.12.20.02	[OSC]
+1. 뒷문 열어서 화면이 이동하면 로그인창도 자동으로 닫히도록 수정
+2. PM 모드일 경우 로봇 알람 무시하도록 수정
+3. 생산종료시 PDT Interface도 클리어하도록 수정
+4. CFTPHanler 생성
+5. Contect -> Contact 오타 수정
+6. 채널 컨택율 모니터링 UI에서 백분율 소숫점 1자리까지 나오도록 수정
+7. CIMQual 모드시 Not Use일 경우에도 CellTag Create할 수 있는 버그 수정
+8. 프로그램 종료시 리트라이셀 트랙아웃 보고되도록 수정
+
+#Y_M_MTP_17.12.20.01	[OSC][LSH]
+1. 생산현황 오류 수정
+2. A존 Channel Not use 설정시 버그 수정
+
+#Y_M_MTP_17.12.19.03	[LSH]
+1. 운영프로그램 Report기능 보완
+  - 각 CH별 생산량 및 퍼센테이지를 볼 수 있도록 수정(Save/Store Format변경 및 CProduct class, Report1 UI 전면수정)
+
+#Y_M_MTP_17.12.19.02	[OSC]
+1. CThread_PDT_IF_Sequence::ConfirmMachineRestart()에서 IsTrouble 잘못 사용한 버그 수정
+
+#Y_M_MTP_17.12.19.01	[OSC]
+1. PDT에서 셀ID를 읽을 경우 \n, \r 필터링
+2. Inline모드시 Cell Loading 시점 변경
+3. CellLoading 전용 CellInfo 변수 생성
+4. READ UNIT이 MCR Fail일 때 기록이 안되는 버그 수정
+5. Robot이 주는 Cell ID 무지 (현재 같은 값만 온다..)
+6. 물류 Run시 검사기 자동 Run 전환 조건에 다음 조건 추가
+	- 현재 창이 PM이면 불가
+	- CDeviceMotion::IsTrouble이 TRUE면 불가
+
+
+#Y_M_MTP_17.12.18.02	[OSC]
+1. Inline Mode일 경우 Loading Stop시 R보고했던 Cell 있으면 L보고로 바꾸는 기능이 빠진 버그 수정
+2. INTERLOCK CONTROL에서 LOADING을 제외하고 다른 값으로 변경 안되도록 수정 (CIM 요청사항0
+
+#Y_M_MTP_17.12.18.01	[OSC]
+1. Alarm 중복 발생시 ErrorLog.csv에 기록 안되는 버그 수정
+2. TMD_INFO에서 CH Card Mac 값 참조 위치 수정
+3. Cell Log에서 UNLOAD MOVE TIME -> UNLOAD READY TIME으로 명칭 변경
+4. Cell Log에 CZONE ETC TIME 추가
+
+#Y_M_MTP_17.12.16.01	[OSC]
+1. CIM Qual Mode일 때 물류랑 인터페이스 안하도록 수정
+
+#Y_M_MTP_17.12.15.02	[OSC]
+1. Robot Alarm일 때 Survival Off 안되는 버그 수정
+2. Robot이 Alarm 발생했다가 다시 RUN이 되면 자동으로 재시작 하도록 수정
+3. PDT Hot Line Check를 Start버튼 누를 때가 아닌 PDT_InterfaceThr에서 체크하도록 수정
+
+#Y_M_MTP_17.12.15.01	[OSC][LSH][JKY]
+1. CIM Qual Mode 생성
+2. FormMain에 Loof Test, Bypass Mode 모니터링
+3. 생산종료시 Vac Off도 되도록 수정
+
+#Y_M_MTP_17.12.13.01	[OSC]
+1. Restart시 Robot Start Bit가 살아있으면 Interface가 시작하지 않도록 수정
+
+#Y_M_MTP_17.12.12.01	[OSC]
+1. Retry 검증
+
+#Y_M_MTP_17.12.11.01	[OSC]
+1. Retry 컨셉 수정
+	기존 : 같은 JIG내에 다른 채널에서만 동작
+	변경 : 원래 했던 채널만 아니면 다른 지그라도 리트라이 동작
+2. EQUIP_SET_CELL_PROCESS_COMPLETE_UNLOAD 전송시 406보고에 필요한 모든 정보 송부
+3. Robot Alarm Code 받으면 Alarm 발생
+4. CellBank 일부 정리
+
+#Y_M_MTP_17.12.09.02	[OSC]
+1. CELL MCR MODE에서 NOTHING 비활성화 (MCR 읽지 못하는 설비만 사용 가능)
+2. EQUIP FUNCTION LIST 추가 case 검증
+3. 통계 히스토리창 로그 구분자가 \\에서 ,로 원복된 버그 수정
+
+#Y_M_MTP_17.12.09.01	[OSC]
+1. Interlock 발생후 컨펌 전에 또 발생시 나중에 온 인터락이 컨펌 안되는 버그 수정
+
+#Y_M_MTP_17.12.08.02	[OSC]
+1. PDT Interface할 때 Start를 살리면 Vacuum을 미리 파기하는 기능 검증 중
+2. PDT Complete Time Out 에러 안나는 버그 수정
+3. 멈췄다 진행시 PDT IF Start 비트가 아직 살아있다면 꺼질 때 까지 기다리도록 수정
+4. Inline Mode시 Cell Loading을 Vacuum On 하자마자 하도록 수정
+		- PDT 준비 안되어 임시주석
+
+#Y_M_MTP_17.12.08.01	[OSC]
+1.  PDT Interface할 때 Start를 살리면 Vacuum을 미리 파기하도록 수정
+	(파기가 없다..)
+
+#Y_M_MTP_17.12.07.04	[OSC]
+1.  OFFINE 상태에서 Job Start상태 체크하여 결과에 반영하는 버그 수정
+
+#Y_M_MTP_17.12.07.03	[LSH]
+1.  권혁도 프로의 요청사항으로ByPass 기능 추가
+
+#Y_M_MTP_17.12.07.02	[OSC]
+1. Inline Mode일 때 Not Use 버튼 재정립
+ㅠ
+#Y_M_MTP_17.12.07.01	[OSC]
+1. Unit ID 명칭을 CH**에서 CN**로 변경
+
+#Y_M_MTP_17.12.06.02	[OSC][JKY]
+1. MCR 옵션을 꺼도 Cell Mixing 불량이 나오는 버그 수정
+2. 물류 연동시 앞에서 Cell ID를 받으면 READ UNIT을 ROBOT으로 적도록 수정
+3. Alarm Code 4006번 베트남어 추가
+4. 검사 Command 중복요청 예외처리 조건문 수정
+5. PDT Complete time out error 주석 해제
+6. Inline Mode일 때는 작업자 로그인 신경 안쓰도록 수정
+
+#Y_M_MTP_17.12.06.01	[LSH]
+1. FDC Vac값은 -값으로 보고하도록 수정
+2. Config-CIM화면이 RUN  중에도 모니터링 할 수 있도록 수정
+
+#Y_M_MTP_17.12.05.01	[OSC]
+1. MCR 읽기 실패하면 검사 끝나고 A존 왔을 때 알아서 컨택이 풀리는 버그 수정
+2. MCR 못읽으면 CellInformationDownload에서 무한 대기하는 버그 수정
+3. Opcall, Interlock Termanal History IDD 연결 버그 수정
+
+#Y_M_MTP_17.12.04.02	[OSC]
+1.5Line CIM QUAL PASS
+
+#Y_M_MTP_17.12.04.01	[OSC]
+1.CIM 3차 QUAL PASS
+
+#Y_M_MTP_17.12.02.02	[OSC]
+1.CIM 2차 Qual (Unit Interlock 제외 PASS)
+
+#Y_M_MTP_17.12.02.01	[OSC]
+1. FormCIM UI 갱신 안되는 버그 수정
+
+#Y_M_MTP_17.12.01.02	[OSC]
+1. PDT IF Vacuum Off 신호 줄 때 출력 && 입력이 다 Off 되어야 살도록 수정
+2. PIT I/F 끝나고 Vacuum On 체크 하도록 수정
+
+#Y_M_MTP_17.12.01.01	[OSC]
+1. Unit Interlock 및 OPCALL 보고 검증
+2. MCR Read 및 Tracking Option 정리 (UI 제외)
+3. RetryAB 옵션 추가
+
+#Y_M_MTP_17.11.30.01	[OSC]
+1. Unit Interlock 및 OPCALL 보고
+
+#Y_M_MTP_17.11.28.02	[OSC]
+1. Unit 상태 생성 및 CIM과 동기화
+2. JOB_SKIP일 시 Main창에 적색 표기 안되는 버그 수정
+
+#Y_M_MTP_17.11.28.01	[OSC]
+1. cim으로 프로그램 버전 보낼 때 6자리 제한해서 송부
+
+#Y_M_MTP_17.11.27.03	[OSC]
+1. JOB_INVALID_FAIL_OK판정이 안나오는 버그 수정
+2. TMD Name Match를 옵션 켜져 있을 때만 최종판정 적용되도록 수정
+
+#Y_M_MTP_17.11.27.02	[OSC]
+1. JOB_START가 안되도 검사는 진행되도록 수정
+
+#Y_M_MTP_17.11.27.01	[OSC]
+1. JobStart 옵션 꺼져있어도 체크하는 버그 수정
+
+#Y_M_MTP_17.11.26.01	[OSC]
+1. JOB START가 실패해도 검사는 하고 끝나도록 수정
+
+#Y_M_MTP_17.11.25.01	[OSC]
+1. 통계 Interlock에 UNIT항목 추가
+2. 가온누리 통신 연결 후 동기화 딜레이 1초 없앰
+
+#Y_M_MTP_17.11.24.03	[LSH][OSC]
+1. CIM UI 구현
+2. LAMP 점멸시간 0.4에서 1초로 변경 (CIM 1.18 사양)
+3. Lamp 점멸 On/Off가 따로따로 노는 버그 수정
+
+#Y_M_MTP_17.11.24.02	[LSH]
+1. Loof Test 모드 구현
+
+#Y_M_MTP_17.11.24.01	[OSC]
+1. MTP 검사중일 경우 Restart에서 Z축 상승 안하도록 수정
+2. Interlock 발생 시점 구현
+
+#Y_M_MTP_17.11.23.01	[OSC]
+1. Cell Log 항목 수정 - SDC 강원호프로 2차검수
+	- LOADING TACT TIME
+	- MCR READ TIME
+	- AB RULE
+	- AZONE ETC TACT TIME
+	- CZONE MTP READY TIME
+	- CONTACT TACT TIME의 End시점을 1회 결과가 아니라 마지막 결과시간으로 수정
+	- 미사용항목들 정리
+2. MCR 읽지 못했을 경우 불량 판정 포멧 변경 - SDC 이정현프로 컨셉
+3. 리트라이 셀 채널 체크
+
+#Y_M_MTP_17.11.22.01	[OSC] - SDC 강원호프로 1차검수
+1. Cell Log 1차 검수
+2. Run중에 SAFTY KEY가 TEACH로 변경됬을 경우 Alarm
+
+#Y_M_MTP_17.11.21.01	[OSC] - SDC 강원호프로 주관하에 재정리
+1. Cell Log 항목 수정
+	- Unload Tact Time
+	- Tact Time
+	- Wait Time
+	- INSP RESULT
+	- AA RETRY
+	- AB RETRY
+	- A ZONE START,END,WAIT TIME
+	- C ZONE END,WAIT TIME
+	- MTP TYPE
+
+#Y_M_MTP_17.11.18.01	[OSC]
+1. Cell Log에 다음 항목 기록
+	- AZONE OPERATOR
+	- MC_Ver
+2. ZoneEnd에 MoveA, MoveC 추가
+
+#Y_M_MTP_17.11.17.01	[OSC]
+1. Cell Log에 UNLOAD OUT TACT TIME, TACT TIME, Waiting Time 기록 
+2. Equip Function 동기화
+
+#Y_M_MTP_17.11.16.01	[OSC]
+1. tag_Message 변경
+
+#Y_M_MTP_17.11.15.01	[OSC]
+1. MAX_MES_SIZE를 40 -> 121로 변경
+
+#Y_M_MTP_17.11.13.01	[OSC]
+1. FormCIM 구현중
+
+#Y_M_MTP_17.11.11.02	[OSC]
+1. CQueueSerial::GetData Size관련 예외처리
+2. OnUpdateMCRData에서 FAIL기준 문자열 길이를 <1이 아닌 <5로 변경
+	(MCR에서 못읽으면 FAIL로 전송되도록 수정했다)
+
+#Y_M_MTP_17.11.11.01	[OSC]
+1. FormMain에서 MCR2번 화면이 갱신 안되는 버그 수정
+
+#Y_M_MTP_17.11.10.05	[OSC]
+1. 인터락 멧세지 접근 오류 수정
+2. FormMain에서 MCR 리딩 안되면 적색 표시
+3. TMD Matching 실패하면 무언정지 나는 버그 수정
+
+#Y_M_MTP_17.11.10.04	[OSC]
+1. NgCodeList.csv대신 NgCodeList.ini 사용
+
+#Y_M_MTP_17.11.10.03	[OSC]
+1. MCR NG 이미지 파일명에 채널번호 삽입
+
+#Y_M_MTP_17.11.10.02	[OSC]
+1. CQueue에서 m_bufQueue가 char가 아닌 char*로 되있는 버그 수정
+
+#Y_M_MTP_17.11.10.01	[OSC]
+1. 비가동 로그 안적히는 거 수정
+2. GMS 채널을 1-1,1-3, 2-1에서 1-1, 1-2, 1-3으로 원복
+
+#Y_M_MTP_17.11.09.02	[OSC]
+1. Z축 하강시 셔틀이 LOAD위치면 X축 체크 안하도록 인터락 수정
+
+#Y_M_MTP_17.11.09.01	[OSC]
+1. Tact 개선 위해 Z축 Up/Down을 StateCZone으로 이전
+
+#Y_M_MTP_17.11.08.02	[OSC]
+1. GMS 사용채널을 1,2,3에서 1,3,5로 변경
+
+#Y_M_MTP_17.11.08.01	[OSC]
+1. A Zone Skip버튼 없애고 NG버튼 구현
+	- NG 버튼으로 컨택불량도 투입 가능
+2. ConfigOption창 Run상태에서도 확인 가능하도록 수정 (편집 불가)
+3. 베트남어 번역
+4. Main 화면에 OPTION MONITOR 구현
+5. 티칭 셔틀2,3번 라이브 안되는 버그 수정
+6. Main화면에 MTP Write, Verify 불량 표기
+
+#Y_M_MTP_17.11.07.02	[OSC]
+1. Corelation 버튼 재구성
+
+#Y_M_MTP_17.11.07.01	[OSC]
+1. InspModuel 일부 불량명이 ID_CHECK 불량으로 남는 버그 수정
+2. '_TIMEOUT'을 ' TIMEOUT'으로 변경
+
+#Y_M_MTP_17.11.06.01	[OSC]
+1. 전체 초기화에서 모터 알람이 뜨면 빈 칸으로 메세지 박스 뜨는 버그 수정
+2. 키가 TeachMode일 때 조그이동 제외한 Move명령 다 막음
+3. _NG를 ' NG'로 전부 변경
+
+#Y_M_MTP_17.10.26.01	[OSC]
+1. 전체 초기화시 도어나 라이트커튼 감지되면 모터를 정지시키고 메세지를 띄우는 게 아니라
+	반대로 메세지를 띄우고 확인 버튼 눌러야 모터가 정지되는 버그 수정
+
+#Y_M_MTP_17.10.24.02	[OSC]
+1. Tact Time 로그에 RunTime, Interface Tact Time도 구현
+
+#Y_M_MTP_17.10.24.01	[OSC]
+1. System.ini에 물류 연동시 검사기 위치 지정 변수 구현
+
+#Y_M_MTP_17.10.23.01	[OSC]
+1. FormMain화면에서 투입정지버튼 제거 (인터페이스 컨셉 변경으로 불필요)
+
+#Y_M_MTP_17.10.21.01	[OSC]
+1. PDT_IF_Load, ODT_IF_Unload를 PDT_IF로 통합
+2. 변경된 PDT Interface 적용
+3. 프로그램 시작 후 첫 ZONE_A가 반영 안되는 버그 수정
+
+#Y_M_MTP_17.10.17.03	[OSC]
+1. Thread 내에서 MP2100 함수 호출횟수 최적화 부분 원복
+	-> MotorError가 난다
+2. Y2, Y3축 조그방향 Y1과 똑같이 맞춤
+
+#Y_M_MTP_17.10.17.02	[OSC]
+1. AZone Defect 안남는 버그 수정
+2. InnerID가 0~5로 적히지 않고 1~6으로 적히도록 수정
+3. MTPWrite 에서 X축 체크할 때 0.1초 딜레이 추가 안그러면 이동확인안된다
+
+#Y_M_MTP_17.10.17.01	[OSC]
+1. ThreadBank 생성
+2. FDC 파일에 Door I/O도 기록
+
+#Y_M_MTP_17.10.16.02	[OSC]
+1. 하이페리온 체크 커맨드 수정 (직접 TMD 파일 열어서 찾음ㅋ)
+2. Not Use시 한번 갔다오면 진행 안되는 버그 수정
+
+#Y_M_MTP_17.10.16.01	[OSC]
+1. 불량코드가 전부 USF44로 표기되는 버그 수정
+2. 투입정지(LotEnd) 기능 구현
+	- Inline전용이므로 단동일 때는 버튼 안보임
+	- 투입만 정지시키는 것이므로 자동 Stop은 되지 않는다
+
+#Y_M_MTP_17.10.15.01	[OSC]
+1. I/F Error 주석 해제
+2. Inline모드일 경우 Restart시 Cell 있는데도 Vac Off되는 버그 수정
+3. I/F Alarm 발생 이후 재시작 했을 경우 I/F State가 리셋 안되는 버그 수정
+4. CLASS_CELL enum 삭제
+5. CCellInfo::Retry_CheckAble() 임시주석
+6. CellIDMixing 판정 버그 수정
+7. PDT_InterfaceThr ScanTime 문제로 최적화
+8. Contact Retry(AA Retry) Option 생성
+
+#Y_M_MTP_17.10.09.01	[OSC]
+1. IO Name 오타 수정
+2. Hot Line ALIVE On/Off시점 변경
+	- Hot Line Alive : 프로그램 실행중에만 ON
+	- CC-Link Servival : RUN 중에 ON
+3. 검사레시피 저장시 ERROR까지 저장되지 않도록 예외처리
+4. Dry Run인데도 A존 오면 Pattern On/off 스위치 체크하는 버그 수정
+5. 물류 Hot Line 체크
+
+#Y_M_MTP_17.10.08.01	[OSC]
+1. Vac On/Off 상태비트 계속 신호주지 않고 상태 변경될 때만 신호 주도록 변경
+2. I/F 중간에 Servival이 끊길 경우 알람 발생
+3. STO 해제될 경우 Y축 자동 서보온
+4. FormMain에 IN-Line 여부 화면 표시
+5. IN-Line일 경우 JOB_INVALID일 경우 O보고 
+6. 검사레시피파일 내용이 이상하면 START 안되고 FormRecipe에 ERROR라고 표기되도록 수정
+
+#Y_M_MTP_17.10.07.01	[OSC]
+1. 인라인시 MCR을 못 읽으면 READUNIT을 ROBOT으로 기록되도록 수정
+2. 인라인시에는 작업자 로그인 체크 안하도록 수정
+3. PDT Hot Line 중 EMERGENCY를 제외한  I/O 동기화(MTP꺼만.. PDT는 나중에)
+4. 로그인시 패스워드 틀려도 로그인 되는 버그 수정
+5. Retry Log 추가
+6. PDT Normal Sequence 1차 검증 완료
+
+#Y_M_MTP_17.10.06.01	[OSC]
+1. PDF IF 시퀀스 구현
+
+#Y_M_MTP_17.10.05.01	[OSC]
+1. InnerID 생성시 채널 번호를 1~6으로 생성되도록 수정
+2. PDT IF UI 구현 중
+
+#Y_M_MTP_17.09.29.01	[OSC]
+1. 경알람 확인 완료
+
+#Y_M_MTP_17.09.28.01	[OSC]
+1. TactTime 로그 기록
+
+#Y_M_MTP_17.09.27.01	[OSC]
+1. CIM QUAL 준비...
+
+#Y_M_MTP_17.09.26.01	[OSC]
+1. RMSData.ini파일 기록
+
+#Y_M_MTP_17.09.24.01	[OSC]
+1. Cell Log 기록
+2. 물류 Run Test 검증
+
+#Y_M_MTP_17.09.21.01	[OSC]
+1. MCR Read Option 적용
+2. Jig별 Light Curtain Check 예외처리
+3. 물류 Run Test 검증 (70%)
+4. TMD_INFO 임시 주석 (현재 TMD_INFO만 날리면 신호기 먹통됨...)
+
+#Y_M_MTP_17.09.20.01	[OSC]
+1. Dry Run 검증
+2. 환경안전 통과
+
+#Y_M_MTP_17.09.19.01	[OSC]
+1. Start버튼 및 TEACH창에서 이동명령시 STO Check
+2. MC Power On Check
+3. 조그이동 외 모든 이동에 도어 & Light Curtain Check
+
+#Y_M_MTP_17.09.18.01	[OSC]
+1. enum SHUTTLE 제거
+2. MCDefine의 쓰지않는 enum 제거
+
+#Y_M_MTP_17.09.16.01	[OSC]
+1. MTP 검사 후 셔틀이 다시 A존으로 오면 Cell Skip이 자동 FALSE되도록 수정
+2. FormRecipe 재정리
+
+#Y_M_MTP_17.09.05.01	[OSC]
+1. 검사시퀀스 항목을 레시피에서 관리하도록 수정
+2. Recipe UI에 검사시퀀스 항목 UI만 추가
+
+#Y_M_MTP_17.08.31.01	[OSC]
+1. 07시기준 날짜분할이 OffsetHour로 되어있지 않고 7로 하드코딩 되어 있는 부분 수정
+2. CellLoading도 CCellDefectInfo_CellLoading 상속받아 사용하도록 변경
+
+#Y_M_MTP_17.08.28.01	[OSC]
+1. I/O 싹 다 날려버림
+2. 축 정보 싹 날림
+3. Teach ID 싹 날림
+
+#Y_M_MTP_17.08.24.01	[OSC]
+1. CAxisParam에 기본 가감속 변수 추가
+2. 감속도를 안쓰고 가속도로 감속도까지 적용하는 버그 수정
+3. DEVICE_TYPE, ORIGIN_TYPE, MOTOR_TYPE을 AxisParam.h에서 MotionModuleDefine.h로 이동
+4. 그 외 DeviceMotion 일부 정리
+
+#Y_M_MTP_17.08.23.02	[OSC]
+1. 폴더 개편 완료
+
+#Y_M_MTP_17.08.23.01	[OSC]
+1. CDeviceSocket_Base 구현 및 해당 기반으로 CDeviceSocket_PGHost 구현
+
+#Y_M_MTP_17.08.10.01	[OSC]
+1. UnitCtrl_Base 구현하여 UnitCtrlBank의 기본기능 분리
+2. BOOL CUnitCtrl_Base::IsReturnOk( int nStartIndex, int nEndIndex ) 함수 구현
+3. BankGuild\InspModule 폴더 생성하여 InspModule관련 파일들 구현
+4. Sample용 InspModule_MTP, InspModule_WhiteCurrent 구현
+	- CInspModule_Base 상속을 받아 검사별로 Class 생성 후 그걸 CInspModuleBank에서 관리한다
+	- 각 State별로 ModuleNameList를 만들고 거기에 Name을 Add한 다음에 
+	  각각 State에서는 List에 있는 Name으로 Module Class를 찾아 CInspModule_Base::Run을 호출하여 진행
+	※ Sequence_MTP_어떻게 진행되는지 참고용.txt로 어떤식으로 진행되는지 참고하셈...
+5. State파일 대부분 삭제

@@ -1,0 +1,309 @@
+#Y_D_MTP_18.05.31.01, OSC
+1. TPOC 방식으로 폴더 재구성
+
+#Y_D_MTP_18.05.29.01, OSC
+1. 406 TrackOut 보고시 RPTID 600번에서 FINAL_TESTER 항목 추가
+
+#Y_D_MTP_18.05.24.01, OSC
+1. TRACKOUTINFO 로그 기록 전 CellData를 Clear하는 버그 수정
+
+#Y_D_MTP_17.12.25.01, OSC
+1. CellInfoResult, TrackIn, InspectionResult할 때 Jig, Ch 다 무시하고 CellID로만 처리하도록 수정
+2. g_pData  객체를 동적이 아닌 정적으로 생성
+3. g_pData.m_Jig 객체를 전부 삭제
+4. 불필요 메세지 정리
+
+#Y_D_MTP_17.12.11.01, OSC
+1. TrackOut 할 때 tCellData 변수를 기존꺼가 아님 m_tCellDataTrackOut으로 사용
+	- Retry때문에 정보가 꼬일 수가 있다
+2. DataStructure 미사용 변수들 일부 제거
+
+#Y_D_MTP_17.12.09.01, OSC
+1. Interlock Nack를 2에서 5로 변경
+
+#Y_D_MTP_17.12.07.01, OSC
+1. Unit ID 명칭을 CH**에서 CN**로 변경
+2. Interlock 발생 후 다시 RUN시 Interlock List를 n개가 아니라 1개만 보고
+	- SDC 이현식 PRO와 협의됨
+
+#Y_D_MTP_17.12.04.02, OSC
+1.5Line CIM QUAL PASS
+
+#Y_D_MTP_17.12.04.01, OSC
+1.CIM 3차 QUAL PASS
+
+#Y_D_MTP_17.12.02.01, OSC
+1.CIM 2차 Qual (Unit Interlock 제외 PASS)
+
+#Y_D_MTP_17.12.01.01, OSC
+1.Unit Interlock 검증
+
+#Y_D_MTP_17.11.30.01, OSC
+1.S6F11_CEID513 Unit OPCALL Confirm 구현
+2.S6F11_CEID514 Unit Interlock Confirm 구현
+
+#Y_D_MTP_17.11.29.01, OSC
+1.S6F11_CEID102 구현
+
+#Y_D_MTP_17.11.28.02, OSC
+1.Unit Status Change구현
+
+#Y_D_MTP_17.11.28.01, OSC
+1.설비 버전 보낼 때 6자리로 제한해서 보내도록 수정
+
+#Y_D_MTP_17.11.25.01, OSC
+1.쓰레기값 전달되는 것을 막기 위해 운영이랑 통신 연결 이후에 XCom Start
+
+#Y_D_MTP_17.11.24.01, OSC
+1. 운영 버전 동기화
+
+#Y_D_MTP_17.11.17.01, OSC
+1. S1F5 RCMD 5(Function State), RCMD 6(Equipment Inventory State) 구현
+
+#Y_D_MTP_17.11.16.01, OSC
+1. tag_Message 구조체 변경
+
+#Y_D_MTP_17.09.26.01, OSC
+1. RMS 파일을 Teach.ini가 아니라 RMSData.ini로 변경
+
+#Y_D_FTI_17.05.23.01, OSC
+1. Delete old system bytes from tranMgr 로그가 남는 버그 수정
+	- Recive한 S3F109메세지에서 특정 경우에 응답인 S3F110을 보내지 않고 그냥 return해서 발생한 문제임
+
+#Y_D_FTI_17.05.13.01, OSC
+1. S3F109에서 DEFECT 옵션코드 비교를 DFCT로 변경 (4자리 제한)
+
+#Y_D_FTI_17.05.04.01, OSC
+1. S3F109에서 LIST 0일때 예외처리 구현
+2. smlXComSDV_AMT.sml에서 S3F109를  Undefined Structure로 변경
+
+#Y_D_FTI_17.05.02.01, BKH
+1. S6F205 , S3F109 코드 수정 
+
+#Y_D_FTI_17.04.01.01, OSC
+1. Program 종료시 디버그에러 수정
+
+#Y_D_FTI_17.03.28.01, OSC
+1. Program 종료시 로그 기록
+
+#Y_D_FTI_17.03.03.01, OSC
+1. packet Size Log 기록
+
+#Y_D_FTI_17.03.02.01, OSC
+1. delete부분 일부 수정
+
+#Y_D_FTI_17.03.01.01, OSC
+1. CIM 화면에서 Log 리스트가 최근 시간 순으로 화면에서 역순으로 표시되도록 수정
+
+#Y_D_FTI_17.01.10.01, OSC
+1. 변경내역 없음. 운영과 Version 통일 위해 Reversion
+
+#Y_D_FTI_17.01.06.01, OSC
+1. RMS 파일명을 Teach.ini에서 TeachDataPC.ini로 변경
+
+#Y_D_FTI_16.12.31.01, OSC
+1. 로그폴더 변경
+  - 기존 : D:\Alpaca_CIM\Log
+  - 변경 : D:\Log\Alpaca_CIM
+
+#Y_D_FTI_16.12.26.01, OSC
+1. B, D존 작업자 설명 보완
+  - g_pData->m_cOperatorID1 : D존 작업자(Login 인증)
+  - g_pData->m_cOperatorID2 : B존 작업자(인증없음)
+
+#Y_D_FTI_16.12.24.01, OSC
+1. TrackOut(CEID406)에서 600번 LIST 1 삭제
+
+#Y_D_FTI_16.12.19.02, OSC
+1. TrackOut(CEID406)에서 DV, MTP_WRITE항목 삭제
+
+#Y_D_FTI_16.12.19.01, OSC
+1. TrackOut(CEID406)에서 DV, MTP_WRITE항목 삭제
+
+#Y_D_FTI_16.12.17.01, OSC
+1. FDC GMS 명칭 변경 (GMS_1 ~ 5, PGMS_1 ~ 2)
+
+#Y_D_FTI_16.12.16.01, OSC
+1. 사용하지않는 GMS CH5도 FDC로 올리도록 수정 (설비별로 무조건 GMS 5CH, PGMS 2CH 올리도록 협의됨)
+2. HOST_SET_DATAPC_VERSION에서 EQuipID도 전달하도록 수정
+
+#Y_D_FTI_16.12.11.01, OSC
+1. EQUIP_SET_PPID_OPERATION에서도 GxMSG_GUI_INFO_UPDATE 메세지 발생하도록 수정
+2. RMS 전부 대문자로 변경해서 올리도록 수정
+
+#Y_D_FTI_16.12.08.01, OSC
+1. FDC_INFO_MAP.csv 항목 변경
+2. Title에서 Version이름 짤리는 버그 수정
+
+#Y_D_FTI_16.12.07.01, OSC
+1. FDC_SV.par 파일읽을시 EXTENT_LOW, EXTENT_UP 조건문 제거(왜 제한 걸어놓은거냐...)
+
+#Y_D_FTI_16.12.02.01, OSC
+1. CIM Qual 완료
+
+#Y_D_FTI_16.12.01.02, OSC
+1. CIM 1차 Qual 진행(Tracking, Login 기능 제외 통과)
+
+#Y_D_FTI_16.12.01.01, OSC
+1. ECM 항목 Alpaca 형식으로 변경
+
+#Y_D_FTI_16.11.30.01, OSC
+1. RMS를 포스터치 방식으로 티칭값 불러오도록 변경
+
+#Y_D_TI_16.11.28.01, OSC
+1. Channel 갯수를 4에서 5로 변경
+2. Version 표기법 Cell Log 형식에 맞게 변경
+
+#2016-11-19, jhLee
+1. Track Out 보고시 Defect 발생위치 정보를 전송한다.
+ - 운영PC와의 통신 부분과 MES로 Event 전송하는 함수 수정
+ - BOOL CDlgSockStatus::RcvMsgFromAftClient( ) 함수에서 
+   case EQUIP_SET_CELL_PROCESS_COMPLETE_UNLOAD: // Track Out 부분 pData->cMsgData[3] 값을 사용하도록 수정
+ - BOOL CAutomation::TxS6F11() // Event Report Send
+   case 406 :	//Cell Process Complete 처리에 600 DV 처리하는 부분에 MTP_WRITE, REASONCOORDINATE 전송하도록 추가
+2. 'MTP OK/NG FPO 구성'의 일환으로 CEID 609 event 보고 추가
+ - 화상검사를 끝낸 후 Track Out 끝나기 전에 전송, 공정명을 MTP 공정이 존재하면 'MTP', 그 외에는 해당 설비의 명칭을 대입한다. AMT, SFT, SAMT ....
+ - EQUIP_SET_INSPECTION_RESULT_REPORT
+ - 처리 함수 추가 : void CViewCIM::EventInspectionResultReport(UINT nUnit, UINT nCellPos)
+
+#2016-11-07, jhLee
+1. XCOM Stop() 발생시 운영PC와의 통신 끊김현상 수정
+ - CGaonNuriApp::InitInstance() 함수내 Socket 초기화 루틴(AfxSocketInit) 누락으로 발생,
+2. GxServer로 처리 루틴 변경 확정
+3. FormSetting의 버튼기능을 무력화 함.
+4. Recipe Data를 읽을때, 선두 문자가 Under-Bar '_'로 시작되면 해당 라인은 무시하도록 한다.
+  - 실제로는 Recipe 항목으로 사용되나 상위에는 보고하지 않고싶을때 사용한다.
+  - tag_Recipe_Validation::LoadParamList() 함수 수정
+  - tag_Recipe_Validation::IsSkipLine() 함수 추가
+
+#2016-11-04, jhLee
+1. Socket 통신 방법 변경 : MES와 연결이 끊어질 때 운영 프로그램과도 연결이 끊어짐 문제 해결용 
+ -> 동일 현상 발생 => 2016-11-07 해결
+
+#2016-09-09, jhLee
+1. Track In/Out 정보만 별도로 Log를 남긴다.
+  - CAutomation::TxS6F11() 함수내 LOG_TRACKING log로 기록, 401/406
+
+
+#2016-08-26, jhLee
+1. Cell ID의 길이를 최대 150자까지 확장 : SDC 안도현 사원 요청
+   - struct tag_Message 구조체內 Cell id 저장소를 별도로 운영한다.
+	  char cCellID[MAX_CELL_ID+1];
+   - 운영프로그램과 통신하는 모든 함수에서 CellID 관련 처리 변경
+
+
+#2016-06-03, jhLee
+1. iComponent OCX를 모두 GxOCX 계열로 변경
+2. CViewCIM에 직접 처리되던 UI 변경 작업을 MainFrame에 Message를 통한 간접 변경으로 수정
+3. RMS 과 ECM View를 각각 별개의 View로 분리
+4. ECID 읽는 방법을 기존 xml -> ini 포맷 변경
+5. xml 관련 class 삭제
+
+
+#2016-06-01, jhLee
+1. 기존 SFT용 가온누리 -> AMT용으로 역변환
+2. DlgBarMenu의 화면 선택 버튼을 GxButtonEx 으로 변환, MainFrm에 메세지를 전송하는 방식으로 화면 전화 변경
+3. QMS 처리 부분 삭제 : Local 폴더에 기록하는 방식으로 변경
+
+=================== SDV-2CH-AMT로 변형 ===================
+
+#2016-05-30, jhLee
+1. POC 대상품 처리 bug fix
+  - CAutomation::RxS3F109() 함수내 SetCellLotInformation(i, j ...) 호출시 iJig = -1, iCellPos = -1 로 호출하여 오류 발생,
+  - i, j 로 호출 하도록 수정
+
+#2016-05-20, jhLee
+1. POC 대상품 구분을 위한 POCG/POCW 세분류 기능 변경
+  -	BOOL CAutomation::RxS3F109() 함수내 해당 부분 변경
+  - 기존 : POC 문귀가 들어있다면 POC 대상품으로 판단하고 운영PC에 Cell Lot Information을 전송, 없다면 전송안함
+    변경 : 무조건 수신받은 내용 그대로를 운영 PC에게 전송한다. 세분화 처리는 운영PC에서 담당
+
+#2016-05-12, jhLee
+1. OPCALL 및 INTERLOCK 메세지에 대한 Confirm 회신시 문자열이 깨지는 현상 처리
+  - BOOL CAutomation::TxS6F11() 함수內 문자열 길이 함수를 통해 전송하도록 수정
+    m_pXCom->SetAsciiItem( lMkMsgID, str, strlen(str));		// 20);	// INTERLOCKID
+2. 상태 전환 후 TPM Code 보고시 CEID 변경, Spec V1.08 대응, 기존 805 -> 806으로 변경
+  - BOOL CAutomation::TxS6F11() 함수內
+    case 606 : //20141223 sms Equipment Loss Code Report
+
+#2016-02-13, jhLee
+1. 점등 불량 LOSS 보고를 위한 Track In/Out 통합 보고 지령
+  - EQUIP_SET_LOSS_TRACK_REPORT,				// 특정 불량 Track In/Out 처리
+
+
+#2016-02-03, jhLee
+1. 새로운 Cell 시작시 기존 데이터 clear 명령 추가, 기존 데이터를 지우고 새로운 Inner ID를 대입시켜준다.
+  - EQUIP_SET_CELL_DATA_CLEAR_REQUEST :			// 지정 Cell Data의 내용을 Clear
+
+#2016-01-12, jhLee
+1. POCH 기능 추가/수정
+  - 추가 상수
+		EQUIP_SET_CELL_LOT_INFORMATION_REQUEST,		// 2016-01-04, jhLee, S2F205, POCH 처리를 위한 Cell Lot Information 요청
+		HOST_SET_CELL_LOT_INFORMATION,				// 2016-01-04, jhLee, S3F109, POCH 처리를 위한 Cell Lot Information 응답
+ 
+#2015-12-23, jhLee
+1. VT1, VT2 FDC 항목 읽기 지원, SFT는 채널 1이 Vision PC1이고 채널 2가 Vision PC2로 고정되었다.
+  -> UINT CInspectionData::thrGetResultDataThread(LPVOID pParam)
+	if ( j == E_CELL_POS_1 )			// CH#1
+	else if ( j == E_CELL_POS_2 )		// CH#2
+
+=================== YOUM-SFT로 변형 ===================
+
+#2015-09-21 JH-PARK
+1. Automation XCom 항목에 대한 주석처리 완료
+2. Yms -> QMS 명칭 변경
+
+
+#2015-09-09 JH-PARk
+1. RMS View 항목 정리 완료
+2. Setting View 불필요 항목 삭제
+3. DataStructure 정리 완료 
+
+
+#2015-09-07 JH-PARK
+GaonNuri 불필요 항목 삭제 시작
+
+1. Sem Controler 관련 항목 삭제
+2. FDC View 항목 정리 완료
+3. CELL View 항목 삭제
+4. TACKTIME View 항목 삭제
+5. ALIGN View 항목 삭제
+
+
+#2015-08-17, jhLee
+1. FEED_BACK Interlock에대한 Confirm 전송시 701 메세지 깨짐현상에 대해, 사용가능한 문자만 사용하도록 변경 
+  함수추가 : CString CAutomation::GetCorrectString(CString sSrc, int nLen)
+  사용처 : BOOL CAutomation::RxS2F41(), 		
+                case 2:		//Interlock
+           BOOL CAutomation::TxS6F11(CEID ceid, UNIT unitid, CELLPOSID cellposid) // Event Report Send
+               	case 502 : // InterlockEvent
+
+#2015-08-13, jhlee
+1. EQUIP_SET_CELL_INFORMATION_REQUEST 처리 추가 
+  BOOL CDlgSockStatus::RcvMsgFromAftClient(tag_Message* pData)
+
+#2015-08-12, jhLee
+1. BOOL CAutomation::TxS6F11() 함수내 501, 502 처리시 g_pData->m_cDescription 값 대신  _T("") 대입
+
+
+[2015.02.10]
+1.SEM 콘트롤러 제거로 인한 SETTING파일 변경 후 데이타 불러오기 버그 수정
+[2015.03.25]
+1.운영 프로그램에서 현재 사용중인 RECIPE NULL값으로 보내는 BUG 수정
+[2015.03.27]
+1.검사PC에서 LOG CELLID로 가져 오던것을 INNER ID로 가져 올 수 있도록 옵션 처리
+[2014.04.14]
+1.최초 실행 시, 운영 PC의 현재 사용중인 RECIPE를 ini파일로 가져 온다.
+[2015.04.15]
+1. Login 관리 기능 추가
+[2015.04.16]
+1.Login 관리 기능 TEST완료. 
+[2015.04.29]
+1.QMS 보고 기능 추가.
+[2015.04.30]
+1.QMS 파일 저장 경로 변경
+[2015.05.28]
+1. FDC UILT항목 갱신 안되는 BUG수정
+
+
+           

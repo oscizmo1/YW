@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="PublicClass">
+      <UniqueIdentifier>{f53eb99e-e934-413b-a2bd-60c85d26cc57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CimClass">
+      <UniqueIdentifier>{1384a319-8571-42b0-af53-0805fea50bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{5356d761-4ae5-4566-8bd3-ff1f5b74b12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dlg">
+      <UniqueIdentifier>{85e7cf86-238e-4a6e-a816-bb5be8f47609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{9c24ad00-52bc-4185-8f4c-55ac3d0d1650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\GxGUI">
+      <UniqueIdentifier>{97c47615-0e95-4554-bb2d-887c71aaa6c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\GxSocket">
+      <UniqueIdentifier>{b644a785-a818-445d-bba1-aaa2d2906a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MachineClass">
+      <UniqueIdentifier>{0adbe5b0-c1b4-43dd-8ed3-61bb365f4d57}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Automation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GaonNuri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GaonNuriDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GaonNuriView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicClass\DataSocket.cpp">
+      <Filter>PublicClass</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicClass\FileSupport.cpp">
+      <Filter>PublicClass</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicClass\Ini.cpp">
+      <Filter>PublicClass</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicClass\LogCtrl.cpp">
+      <Filter>PublicClass</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicClass\Token.cpp">
+      <Filter>PublicClass</Filter>
+    </ClCompile>
+    <ClCompile Include="CimClass\DataStructure.cpp">
+      <Filter>CimClass</Filter>
+    </ClCompile>
+    <ClCompile Include="CimClass\SettingParam.cpp">
+      <Filter>CimClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewBase.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewCIM.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewFDC.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewSETTING.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgBarMenu.cpp">
+      <Filter>Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgBarTitle.cpp">
+      <Filter>Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgSockStatus.cpp">
+      <Filter>Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicClass\ReportCtrl.cpp">
+      <Filter>PublicClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewECM.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewRMS.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxGUI\GxIniFile.cpp">
+      <Filter>Lib\GxGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxGUI\GxUICtrl.cpp">
+      <Filter>Lib\GxGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxSocket\GxCommDefine.cpp">
+      <Filter>Lib\GxSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxSocket\GxDataStructure.cpp">
+      <Filter>Lib\GxSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxSocket\GxSockClient.cpp">
+      <Filter>Lib\GxSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxSocket\GxSockServer.cpp">
+      <Filter>Lib\GxSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GxLog.cpp">
+      <Filter>Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="CimClass\EquipFunction.cpp">
+      <Filter>CimClass</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineClass\UnitStatus.cpp">
+      <Filter>MachineClass</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineClass\UnitStatusBank.cpp">
+      <Filter>MachineClass</Filter>
+    </ClCompile>
+    <ClCompile Include="XComProCtrl.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Automation.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GaonNuri.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GaonNuriDoc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GaonNuriView.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicClass\DataSocket.h">
+      <Filter>PublicClass</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicClass\FileSupport.h">
+      <Filter>PublicClass</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicClass\Ini.h">
+      <Filter>PublicClass</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicClass\LogCtrl.h">
+      <Filter>PublicClass</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicClass\Token.h">
+      <Filter>PublicClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CimClass\DataStructure.h">
+      <Filter>CimClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CimClass\SettingParam.h">
+      <Filter>CimClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewBase.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewCIM.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewFDC.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewSETTING.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgBarMenu.h">
+      <Filter>Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgBarTitle.h">
+      <Filter>Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgSockStatus.h">
+      <Filter>Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicClass\ReportCtrl.h">
+      <Filter>PublicClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewECM.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewRMS.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxGUI\GxButtonEx.h">
+      <Filter>Lib\GxGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxGUI\GxIniFile.h">
+      <Filter>Lib\GxGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxGUI\GxStaticEx.h">
+      <Filter>Lib\GxGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxGUI\GxUICtrl.h">
+      <Filter>Lib\GxGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxSocket\GxCommDefine.h">
+      <Filter>Lib\GxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxSocket\GxDataStructure.h">
+      <Filter>Lib\GxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxSocket\GxSockClient.h">
+      <Filter>Lib\GxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxSocket\GxSockServer.h">
+      <Filter>Lib\GxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxCallback.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\GxLog.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="CimClass\EquipFunction.h">
+      <Filter>CimClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineClass\UnitStatus.h">
+      <Filter>MachineClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineClass\UnitStatusBank.h">
+      <Filter>MachineClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineClass\MachineDefine.h">
+      <Filter>MachineClass</Filter>
+    </ClInclude>
+    <ClInclude Include="XComProCtrl.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\18.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\20.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\27.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\42.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\55_32x32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Aha-Soft-Large-Time-Alarm-clock.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Aha-Soft-Large-Time-Network-time.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\computer_48.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Exit.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\GaonNuri.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\GaonNuri.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\GaonNuriDoc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\icon2.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Iconlicious-Misc-Monitor.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Iconlicious-Misc-Settings.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Iconlicious-Misc-Tv.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\LedOff.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\LedOn.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\PerfCenterCpl.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\RectOff.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\RectOn.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SAMSUNG.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\spanner_48.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Tools4.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\YWDSP.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ywdsp2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="UpdaetList.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GaonNuri.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

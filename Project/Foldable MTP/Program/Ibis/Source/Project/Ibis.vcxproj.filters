@@ -1,0 +1,1439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ModuleInternal">
+      <UniqueIdentifier>{d39d8da9-1be2-4ee5-a76e-41aeda10b1c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal">
+      <UniqueIdentifier>{50a0e60a-05f2-4fde-8ae2-66691d0e1ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\IO">
+      <UniqueIdentifier>{325a6184-5ea6-4f4a-abf2-7daa17b09344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\Motion">
+      <UniqueIdentifier>{48f9659b-bda9-4983-b719-794643fecd8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\CIF50">
+      <UniqueIdentifier>{4409cab4-d476-4a8b-aac3-ea14baabdd19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\YmcPCIAPI">
+      <UniqueIdentifier>{da1a8e81-5181-403c-aaf2-792686cf9b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\ETC">
+      <UniqueIdentifier>{f061a290-cc04-4e6a-8137-3e9c92b45777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\Socket">
+      <UniqueIdentifier>{567b7023-9fc0-449b-87d1-5394f6eef3c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\Serial">
+      <UniqueIdentifier>{071894ab-6a4e-4182-80c3-78ca694818d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{d31c7ddc-efcb-4bd1-9d2e-2278108efc0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Project\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Project\UI">
+      <UniqueIdentifier>{9c9979fe-fe81-4d5b-9940-5649fc9512f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Form">
+      <UniqueIdentifier>{a8ef22bb-063a-401c-b311-960d7676b086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Form\Report">
+      <UniqueIdentifier>{f6b269d6-e68b-4eed-a00e-82cd195b864d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Form\Setup">
+      <UniqueIdentifier>{8251eca6-0eb9-4a3f-ae21-080a6c9928a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Form\Teach">
+      <UniqueIdentifier>{09901eb5-5435-4cf3-8f2e-448b3f280f27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Dialog">
+      <UniqueIdentifier>{a03eeb35-1266-47d0-9bfe-2253fc4a03b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Dialog\DialogBar">
+      <UniqueIdentifier>{07391485-9096-4863-a715-cdddcdb18d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Device">
+      <UniqueIdentifier>{a6d914c4-eb4d-4948-9494-6ac44c86b739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\StateMachine">
+      <UniqueIdentifier>{58ce8186-08cc-4189-8376-f3614a65fc64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild">
+      <UniqueIdentifier>{e509578e-8c57-4115-b0d9-a2ef0cee660d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\RecipeBank">
+      <UniqueIdentifier>{bda60e70-3096-4b7e-80d7-96dece0332ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\TeachBank">
+      <UniqueIdentifier>{a32fa995-95c4-4c4c-bd70-12eb3eeb896d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\ConfigBank">
+      <UniqueIdentifier>{c6679b5c-d257-4d2e-9113-87befa24379c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\Thread">
+      <UniqueIdentifier>{aff3628b-0f7e-4d8d-90de-60ed6c769d57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\UnitBank">
+      <UniqueIdentifier>{eb150985-c29e-48d4-abce-92c2905b7ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Project\BankGuild\LogBank">
+      <UniqueIdentifier>{04b4cce4-9d72-4062-aa76-3bc2de7faa5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\Define &amp; Const Bank">
+      <UniqueIdentifier>{1199b42a-d638-4606-9c6b-26046b77d4f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\ProcDataBank">
+      <UniqueIdentifier>{5a178730-d481-4b0a-9a29-202c2bb0a4db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\IOBank">
+      <UniqueIdentifier>{e58c21d1-3149-4daa-b012-b3d96588cd68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\NMC2">
+      <UniqueIdentifier>{15570449-431f-41b5-a28f-3496e69f4422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\UI\Form\Config">
+      <UniqueIdentifier>{9e95721d-7b82-4fe4-ad5c-a332a31a48cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\UI">
+      <UniqueIdentifier>{0b0923d1-8c13-4a45-87f9-2d4a3e7f4a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\UI\GausGUI">
+      <UniqueIdentifier>{29f7dae1-d893-4a2f-8b12-b4b651ae6548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\UI\GridCtrl">
+      <UniqueIdentifier>{81ba71da-dfce-4ba2-b99a-3ba855500109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\AxisBank">
+      <UniqueIdentifier>{1f6f94dc-70eb-4165-bfc8-e1d4ee1f7344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Device\Socket">
+      <UniqueIdentifier>{59e39310-d8e9-450e-b98e-c82d038c40ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Device\Serial">
+      <UniqueIdentifier>{0ffe6280-7e68-4a8a-b63d-6d5c73279cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\IDReader">
+      <UniqueIdentifier>{657a16b5-4207-4ecd-9286-661a7c7bb763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\ProductBank">
+      <UniqueIdentifier>{36d54ff2-450a-4457-8d0a-3da423535b07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\Accura">
+      <UniqueIdentifier>{e567b3e5-c5ec-43a1-84a9-861d1bb3da38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\FDCBank">
+      <UniqueIdentifier>{59b60917-b38e-471c-b497-fbfe1ebb7902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\InspModuleBank">
+      <UniqueIdentifier>{2b05f32b-5fe0-4b02-b7c9-6b087c345739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\Cell">
+      <UniqueIdentifier>{07523e05-67b3-4769-951f-740f3fd0d84a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\MELSEC CC-Link IE">
+      <UniqueIdentifier>{c0e9752c-4a0e-4383-8036-20a354db72c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\MELSEC CC-Link">
+      <UniqueIdentifier>{1ed761f6-08a5-4757-9364-dc94493b4c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleExternal\MELSEC CC-Link IE">
+      <UniqueIdentifier>{a9006014-55b1-4098-ae79-362365a16fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\ThreadBank">
+      <UniqueIdentifier>{a7d4ab75-c206-47b2-bfdf-df782fcb32be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\BankGuild\UnitStatus">
+      <UniqueIdentifier>{f4f12c73-71d4-4b9a-a66e-0f26bbc41d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleInternal\FTP">
+      <UniqueIdentifier>{50563aa4-3eb7-4ab3-816d-764d48dd7e9f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icon1.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\..\..\icon\수동.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="res\GausBase.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\UpdateHistory.txt" />
+    <None Include="..\ModuleInternal\UI\GridCtrl\Tip.txt">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </None>
+    <None Include="..\ModuleExternal\IDReader\GxIDReader.tlb">
+      <Filter>ModuleExternal\IDReader</Filter>
+    </None>
+    <None Include="res\MCR_Sample.jpg">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="res\sample.bmp">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="res\Tray.bmp">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="res\cell.bmp">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\ModuleExternal\Accura\AccuraClient.dll">
+      <Filter>ModuleExternal\Accura</Filter>
+    </None>
+    <None Include="..\ModuleExternal\Accura\AccuraClientDbg.dll">
+      <Filter>ModuleExternal\Accura</Filter>
+    </None>
+    <None Include="..\UpdateHistory_EndUser.txt" />
+    <None Include="..\ModuleExternal\CIF50\cif32dll.dll">
+      <Filter>ModuleExternal\CIF50</Filter>
+    </None>
+    <None Include="..\ModuleExternal\CIF50\cif32dll64.dll">
+      <Filter>ModuleExternal\CIF50</Filter>
+    </None>
+    <None Include="..\ModuleExternal\MELSEC CC-Link IE\mmscl32.dll">
+      <Filter>ModuleExternal\MELSEC CC-Link IE</Filter>
+    </None>
+    <None Include="..\ModuleExternal\NMC2\NMC2.dll">
+      <Filter>ModuleExternal\NMC2</Filter>
+    </None>
+    <None Include="..\ModuleExternal\YmcPCIAPI\ymcPCAPI.dll">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </None>
+    <None Include="res\Ibis.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="res\Ibis.rc2">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="res\IbisDoc.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIDefine.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\IO\CIF32Ex.h">
+      <Filter>ModuleInternal\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Motion\MP2100.h">
+      <Filter>ModuleInternal\Motion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\Etc.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\dblPoint.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\dblSize.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Serial\CommThread.h">
+      <Filter>ModuleInternal\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Socket\DataSocket.h">
+      <Filter>ModuleInternal\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormMain.h">
+      <Filter>Project\UI\Form</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormPM.h">
+      <Filter>Project\UI\Form</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport2.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport3.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgConfirm.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgInform.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgInitial.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgMsgInterlock.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgMsgOPCall.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgMsgTerminal.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarBottom.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarHReport.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarHSetup.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarHTeach.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarJog.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarTop.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceIO.h">
+      <Filter>Project\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Thread\Thread.h">
+      <Filter>ModuleInternal\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\FileSupport.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\Ini.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\CellBank.h">
+      <Filter>Project\BankGuild\Cell</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\UnitCtrlBank.h">
+      <Filter>Project\BankGuild\UnitBank</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceMotion.h">
+      <Filter>Project\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\StopWatch.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\LogUnit.h">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigBank.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigSystem.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\CommonDefineBank.h">
+      <Filter>Project\BankGuild\Define &amp; Const Bank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\IOParamBank.h">
+      <Filter>Project\BankGuild\IOBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ProcDataBank.h">
+      <Filter>Project\BankGuild\ProcDataBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\TeachBank.h">
+      <Filter>Project\BankGuild\TeachBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\RecipeBank.h">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\RecipeCell.h">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\AlarmDefine.h">
+      <Filter>Project\BankGuild\Define &amp; Const Bank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\AlarmDefine.h">
+      <Filter>Project\BankGuild\Define &amp; Const Bank</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateRestart.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigOption.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\Token.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormConfig2.h">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormRecipe.h">
+      <Filter>Project\UI\Form</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgbarHConfig.h">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgUserLogin.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GausGUI.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxButtonEx.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxGUIFrame.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxImage.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxMsgBox.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxNumPad.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxNumPadEx.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxSingleton.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxStaticEx.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxUICtrl.h">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\CellRange.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridCell.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridCellBase.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridCtrl.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridDropTarget.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\InPlaceEdit.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\MemDC.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\TitleTip.h">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\MCDefine.h">
+      <Filter>Project\BankGuild\Define &amp; Const Bank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Motion\MotionNMC2.h">
+      <Filter>ModuleInternal\Motion</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\AxisParamBank.h">
+      <Filter>Project\BankGuild\AxisBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\AxisParam.h">
+      <Filter>Project\BankGuild\AxisBank</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSerialGMS.h">
+      <Filter>Project\Device\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSerialPrinter.h">
+      <Filter>Project\Device\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSerialTemperature.h">
+      <Filter>Project\Device\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\SerialManager.h">
+      <Filter>Project\Device\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSerialVacuum.h">
+      <Filter>Project\Device\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\SocketDialog.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneralPurposeFunction.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormInitialize.h">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormAlarm.h">
+      <Filter>Project\UI\Form</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormAlarmLamp.h">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgBoxKeyBoard.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormSignal.h">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormSetupIO.h">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormOptions.h">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormMotorUnitTest.h">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgPageIO.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgDoor.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\IDReader\GxIDReaderWrapper.h">
+      <Filter>ModuleExternal\IDReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\MELSECNet\MelsecNet.h">
+      <Filter>ModuleInternal\MELSEC CC-Link IE</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DIgRecipeSelect.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ProductBank.h">
+      <Filter>Project\BankGuild\ProductBank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Serial\CQueueSerial.h">
+      <Filter>ModuleInternal\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\Queue.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\CellLogItem.h">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelFont.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelInterior.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelManager.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelRange.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorkbook.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorkbooks.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorksheet.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorksheets.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelApplication.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgMCRManualRead.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DIgCimMsg.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\Accura\AccuraClient.h">
+      <Filter>ModuleExternal\Accura</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceAccura.h">
+      <Filter>Project\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\FDCBank.h">
+      <Filter>Project\BankGuild\FDCBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\LossTimeLog.h">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Etc\SystemTime.h">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\RecipeTeach.h">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\TactTimeLog.h">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigNGAlarmLimit.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ProcDataNGAlarm.h">
+      <Filter>Project\BankGuild\ProcDataBank</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgTPCodeList.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigDefectPattern.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigDefectRetest.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgOtherDefect.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigBZoneDefect.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\RecipeOption.h">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\UnitCtrl_Base.h">
+      <Filter>Project\BankGuild\UnitBank</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSocket_Base.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSocket_PGHost.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSocket_CIM.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\SocketDefine_CIM.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSocket_MCR.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\CIF50\CIFUSER.h">
+      <Filter>ModuleExternal\CIF50</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\CIF50\stdint.h">
+      <Filter>ModuleExternal\CIF50</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\MELSEC CC-Link\Mdfunc.h">
+      <Filter>ModuleExternal\MELSEC CC-Link</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\MELSEC CC-Link IE\Mdfunc.h">
+      <Filter>ModuleExternal\MELSEC CC-Link IE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\NMC2\NMC2.h">
+      <Filter>ModuleExternal\NMC2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ErrorCode.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\PCApiFunc.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcAPIConstants.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcAPIStruct.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcPCAPI.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcPCFunc.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcPCStruct.h">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\Motion\MotionModuleDefine.h">
+      <Filter>ModuleInternal\Motion</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport4_Opcall_History.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\CellDefectInfo.h">
+      <Filter>Project\BankGuild\Cell</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport1.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormTeach_Shuttle_1.h">
+      <Filter>Project\UI\Form\Teach</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DevicePDT_IF.h">
+      <Filter>Project\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormTeach_Shuttle_2.h">
+      <Filter>Project\UI\Form\Teach</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\RecipeInspModule.h">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport1_Sub.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateAZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateCZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateMoveCZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateMoveAZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport2_Sub.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigTimeOut.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\UI\UIValue.h">
+      <Filter>ModuleInternal\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport5_Interlock_History.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReport6_Terminel_History.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormTeach_PDT_IF.h">
+      <Filter>Project\UI\Form\Teach</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgCoRelation.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_Base.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_CellLoading.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_CoprIctTest.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_DdiBlockTest.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_Define.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_EvtVersionCheck.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_HlpmCurrent.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_IctTest.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_IdCheck.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_MTPVerify.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_MTPWrite.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck2.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck3.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck4.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck5.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck6.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck7.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck8.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck9.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck10.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OtpRegCheck.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_PocErrorCheck.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_SleepCurrent.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_TeCheck.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_TspStart.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_WhiteCurrent.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\InspModuleBank\InspModuleBank.h">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ThreadBank\Thread_PDT_IF_Sequence.h">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ThreadBank\ThreadBank.h">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ThreadBank\Thread_IO_Sequence.h">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ThreadBank\Thread_IO_Alarm_Check.h">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ThreadBank\Thread_FDC_Alarm_Check.h">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ThreadBank\Thread_Main_Sequence.h">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StatePDT_IF.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateCorelation.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormCIM.h">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ConfigCIM.h">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\UnitStatus.h">
+      <Filter>Project\BankGuild\UnitStatus</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\UnitStatusBank.h">
+      <Filter>Project\BankGuild\UnitStatus</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgMsgUnitInerlock.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgReportSub.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ModuleInternal\FTP\FTPHandler.h">
+      <Filter>ModuleInternal\FTP</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormConfigRepeatNgOption.h">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\ProcDataPG.h">
+      <Filter>Project\BankGuild\ProcDataBank</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialog\DlgBoxEDIT.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Form\FormReportStatisticsNGLastResult.h">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateMoveBZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateBZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceSocket_ActiveAlign.h">
+      <Filter>Project\Device\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="IbisApp.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IbisDoc.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IbisView.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\IO\CIF32Ex.cpp">
+      <Filter>ModuleInternal\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Motion\MP2100.cpp">
+      <Filter>ModuleInternal\Motion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\Etc.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\dblPoint.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\dblSize.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Serial\CommThread.cpp">
+      <Filter>ModuleInternal\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Socket\DataSocket.cpp">
+      <Filter>ModuleInternal\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormMain.cpp">
+      <Filter>Project\UI\Form</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormPM.cpp">
+      <Filter>Project\UI\Form</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport2.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport3.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgConfirm.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgInform.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgInitial.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgMsgInterlock.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgMsgOPCall.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgMsgTerminal.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarBottom.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarHReport.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarHSetup.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarHTeach.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarJog.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarTop.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceIO.cpp">
+      <Filter>Project\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Thread\Thread.cpp">
+      <Filter>ModuleInternal\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\FileSupport.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\Ini.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\CellBank.cpp">
+      <Filter>Project\BankGuild\Cell</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\UnitCtrlBank.cpp">
+      <Filter>Project\BankGuild\UnitBank</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceMotion.cpp">
+      <Filter>Project\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\StopWatch.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\LogUnit.cpp">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigBank.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigSystem.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\IOParamBank.cpp">
+      <Filter>Project\BankGuild\IOBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ProcDataBank.cpp">
+      <Filter>Project\BankGuild\ProcDataBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\TeachBank.cpp">
+      <Filter>Project\BankGuild\TeachBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\RecipeBank.cpp">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\RecipeCell.cpp">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateRestart.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigOption.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Socket\DataSocketClient.cpp">
+      <Filter>ModuleInternal\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\Token.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormConfig2.cpp">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormRecipe.cpp">
+      <Filter>Project\UI\Form</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgbarHConfig.cpp">
+      <Filter>Project\UI\Dialog\DialogBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgUserLogin.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridCell.cpp">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridCellBase.cpp">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridCtrl.cpp">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridDropTarget.cpp">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\InPlaceEdit.cpp">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\TitleTip.cpp">
+      <Filter>ModuleInternal\UI\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Motion\MotionNMC2.cpp">
+      <Filter>ModuleInternal\Motion</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrmMsg.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\AxisParamBank.cpp">
+      <Filter>Project\BankGuild\AxisBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\AxisParam.cpp">
+      <Filter>Project\BankGuild\AxisBank</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSerialGMS.cpp">
+      <Filter>Project\Device\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSerialVacuum.cpp">
+      <Filter>Project\Device\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSerialPrinter.cpp">
+      <Filter>Project\Device\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSerialTemperature.cpp">
+      <Filter>Project\Device\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\SerialManager.cpp">
+      <Filter>Project\Device\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\SocketDialog.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneralPurposeFunction.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormInitialize.cpp">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormAlarm.cpp">
+      <Filter>Project\UI\Form</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormAlarmLamp.cpp">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgBoxKeyBoard.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormSignal.cpp">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormSetupIO.cpp">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormOptions.cpp">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormMotorUnitTest.cpp">
+      <Filter>Project\UI\Form\Setup</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgPageIO.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgDoor.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleExternal\IDReader\GxIDReaderWrapper.cpp">
+      <Filter>ModuleExternal\IDReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\MELSECNet\MelsecNet.cpp">
+      <Filter>ModuleInternal\MELSEC CC-Link IE</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DIgRecipeSelect.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Serial\CQueueSerial.cpp">
+      <Filter>ModuleInternal\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\Queue.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\CellLogItem.cpp">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\TGExcelManager.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgMCRManualRead.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DIgCimMsg.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceAccura.cpp">
+      <Filter>Project\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\FDCBank.cpp">
+      <Filter>Project\BankGuild\FDCBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\LossTimeLog.cpp">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\Etc\SystemTime.cpp">
+      <Filter>ModuleInternal\ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\RecipeTeach.cpp">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\TactTimeLog.cpp">
+      <Filter>Project\BankGuild\LogBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigNGAlarmLimit.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ProcDataNGAlarm.cpp">
+      <Filter>Project\BankGuild\ProcDataBank</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgTPCodeList.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigDefectPattern.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigDefectRetest.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgOtherDefect.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigBZoneDefect.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\RecipeOption.cpp">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\UnitCtrl_Base.cpp">
+      <Filter>Project\BankGuild\UnitBank</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSocket_Base.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSocket_PGHost.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSocket_CIM.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\SocketDefine_CIM.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSocket_MCR.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ProductBank.cpp">
+      <Filter>Project\BankGuild\ProductBank</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport4_Opcall_History.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\CellDefectInfo.cpp">
+      <Filter>Project\BankGuild\Cell</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport1.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormTeach_Shuttle_1.cpp">
+      <Filter>Project\UI\Form\Teach</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DevicePDT_IF.cpp">
+      <Filter>Project\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormTeach_Shuttle_2.cpp">
+      <Filter>Project\UI\Form\Teach</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\RecipeInspModule.cpp">
+      <Filter>Project\BankGuild\RecipeBank</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport1_Sub.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateAZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateCZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateMoveCZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateMoveAZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport2_Sub.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigTimeOut.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\UI\UIValue.cpp">
+      <Filter>ModuleInternal\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport5_Interlock_History.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReport6_Terminel_History.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormTeach_PDT_IF.cpp">
+      <Filter>Project\UI\Form\Teach</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgCoRelation.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_Base.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_CellLoading.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_CoprIctTest.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_DdiBlockTest.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_EvtVersionCheck.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_HlpmCurrent.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_IctTest.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_IdCheck.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_MTPVerify.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_MTPWrite.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck2.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck3.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck4.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck5.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck6.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck7.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck8.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck9.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck10.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OtpRegCheck.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_PocErrorCheck.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_SleepCurrent.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_TeCheck.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_TspStart.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_WhiteCurrent.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\InspModuleBank\InspModuleBank.cpp">
+      <Filter>Project\BankGuild\InspModuleBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ThreadBank\Thread_PDT_IF_Sequence.cpp">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ThreadBank\ThreadBank.cpp">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ThreadBank\Thread_IO_Sequence.cpp">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ThreadBank\Thread_IO_Alarm_Check.cpp">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ThreadBank\Thread_FDC_Alarm_Check.cpp">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ThreadBank\Thread_Main_Sequence.cpp">
+      <Filter>Project\BankGuild\ThreadBank</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StatePDT_IF.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateCorelation.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormCIM.cpp">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ConfigCIM.cpp">
+      <Filter>Project\BankGuild\ConfigBank</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\UnitStatus.cpp">
+      <Filter>Project\BankGuild\UnitStatus</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\UnitStatusBank.cpp">
+      <Filter>Project\BankGuild\UnitStatus</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgMsgUnitInerlock.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgReportSub.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ModuleInternal\FTP\FTPHandler.cpp">
+      <Filter>ModuleInternal\FTP</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormConfigRepeatNgOption.cpp">
+      <Filter>Project\UI\Form\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="BankGuild\ProcDataPG.cpp">
+      <Filter>Project\BankGuild\ProcDataBank</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DlgBoxEDIT.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Form\FormReportStatisticsNGLastResult.cpp">
+      <Filter>Project\UI\Form\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateMoveBZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateBZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceSocket_ActiveAlign.cpp">
+      <Filter>Project\Device\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="IbisApp.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="IbisDoc.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="IbisView.cpp">
+      <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\ModuleInternal\UI\GausGUI\GausGUI.lib">
+      <Filter>ModuleInternal\UI\GausGUI</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\Accura\AccuraClient.lib">
+      <Filter>ModuleExternal\Accura</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\Accura\AccuraClientDbg.lib">
+      <Filter>ModuleExternal\Accura</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\CIF50\cif32dll.lib">
+      <Filter>ModuleExternal\CIF50</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\MELSEC CC-Link\ccsubl.lib">
+      <Filter>ModuleExternal\MELSEC CC-Link</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\MELSEC CC-Link\mdfunc32.lib">
+      <Filter>ModuleExternal\MELSEC CC-Link</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\MELSEC CC-Link IE\MdFunc32.lib">
+      <Filter>ModuleExternal\MELSEC CC-Link IE</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\NMC2\NMC2.LIB">
+      <Filter>ModuleExternal\NMC2</Filter>
+    </Library>
+    <Library Include="..\ModuleExternal\YmcPCIAPI\ymcPCAPI.lib">
+      <Filter>ModuleExternal\YmcPCIAPI</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ibis.rc">
+      <Filter>Project\리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

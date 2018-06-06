@@ -1,0 +1,37 @@
+================================================================================
+    Update History (사용자 확인용)
+================================================================================
+작성 예)
+#Version	[NickName]
+1. Update 내용
+  - Upate 상세 내용 및 설명, 관련 Source code
+================================================================================
+#Y_M_FTI_17.07.11.01	[OSC]
+1. IDLE 상태에서 PM 버튼이 활성화 되는 버그 수정
+2. Down Material 코드 선택 못하도록 비활성화 (SDV 요청사항)
+
+#Y_M_FTI_17.07.10.01	[OSC]
+1. 설비 알람 발생시 비가동 로그에 TP CODE가 3000번이 아닌 2000번이 기록되도록 수정 (SDV 요청사항)
+2. IDLE 상태일 때는 Down Material이 아니라 RUNDOWN으로 보고하도록 수정
+3. 알람 발생 후 프로그램 재시작시 이전 리셋타임 및 알람코드 누락되는 버그 수정
+4. Buffer Stage State 관련 버그 수정
+
+#Y_M_FTI_17.07.08.01	[OSC]
+1. 작업자가 검사하지 않고 자리 비우면 60초 대기 후 RUNDOWN 보고
+2. Label Printer 상태(READY, 및 용지 부족) 체크
+3. TSP Time Out Value Option으로 조정 가능하게 수정
+4. D:\TRACKOUT_INFO Log 기록
+
+#Y_M_FTI_17.07.03.02	[OSC]
+1. CHECK State 적용
+	- 설비 STOP -> START 전환시 부저 2회 울릴 동안은 CHECK상태
+	- CHECK상태일 때는 CIM 정지상태. CHECK가 끝나고 RUN으로 바뀌면 그때 CIM으로 RUN 상태 보고
+2. CIM CellInfoRequest와 Track In 시점 변경
+
+
+#Y_M_FTI_17.06.28.01	[BKH]
+1. EDGE ALIGN DATA Alarm 발생할 시점에 설비가 무언정지상태로 있는 버그 수정
+2. Unload TR X 이동 후에도 Vacuum 체크하여 이동중 Cell 낙하 현상 Alarm 발생하도록 구현
+
+#Y_M_FTI_17.06.24.02	[OSC]
+1. 60초 경과시 검사부 Cell 자동배출 기능 추가

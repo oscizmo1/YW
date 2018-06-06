@@ -1,0 +1,2 @@
+;LAST RESULT와 같아야 함
+FORCE CB BAND 

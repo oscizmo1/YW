@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6E1178D5-84F5-44DB-ACF8-AE2E2FFB28AF}</ProjectGuid>
+    <RootNamespace>BaseForm</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <ProjectName>Ibis</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\..\YWDSP\Bin\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\Temp\Obj\$(SolutionName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\..\..\$(SolutionName)\Bin\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\Temp\Obj\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)ModuleInternal;$(SolutionDir)ModuleExternal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)ModuleExternal;$(SolutionDir)ModuleInternal</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)ModuleInternal;$(SolutionDir)ModuleExternal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)ModuleExternal;$(SolutionDir)ModuleInternal</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\..\icon\수동.ico" />
+    <None Include="..\ModuleExternal\Accura\AccuraClient.dll" />
+    <None Include="..\ModuleExternal\Accura\AccuraClientDbg.dll" />
+    <None Include="..\ModuleExternal\CIF50\cif32dll.dll" />
+    <None Include="..\ModuleExternal\CIF50\cif32dll64.dll" />
+    <None Include="..\ModuleExternal\IDReader\GxIDReader.tlb" />
+    <None Include="..\ModuleExternal\MELSEC CC-Link IE\mmscl32.dll" />
+    <None Include="..\ModuleExternal\NMC2\NMC2.dll" />
+    <None Include="..\ModuleExternal\YmcPCIAPI\ymcPCAPI.dll" />
+    <None Include="..\ModuleInternal\UI\GridCtrl\Tip.txt" />
+    <None Include="..\UpdateHistory.txt" />
+    <None Include="..\UpdateHistory_EndUser.txt" />
+    <None Include="res\Ibis.ico" />
+    <None Include="res\Ibis.rc2" />
+    <None Include="res\IbisDoc.ico" />
+    <None Include="res\cell.bmp" />
+    <None Include="res\GausBase.ico" />
+    <None Include="res\icon1.ico" />
+    <None Include="res\MCR_Sample.jpg" />
+    <None Include="res\sample.bmp" />
+    <None Include="res\Tray.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ModuleExternal\Accura\AccuraClient.h" />
+    <ClInclude Include="..\ModuleExternal\CIF50\CIFUSER.h" />
+    <ClInclude Include="..\ModuleExternal\CIF50\stdint.h" />
+    <ClInclude Include="..\ModuleExternal\IDReader\GxIDReaderWrapper.h" />
+    <ClInclude Include="..\ModuleExternal\MELSEC CC-Link IE\Mdfunc.h" />
+    <ClInclude Include="..\ModuleExternal\MELSEC CC-Link\Mdfunc.h" />
+    <ClInclude Include="..\ModuleExternal\NMC2\NMC2.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ErrorCode.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\PCApiFunc.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcAPIConstants.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcAPIStruct.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcPCAPI.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcPCFunc.h" />
+    <ClInclude Include="..\ModuleExternal\YmcPCIAPI\ymcPCStruct.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\dblPoint.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\dblSize.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\Etc.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\FileSupport.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\Ini.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\Queue.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\StopWatch.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\SystemTime.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelApplication.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelFont.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelInterior.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelManager.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelRange.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorkbook.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorkbooks.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorksheet.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\TGExcelWorksheets.h" />
+    <ClInclude Include="..\ModuleInternal\Etc\Token.h" />
+    <ClInclude Include="..\ModuleInternal\FTP\FTPHandler.h" />
+    <ClInclude Include="..\ModuleInternal\IO\CIF32Ex.h" />
+    <ClInclude Include="..\ModuleInternal\MELSECNet\MelsecNet.h" />
+    <ClInclude Include="..\ModuleInternal\Motion\MotionModuleDefine.h" />
+    <ClInclude Include="..\ModuleInternal\Motion\MotionNMC2.h" />
+    <ClInclude Include="..\ModuleInternal\Motion\MP2100.h" />
+    <ClInclude Include="..\ModuleInternal\Serial\CommThread.h" />
+    <ClInclude Include="..\ModuleInternal\Serial\CQueueSerial.h" />
+    <ClInclude Include="..\ModuleInternal\Socket\DataSocket.h" />
+    <ClInclude Include="..\ModuleInternal\Thread\Thread.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GausGUI.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxButtonEx.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxGUIFrame.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxImage.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxMsgBox.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxNumPad.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxNumPadEx.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxSingleton.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxStaticEx.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GausGUI\GxUICtrl.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\CellRange.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridCell.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridCellBase.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridCtrl.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\GridDropTarget.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\InPlaceEdit.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\MemDC.h" />
+    <ClInclude Include="..\ModuleInternal\UI\GridCtrl\TitleTip.h" />
+    <ClInclude Include="..\ModuleInternal\UI\UIValue.h" />
+    <ClInclude Include="BankGuild\CellDefectInfo.h" />
+    <ClInclude Include="BankGuild\ConfigCIM.h" />
+    <ClInclude Include="BankGuild\ConfigTimeOut.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModuleBank.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_Base.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_CellLoading.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_CoprIctTest.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_DdiBlockTest.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_Define.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_EvtVersionCheck.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_HlpmCurrent.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_IctTest.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_IdCheck.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_MTPVerify.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_MTPWrite.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck10.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck2.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck3.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck4.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck5.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck6.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck7.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck8.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OptionCheck9.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_OtpRegCheck.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_PocErrorCheck.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_SleepCurrent.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_TeCheck.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_TspStart.h" />
+    <ClInclude Include="BankGuild\InspModuleBank\InspModule_WhiteCurrent.h" />
+    <ClInclude Include="BankGuild\ProcDataPG.h" />
+    <ClInclude Include="BankGuild\RecipeInspModule.h" />
+    <ClInclude Include="BankGuild\ThreadBank\ThreadBank.h" />
+    <ClInclude Include="BankGuild\ThreadBank\Thread_FDC_Alarm_Check.h" />
+    <ClInclude Include="BankGuild\ThreadBank\Thread_IO_Alarm_Check.h" />
+    <ClInclude Include="BankGuild\ThreadBank\Thread_IO_Sequence.h" />
+    <ClInclude Include="BankGuild\ThreadBank\Thread_Main_Sequence.h" />
+    <ClInclude Include="BankGuild\ThreadBank\Thread_PDT_IF_Sequence.h" />
+    <ClInclude Include="BankGuild\UnitStatus.h" />
+    <ClInclude Include="BankGuild\UnitStatusBank.h" />
+    <ClInclude Include="Device\DevicePDT_IF.h" />
+    <ClInclude Include="Device\DeviceSocket_ActiveAlign.h" />
+    <ClInclude Include="Device\DeviceSocket_MCR.h" />
+    <ClInclude Include="IbisApp.h" />
+    <ClInclude Include="IbisDoc.h" />
+    <ClInclude Include="IbisView.h" />
+    <ClInclude Include="BankGuild\AxisParam.h" />
+    <ClInclude Include="BankGuild\AxisParamBank.h" />
+    <ClInclude Include="BankGuild\CellBank.h" />
+    <ClInclude Include="BankGuild\CellLogItem.h" />
+    <ClInclude Include="BankGuild\ConfigBank.h" />
+    <ClInclude Include="BankGuild\ConfigBZoneDefect.h" />
+    <ClInclude Include="BankGuild\ConfigDefectPattern.h" />
+    <ClInclude Include="BankGuild\ConfigDefectRetest.h" />
+    <ClInclude Include="BankGuild\ConfigNGAlarmLimit.h" />
+    <ClInclude Include="BankGuild\ConfigOption.h" />
+    <ClInclude Include="BankGuild\ConfigSystem.h" />
+    <ClInclude Include="BankGuild\CommonDefineBank.h" />
+    <ClInclude Include="BankGuild\AlarmDefine.h" />
+    <ClInclude Include="BankGuild\FDCBank.h" />
+    <ClInclude Include="BankGuild\IOParamBank.h" />
+    <ClInclude Include="BankGuild\LogUnit.h" />
+    <ClInclude Include="BankGuild\LossTimeLog.h" />
+    <ClInclude Include="BankGuild\MCDefine.h" />
+    <ClInclude Include="BankGuild\ProcDataBank.h" />
+    <ClInclude Include="BankGuild\ProcDataNGAlarm.h" />
+    <ClInclude Include="BankGuild\ProductBank.h" />
+    <ClInclude Include="BankGuild\RecipeBank.h" />
+    <ClInclude Include="BankGuild\RecipeCell.h" />
+    <ClInclude Include="BankGuild\RecipeOption.h" />
+    <ClInclude Include="BankGuild\RecipeTeach.h" />
+    <ClInclude Include="BankGuild\TactTimeLog.h" />
+    <ClInclude Include="BankGuild\TeachBank.h" />
+    <ClInclude Include="BankGuild\UnitCtrlBank.h" />
+    <ClInclude Include="BankGuild\UnitCtrl_Base.h" />
+    <ClInclude Include="Device\DeviceAccura.h" />
+    <ClInclude Include="Device\DeviceIO.h" />
+    <ClInclude Include="Device\DeviceMotion.h" />
+    <ClInclude Include="Device\DeviceSerialGMS.h" />
+    <ClInclude Include="Device\DeviceSerialPrinter.h" />
+    <ClInclude Include="Device\DeviceSerialTemperature.h" />
+    <ClInclude Include="Device\DeviceSerialVacuum.h" />
+    <ClInclude Include="Device\DeviceSocket_Base.h" />
+    <ClInclude Include="Device\DeviceSocket_CIM.h" />
+    <ClInclude Include="Device\DeviceSocket_PGHost.h" />
+    <ClInclude Include="Device\SerialManager.h" />
+    <ClInclude Include="Device\SocketDefine_CIM.h" />
+    <ClInclude Include="Device\SocketDialog.h" />
+    <ClInclude Include="GeneralPurposeFunction.h" />
+    <ClInclude Include="GUIDefine.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StateMachine\StateAZone.h" />
+    <ClInclude Include="StateMachine\StateBZone.h" />
+    <ClInclude Include="StateMachine\StateCorelation.h" />
+    <ClInclude Include="StateMachine\StateMoveAZone.h" />
+    <ClInclude Include="StateMachine\StateCZone.h" />
+    <ClInclude Include="StateMachine\StateMoveBZone.h" />
+    <ClInclude Include="StateMachine\StatePDT_IF.h" />
+    <ClInclude Include="StateMachine\StateRestart.h" />
+    <ClInclude Include="StateMachine\StateMoveCZone.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="UI\Dialog\DIgCimMsg.h" />
+    <ClInclude Include="UI\Dialog\DIgRecipeSelect.h" />
+    <ClInclude Include="UI\Dialog\DlgbarBottom.h" />
+    <ClInclude Include="UI\Dialog\DlgbarHConfig.h" />
+    <ClInclude Include="UI\Dialog\DlgbarHReport.h" />
+    <ClInclude Include="UI\Dialog\DlgbarHSetup.h" />
+    <ClInclude Include="UI\Dialog\DlgbarHTeach.h" />
+    <ClInclude Include="UI\Dialog\DlgbarJog.h" />
+    <ClInclude Include="UI\Dialog\DlgbarTop.h" />
+    <ClInclude Include="UI\Dialog\DlgBoxEDIT.h" />
+    <ClInclude Include="UI\Dialog\DlgBoxKeyBoard.h" />
+    <ClInclude Include="UI\Dialog\DlgConfirm.h" />
+    <ClInclude Include="UI\Dialog\DlgCoRelation.h" />
+    <ClInclude Include="UI\Dialog\DlgDoor.h" />
+    <ClInclude Include="UI\Dialog\DlgInform.h" />
+    <ClInclude Include="UI\Dialog\DlgInitial.h" />
+    <ClInclude Include="UI\Dialog\DlgMCRManualRead.h" />
+    <ClInclude Include="UI\Dialog\DlgMsgInterlock.h" />
+    <ClInclude Include="UI\Dialog\DlgMsgOPCall.h" />
+    <ClInclude Include="UI\Dialog\DlgMsgTerminal.h" />
+    <ClInclude Include="UI\Dialog\DlgMsgUnitInerlock.h" />
+    <ClInclude Include="UI\Dialog\DlgOtherDefect.h" />
+    <ClInclude Include="UI\Dialog\DlgPageIO.h" />
+    <ClInclude Include="UI\Dialog\DlgReportSub.h" />
+    <ClInclude Include="UI\Dialog\DlgTPCodeList.h" />
+    <ClInclude Include="UI\Dialog\DlgUserLogin.h" />
+    <ClInclude Include="UI\Form\FormAlarm.h" />
+    <ClInclude Include="UI\Form\FormAlarmLamp.h" />
+    <ClInclude Include="UI\Form\FormCIM.h" />
+    <ClInclude Include="UI\Form\FormConfig2.h" />
+    <ClInclude Include="UI\Form\FormConfigRepeatNgOption.h" />
+    <ClInclude Include="UI\Form\FormInitialize.h" />
+    <ClInclude Include="UI\Form\FormMain.h" />
+    <ClInclude Include="UI\Form\FormMotorUnitTest.h" />
+    <ClInclude Include="UI\Form\FormOptions.h" />
+    <ClInclude Include="UI\Form\FormPM.h" />
+    <ClInclude Include="UI\Form\FormRecipe.h" />
+    <ClInclude Include="UI\Form\FormReport1.h" />
+    <ClInclude Include="UI\Form\FormReport1_Sub.h" />
+    <ClInclude Include="UI\Form\FormReport2_Sub.h" />
+    <ClInclude Include="UI\Form\FormReport2.h" />
+    <ClInclude Include="UI\Form\FormReport3.h" />
+    <ClInclude Include="UI\Form\FormReport5_Interlock_History.h" />
+    <ClInclude Include="UI\Form\FormReport4_Opcall_History.h" />
+    <ClInclude Include="UI\Form\FormReport6_Terminel_History.h" />
+    <ClInclude Include="UI\Form\FormReportStatisticsNGLastResult.h" />
+    <ClInclude Include="UI\Form\FormSignal.h" />
+    <ClInclude Include="UI\Form\FormSetupIO.h" />
+    <ClInclude Include="UI\Form\FormTeach_PDT_IF.h" />
+    <ClInclude Include="UI\Form\FormTeach_Shuttle_1.h" />
+    <ClInclude Include="UI\Form\FormTeach_Shuttle_2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ModuleExternal\IDReader\GxIDReaderWrapper.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\dblPoint.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\dblSize.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\Etc.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\FileSupport.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\Ini.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\Queue.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\StopWatch.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\SystemTime.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\TGExcelManager.cpp" />
+    <ClCompile Include="..\ModuleInternal\Etc\Token.cpp" />
+    <ClCompile Include="..\ModuleInternal\FTP\FTPHandler.cpp" />
+    <ClCompile Include="..\ModuleInternal\IO\CIF32Ex.cpp" />
+    <ClCompile Include="..\ModuleInternal\MELSECNet\MelsecNet.cpp" />
+    <ClCompile Include="..\ModuleInternal\Motion\MotionNMC2.cpp" />
+    <ClCompile Include="..\ModuleInternal\Motion\MP2100.cpp" />
+    <ClCompile Include="..\ModuleInternal\Serial\CommThread.cpp" />
+    <ClCompile Include="..\ModuleInternal\Serial\CQueueSerial.cpp" />
+    <ClCompile Include="..\ModuleInternal\Socket\DataSocket.cpp" />
+    <ClCompile Include="..\ModuleInternal\Socket\DataSocketClient.cpp" />
+    <ClCompile Include="..\ModuleInternal\Thread\Thread.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridCell.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridCellBase.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridCtrl.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\GridDropTarget.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\InPlaceEdit.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\GridCtrl\TitleTip.cpp" />
+    <ClCompile Include="..\ModuleInternal\UI\UIValue.cpp" />
+    <ClCompile Include="BankGuild\CellDefectInfo.cpp" />
+    <ClCompile Include="BankGuild\ConfigCIM.cpp" />
+    <ClCompile Include="BankGuild\ConfigTimeOut.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModuleBank.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_Base.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_CellLoading.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_CoprIctTest.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_DdiBlockTest.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_EvtVersionCheck.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_HlpmCurrent.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_IctTest.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_IdCheck.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_MTPVerify.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_MTPWrite.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck10.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck2.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck3.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck4.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck5.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck6.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck7.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck8.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OptionCheck9.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_OtpRegCheck.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_PocErrorCheck.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_SleepCurrent.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_TeCheck.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_TspStart.cpp" />
+    <ClCompile Include="BankGuild\InspModuleBank\InspModule_WhiteCurrent.cpp" />
+    <ClCompile Include="BankGuild\ProcDataPG.cpp" />
+    <ClCompile Include="BankGuild\RecipeInspModule.cpp" />
+    <ClCompile Include="BankGuild\ThreadBank\ThreadBank.cpp" />
+    <ClCompile Include="BankGuild\ThreadBank\Thread_FDC_Alarm_Check.cpp" />
+    <ClCompile Include="BankGuild\ThreadBank\Thread_IO_Alarm_Check.cpp" />
+    <ClCompile Include="BankGuild\ThreadBank\Thread_IO_Sequence.cpp" />
+    <ClCompile Include="BankGuild\ThreadBank\Thread_Main_Sequence.cpp" />
+    <ClCompile Include="BankGuild\ThreadBank\Thread_PDT_IF_Sequence.cpp" />
+    <ClCompile Include="BankGuild\UnitStatus.cpp" />
+    <ClCompile Include="BankGuild\UnitStatusBank.cpp" />
+    <ClCompile Include="Device\DevicePDT_IF.cpp" />
+    <ClCompile Include="Device\DeviceSocket_ActiveAlign.cpp" />
+    <ClCompile Include="Device\DeviceSocket_MCR.cpp" />
+    <ClCompile Include="IbisApp.cpp" />
+    <ClCompile Include="IbisDoc.cpp" />
+    <ClCompile Include="IbisView.cpp" />
+    <ClCompile Include="BankGuild\AxisParam.cpp" />
+    <ClCompile Include="BankGuild\AxisParamBank.cpp" />
+    <ClCompile Include="BankGuild\CellBank.cpp" />
+    <ClCompile Include="BankGuild\CellLogItem.cpp" />
+    <ClCompile Include="BankGuild\ConfigBank.cpp" />
+    <ClCompile Include="BankGuild\ConfigBZoneDefect.cpp" />
+    <ClCompile Include="BankGuild\ConfigDefectPattern.cpp" />
+    <ClCompile Include="BankGuild\ConfigDefectRetest.cpp" />
+    <ClCompile Include="BankGuild\ConfigNGAlarmLimit.cpp" />
+    <ClCompile Include="BankGuild\ConfigOption.cpp" />
+    <ClCompile Include="BankGuild\ConfigSystem.cpp" />
+    <ClCompile Include="BankGuild\FDCBank.cpp" />
+    <ClCompile Include="BankGuild\IOParamBank.cpp" />
+    <ClCompile Include="BankGuild\LogUnit.cpp" />
+    <ClCompile Include="BankGuild\LossTimeLog.cpp" />
+    <ClCompile Include="BankGuild\ProcDataBank.cpp" />
+    <ClCompile Include="BankGuild\ProcDataNGAlarm.cpp" />
+    <ClCompile Include="BankGuild\ProductBank.cpp" />
+    <ClCompile Include="BankGuild\RecipeBank.cpp" />
+    <ClCompile Include="BankGuild\RecipeCell.cpp" />
+    <ClCompile Include="BankGuild\RecipeOption.cpp" />
+    <ClCompile Include="BankGuild\RecipeTeach.cpp" />
+    <ClCompile Include="BankGuild\TactTimeLog.cpp" />
+    <ClCompile Include="BankGuild\TeachBank.cpp" />
+    <ClCompile Include="BankGuild\UnitCtrlBank.cpp" />
+    <ClCompile Include="BankGuild\UnitCtrl_Base.cpp" />
+    <ClCompile Include="Device\DeviceAccura.cpp" />
+    <ClCompile Include="Device\DeviceIO.cpp" />
+    <ClCompile Include="Device\DeviceMotion.cpp" />
+    <ClCompile Include="Device\DeviceSerialGMS.cpp" />
+    <ClCompile Include="Device\DeviceSerialPrinter.cpp" />
+    <ClCompile Include="Device\DeviceSerialTemperature.cpp" />
+    <ClCompile Include="Device\DeviceSerialVacuum.cpp" />
+    <ClCompile Include="Device\DeviceSocket_Base.cpp" />
+    <ClCompile Include="Device\DeviceSocket_CIM.cpp" />
+    <ClCompile Include="Device\DeviceSocket_PGHost.cpp" />
+    <ClCompile Include="Device\SerialManager.cpp" />
+    <ClCompile Include="Device\SocketDefine_CIM.cpp" />
+    <ClCompile Include="Device\SocketDialog.cpp" />
+    <ClCompile Include="GeneralPurposeFunction.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MainFrmMsg.cpp" />
+    <ClCompile Include="StateMachine\StateAZone.cpp" />
+    <ClCompile Include="StateMachine\StateBZone.cpp" />
+    <ClCompile Include="StateMachine\StateCorelation.cpp" />
+    <ClCompile Include="StateMachine\StateMoveAZone.cpp" />
+    <ClCompile Include="StateMachine\StateCZone.cpp" />
+    <ClCompile Include="StateMachine\StateMoveBZone.cpp" />
+    <ClCompile Include="StateMachine\StatePDT_IF.cpp" />
+    <ClCompile Include="StateMachine\StateRestart.cpp" />
+    <ClCompile Include="StateMachine\StateMoveCZone.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\DIgCimMsg.cpp" />
+    <ClCompile Include="UI\Dialog\DIgRecipeSelect.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarBottom.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarHConfig.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarHReport.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarHSetup.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarHTeach.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarJog.cpp" />
+    <ClCompile Include="UI\Dialog\DlgbarTop.cpp" />
+    <ClCompile Include="UI\Dialog\DlgBoxEDIT.cpp" />
+    <ClCompile Include="UI\Dialog\DlgBoxKeyBoard.cpp" />
+    <ClCompile Include="UI\Dialog\DlgConfirm.cpp" />
+    <ClCompile Include="UI\Dialog\DlgCoRelation.cpp" />
+    <ClCompile Include="UI\Dialog\DlgDoor.cpp" />
+    <ClCompile Include="UI\Dialog\DlgInform.cpp" />
+    <ClCompile Include="UI\Dialog\DlgInitial.cpp" />
+    <ClCompile Include="UI\Dialog\DlgMCRManualRead.cpp" />
+    <ClCompile Include="UI\Dialog\DlgMsgInterlock.cpp" />
+    <ClCompile Include="UI\Dialog\DlgMsgOPCall.cpp" />
+    <ClCompile Include="UI\Dialog\DlgMsgTerminal.cpp" />
+    <ClCompile Include="UI\Dialog\DlgMsgUnitInerlock.cpp" />
+    <ClCompile Include="UI\Dialog\DlgOtherDefect.cpp" />
+    <ClCompile Include="UI\Dialog\DlgPageIO.cpp" />
+    <ClCompile Include="UI\Dialog\DlgReportSub.cpp" />
+    <ClCompile Include="UI\Dialog\DlgTPCodeList.cpp" />
+    <ClCompile Include="UI\Dialog\DlgUserLogin.cpp" />
+    <ClCompile Include="UI\Form\FormAlarm.cpp" />
+    <ClCompile Include="UI\Form\FormAlarmLamp.cpp" />
+    <ClCompile Include="UI\Form\FormCIM.cpp" />
+    <ClCompile Include="UI\Form\FormConfigRepeatNgOption.cpp" />
+    <ClCompile Include="UI\Form\FormReport1_Sub.cpp" />
+    <ClCompile Include="UI\Form\FormReport2_Sub.cpp" />
+    <ClCompile Include="UI\Form\FormReport5_Interlock_History.cpp" />
+    <ClCompile Include="UI\Form\FormReport6_Terminel_History.cpp" />
+    <ClCompile Include="UI\Form\FormReportStatisticsNGLastResult.cpp" />
+    <ClCompile Include="UI\Form\FormTeach_PDT_IF.cpp" />
+    <ClCompile Include="UI\Form\FormTeach_Shuttle_1.cpp" />
+    <ClCompile Include="UI\Form\FormConfig2.cpp" />
+    <ClCompile Include="UI\Form\FormInitialize.cpp" />
+    <ClCompile Include="UI\Form\FormMain.cpp" />
+    <ClCompile Include="UI\Form\FormMotorUnitTest.cpp" />
+    <ClCompile Include="UI\Form\FormOptions.cpp" />
+    <ClCompile Include="UI\Form\FormPM.cpp" />
+    <ClCompile Include="UI\Form\FormRecipe.cpp" />
+    <ClCompile Include="UI\Form\FormReport1.cpp" />
+    <ClCompile Include="UI\Form\FormReport2.cpp" />
+    <ClCompile Include="UI\Form\FormReport3.cpp" />
+    <ClCompile Include="UI\Form\FormReport4_Opcall_History.cpp" />
+    <ClCompile Include="UI\Form\FormSignal.cpp" />
+    <ClCompile Include="UI\Form\FormSetupIO.cpp" />
+    <ClCompile Include="UI\Form\FormTeach_Shuttle_2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\ModuleExternal\Accura\AccuraClient.lib" />
+    <Library Include="..\ModuleExternal\Accura\AccuraClientDbg.lib" />
+    <Library Include="..\ModuleExternal\CIF50\cif32dll.lib" />
+    <Library Include="..\ModuleExternal\MELSEC CC-Link IE\MdFunc32.lib" />
+    <Library Include="..\ModuleExternal\MELSEC CC-Link\ccsubl.lib" />
+    <Library Include="..\ModuleExternal\MELSEC CC-Link\mdfunc32.lib" />
+    <Library Include="..\ModuleExternal\NMC2\NMC2.LIB" />
+    <Library Include="..\ModuleExternal\YmcPCIAPI\ymcPCAPI.lib" />
+    <Library Include="..\ModuleInternal\UI\GausGUI\GausGUI.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ibis.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

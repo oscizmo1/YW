@@ -1,0 +1,3 @@
+log_default=true
+log_list=0
+nolog_list=1 S6F1
