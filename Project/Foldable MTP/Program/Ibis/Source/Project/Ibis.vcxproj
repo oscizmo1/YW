@@ -191,11 +191,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\..\icon\수동.ico" />
-    <None Include="..\..\Source\Project\res\cell.bmp" />
-    <None Include="..\..\Source\Project\res\Ibis.ico" />
-    <None Include="..\..\Source\Project\res\IbisDoc.ico" />
-    <None Include="..\..\Source\Project\res\sample.bmp" />
-    <None Include="..\..\Source\Project\res\Tray.bmp" />
     <None Include="..\ModuleExternal\Accura\AccuraClient.dll" />
     <None Include="..\ModuleExternal\Accura\AccuraClientDbg.dll" />
     <None Include="..\ModuleExternal\CIF50\cif32dll.dll" />
@@ -218,7 +213,6 @@
     <None Include="res\Tray.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Project\resource.h" />
     <ClInclude Include="..\ModuleExternal\Accura\AccuraClient.h" />
     <ClInclude Include="..\ModuleExternal\CIF50\CIFUSER.h" />
     <ClInclude Include="..\ModuleExternal\CIF50\stdint.h" />
