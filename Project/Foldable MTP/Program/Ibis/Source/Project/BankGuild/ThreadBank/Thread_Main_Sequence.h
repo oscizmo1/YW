@@ -23,10 +23,9 @@ private:
 public:
 	CStateRestart		*m_pRestart;
 	CStateAZone			*m_pAZone[JIG_ID_MAX];
-	CStateCZone			*m_pCZone[JIG_ID_MAX];
-	CStateMoveCZone		*m_pMoveCZone[JIG_ID_MAX];
+	CStateBZone			*m_pBZone[JIG_ID_MAX];
+	CStateMoveBZone		*m_pMoveBZone[JIG_ID_MAX];
 	CStateMoveAZone		*m_pMoveAZone[JIG_ID_MAX];
-	CStateMoveBZone     *m_pMoveBZone[JIG_ID_MAX];
 	CStatePDT_IF		*m_pIF[JIG_ID_MAX];
 
 
@@ -44,9 +43,9 @@ public:
 	void Cell_CheckExist(CUnitCtrlFunc &_func);
 	BOOL Confirm_Interlock(CUnitCtrlFunc &_func);
 	void ConfirmStart_AZone(CUnitCtrlFunc &_func, JIG_ID jig);
-	void ConfirmStart_MoveCZone(CUnitCtrlFunc &_func, JIG_ID jig);
+	void ConfirmStart_MoveBZone(CUnitCtrlFunc &_func, JIG_ID jig);
 	void ConfirmStart_MoveAZone(CUnitCtrlFunc &_func, JIG_ID jig);
-	void ConfirmStart_CZone(CUnitCtrlFunc &_func, JIG_ID jig);
+	void ConfirmStart_BZone(CUnitCtrlFunc &_func, JIG_ID jig);
 
 };
 

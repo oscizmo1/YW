@@ -489,10 +489,10 @@ LRESULT CMainFrame::OnChangeCommState(WPARAM wParam, LPARAM lParam)
 	{
 		switch ( nCommID )
 		{
-		case eCOMM_AVCamera :	nErrCode = ERR_COMM_VISIONPC;		break;		// Vision PC와의 통신 단절
+		//case eCOMM_AVCamera :	nErrCode = ERR_COMM_VISIONPC;		break;		// Vision PC와의 통신 단절
 		case eCOMM_SignalPC :	nErrCode = ERR_COMM_PGPC;			break;		// 신호기 PC
 		case eCOMM_DataPC :		nErrCode = ERR_COMM_DATAPC;			break;		// 데이터 PC 와의 통신
-		case eCOMM_UVMCR :		nErrCode = ERR_COMM_UVMCR1;			break;		// UVMCR #1과의 통신		
+		case eCOMM_ALIGNPC :		nErrCode = ERR_COMM_ALIGN;			break;		// ALIGN 과의 통신		
 		}
 
 		if ( nErrCode != ERR_NONE )				// 오류가 발생하였다면,
@@ -746,11 +746,11 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 			}
 			ManualLightCurtainCheck();
 			//kjpark 201709 BackDoor 모니터 전환
-			if(m_bBackDoorOpen != theUnitFunc.GetInPutIOCheck(X_PC_RACK_DOOR_OPEN))
-			{
-				m_bBackDoorOpen = theUnitFunc.GetInPutIOCheck(X_PC_RACK_DOOR_OPEN);
-				SetWindowMove();
-			}
+			//if(m_bBackDoorOpen != theUnitFunc.GetInPutIOCheck(X_PC_RACK_DOOR_OPEN))
+			//{
+			//	m_bBackDoorOpen = theUnitFunc.GetInPutIOCheck(X_PC_RACK_DOOR_OPEN);
+			//	SetWindowMove();
+			//}
 // 			if(theUnitFunc.GetInPutIOCheck(X_PC_RACK_DOOR_OPEN))
 // 			{
 // 				m_bBackDoorOpen = TRUE;

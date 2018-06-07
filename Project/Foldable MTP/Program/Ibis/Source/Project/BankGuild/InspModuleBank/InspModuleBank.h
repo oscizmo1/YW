@@ -70,9 +70,9 @@ public:
 	CInspModule_Base* GetNextModule_AZone_Bef(CString strModuleName, JIG_ID jig);
 	CInspModule_Base* GetNextModule_AZone_Must(CString strModuleName, JIG_ID jig);
 	CInspModule_Base* GetNextModule_AZone_Aft(CString strModuleName, JIG_ID jig);
-	CInspModule_Base* GetNextModule_CZone_Bef(CString strModuleName, JIG_ID jig);
-	CInspModule_Base* GetNextModule_CZone_Must(CString strModuleName, JIG_ID jig);
-	CInspModule_Base* GetNextModule_CZone_Aft(CString strModuleName, JIG_ID jig);
+	CInspModule_Base* GetNextModule_BZone_Bef(CString strModuleName, JIG_ID jig);
+	CInspModule_Base* GetNextModule_BZone_Must(CString strModuleName, JIG_ID jig);
+	CInspModule_Base* GetNextModule_BZone_Aft(CString strModuleName, JIG_ID jig);
 
 	CString FindWorkZone(CString strModuleName);
 };

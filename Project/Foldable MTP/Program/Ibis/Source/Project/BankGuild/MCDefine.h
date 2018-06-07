@@ -574,6 +574,7 @@ enum SOCKET_TYPE
 	eCOMM_MyPC				= 0,			// 0. 운영PC, 내 PC이므로 신호기PC의 Server 설정할 때 사용한다.
 	eCOMM_SignalPC,							// 2. 신호기 PC
 	eCOMM_DataPC,							// 3. 데이터 PC 와의 통신
+	eCOMM_ALIGNPC,
 	//kjpark 20161006 MCR 상하 수정
 	eCOMM_MCR_1,							// 4. UVMCR #1과의 통신
 	eCOMM_MCR_2,

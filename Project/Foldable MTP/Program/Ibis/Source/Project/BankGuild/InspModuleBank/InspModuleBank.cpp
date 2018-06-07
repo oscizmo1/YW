@@ -132,19 +132,19 @@ CInspModule_Base* CInspModuleBank::GetNextModule_AZone_Aft( CString strModuleNam
 	return GetNextModule(&theRecipeBank.m_Module.m_vct_AZone_Aft, strModuleName, jig);
 }
 
-CInspModule_Base* CInspModuleBank::GetNextModule_CZone_Bef( CString strModuleName, JIG_ID jig )
+CInspModule_Base* CInspModuleBank::GetNextModule_BZone_Bef( CString strModuleName, JIG_ID jig )
 {
-	return GetNextModule(&theRecipeBank.m_Module.m_vct_CZone_Bef, strModuleName, jig);
+	return GetNextModule(&theRecipeBank.m_Module.m_vct_BZone_Bef, strModuleName, jig);
 }
 
-CInspModule_Base* CInspModuleBank::GetNextModule_CZone_Must( CString strModuleName, JIG_ID jig )
+CInspModule_Base* CInspModuleBank::GetNextModule_BZone_Must( CString strModuleName, JIG_ID jig )
 {
-	return GetNextModule(&theRecipeBank.m_Module.m_vct_CZone_Must, strModuleName, jig);
+	return GetNextModule(&theRecipeBank.m_Module.m_vct_BZone_Must, strModuleName, jig);
 }
 
-CInspModule_Base* CInspModuleBank::GetNextModule_CZone_Aft( CString strModuleName, JIG_ID jig )
+CInspModule_Base* CInspModuleBank::GetNextModule_BZone_Aft( CString strModuleName, JIG_ID jig )
 {
-	return GetNextModule(&theRecipeBank.m_Module.m_vct_CZone_Aft, strModuleName, jig);
+	return GetNextModule(&theRecipeBank.m_Module.m_vct_BZone_Aft, strModuleName, jig);
 }
 
 CString CInspModuleBank::FindWorkZone( CString strModuleName )
@@ -189,7 +189,7 @@ CString CInspModuleBank::FindWorkZone( CString strModuleName )
 	}
 	//////////////////////////////////////////////////////////////////////////
 	// C Zone
-	nIndex = FindModule(&theRecipeBank.m_Module.m_vct_CZone_Bef, strModuleName);
+	nIndex = FindModule(&theRecipeBank.m_Module.m_vct_BZone_Bef, strModuleName);
 	if(nIndex != -1)
 	{
 		nTotalIndex += nIndex;
@@ -198,9 +198,9 @@ CString CInspModuleBank::FindWorkZone( CString strModuleName )
 	}
 	else
 	{
-		nIndex = theRecipeBank.m_Module.m_vct_CZone_Bef.size();
+		nIndex = theRecipeBank.m_Module.m_vct_BZone_Bef.size();
 	}
-	nIndex = FindModule(&theRecipeBank.m_Module.m_vct_CZone_Must, strModuleName);
+	nIndex = FindModule(&theRecipeBank.m_Module.m_vct_BZone_Must, strModuleName);
 	if(nIndex != -1)
 	{
 		nTotalIndex += nIndex;
@@ -209,9 +209,9 @@ CString CInspModuleBank::FindWorkZone( CString strModuleName )
 	}
 	else
 	{
-		nIndex = theRecipeBank.m_Module.m_vct_CZone_Must.size();
+		nIndex = theRecipeBank.m_Module.m_vct_BZone_Must.size();
 	}
-	nIndex = FindModule(&theRecipeBank.m_Module.m_vct_CZone_Aft, strModuleName);
+	nIndex = FindModule(&theRecipeBank.m_Module.m_vct_BZone_Aft, strModuleName);
 	if(nIndex != -1)
 	{
 		nTotalIndex += nIndex;
@@ -220,7 +220,7 @@ CString CInspModuleBank::FindWorkZone( CString strModuleName )
 	}
 	else
 	{
-		nIndex = theRecipeBank.m_Module.m_vct_CZone_Aft.size();
+		nIndex = theRecipeBank.m_Module.m_vct_BZone_Aft.size();
 	}
 	//////////////////////////////////////////////////////////////////////////
 

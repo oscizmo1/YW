@@ -236,6 +236,7 @@ LRESULT CDlgbarTop::OnChangeCommState(WPARAM wParam, LPARAM lParam)
 		//case eCOMM_AVCamera :	nID = IDC_GXSTC_TOPBAR_VISION; break;			// AVCamera PC와의 통신
 		case eCOMM_SignalPC :	nID = IDC_GXSTC_TOPBAR_PG; break;			// 신호기 PC
 		case eCOMM_DataPC :		nID = IDC_GXSTC_TOPBAR_CIM; break;			// 데이터 PC 와의 통신
+		case eCOMM_ALIGNPC :	nID = IDC_GXSTC_TOPBAR_ALIGN; break;//ALIGN PC 
 
 		//case eCOMM_MCR_1 :		nID = IDC_GXSTC_TOPBAR_MCR_SHUTTL_1; break;			// UVMCR #1과의 통신
 		//case eCOMM_MCR_2 :		nID = IDC_GXSTC_TOPBAR_MCR_SHUTTL_2; break;			// UVMCR #2과의 통신
@@ -261,6 +262,10 @@ LRESULT CDlgbarTop::OnChangeCommState(WPARAM wParam, LPARAM lParam)
 		else if(i == eCOMM_DataPC)
 		{
 			bFlag = theSocketInterFace.m_CIM.IsConnected();
+		}
+		else if(i == eCOMM_ALIGNPC)
+		{
+			bFlag = theSocketInterFace.m_ActiveAlign.IsConnected();
 		}
 		else
 			bFlag = theSocketInterFace.GetCommConnected(i);		

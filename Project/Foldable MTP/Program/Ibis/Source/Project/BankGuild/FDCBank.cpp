@@ -139,6 +139,8 @@ void CFDCBank::InitItem()
  	item = CFDCItem(_T("UTIL"),				_T("CTRL_PC_BOX_TEMP"),					FDC_DATA_STRING,	&m_strCtrlPCBox_Temp);								m_listFDCItem.AddTail(item);
  	item = CFDCItem(_T("UTIL"),				_T("PG_PC_BOX_TEMP"),					FDC_DATA_STRING,	&m_strPGPcBox_Temp);								m_listFDCItem.AddTail(item);
  
+	item = CFDCItem(_T("UTIL"),				_T("OP_PC_FIRE_ALARM"),					FDC_DATA_STRING,	&m_strOpPcFireAlarm);								m_listFDCItem.AddTail(item);
+	item = CFDCItem(_T("UTIL"),				_T("ALIGN_PG_PC_FIRE_ALARM"),			FDC_DATA_STRING,	&m_strAlignPgPCFireAlarm);							m_listFDCItem.AddTail(item);
 	item = CFDCItem(_T("UTIL"),				_T("UTIL_BOX_FIRE_ALARM"),				FDC_DATA_STRING,	&m_strUtilBoxFireAlarm);							m_listFDCItem.AddTail(item);
 	item = CFDCItem(_T("UTIL"),				_T("ETC_BOX_FIRE_ALARM"),				FDC_DATA_STRING,	&m_strETCBoxFireAlarm);								m_listFDCItem.AddTail(item);
 	item = CFDCItem(_T("UTIL"),				_T("SERVO_BOX_FIRE_ALARM"),				FDC_DATA_STRING,	&m_strServoBoxFireAlarm);							m_listFDCItem.AddTail(item);

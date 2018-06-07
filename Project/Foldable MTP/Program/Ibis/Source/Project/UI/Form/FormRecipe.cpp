@@ -358,25 +358,25 @@ void CFormRecipe::RecipeItem_UIClear()
 		IDC_GXLBL_RECIPE_AZONE_SEQ09,
 		IDC_GXLBL_RECIPE_AZONE_SEQ10
 	};
-	int nIDCZone[10] = 
+	int nIDBZone[10] = 
 	{
-		IDC_GXLBL_RECIPE_CZONE_SEQ01,
-		IDC_GXLBL_RECIPE_CZONE_SEQ02,
-		IDC_GXLBL_RECIPE_CZONE_SEQ03,
-		IDC_GXLBL_RECIPE_CZONE_SEQ04,
-		IDC_GXLBL_RECIPE_CZONE_SEQ05,
-		IDC_GXLBL_RECIPE_CZONE_SEQ06,
-		IDC_GXLBL_RECIPE_CZONE_SEQ07,
-		IDC_GXLBL_RECIPE_CZONE_SEQ08,
-		IDC_GXLBL_RECIPE_CZONE_SEQ09,
-		IDC_GXLBL_RECIPE_CZONE_SEQ10
+		IDC_GXLBL_RECIPE_BZONE_SEQ01,
+		IDC_GXLBL_RECIPE_BZONE_SEQ02,
+		IDC_GXLBL_RECIPE_BZONE_SEQ03,
+		IDC_GXLBL_RECIPE_BZONE_SEQ04,
+		IDC_GXLBL_RECIPE_BZONE_SEQ05,
+		IDC_GXLBL_RECIPE_BZONE_SEQ06,
+		IDC_GXLBL_RECIPE_BZONE_SEQ07,
+		IDC_GXLBL_RECIPE_BZONE_SEQ08,
+		IDC_GXLBL_RECIPE_BZONE_SEQ09,
+		IDC_GXLBL_RECIPE_BZONE_SEQ10
 	};
 	for(int i = 0; i < 10; i++)
 	{
 		CGxUICtrl::SetStaticString(this, nIDAZone[i], _T(""));
-		CGxUICtrl::SetStaticString(this, nIDCZone[i], _T(""));
+		CGxUICtrl::SetStaticString(this, nIDBZone[i], _T(""));
 		CGxUICtrl::SetStaticColor(this, nIDAZone[i], GXCOLOR_WHITE);
-		CGxUICtrl::SetStaticColor(this, nIDCZone[i], GXCOLOR_WHITE);
+		CGxUICtrl::SetStaticColor(this, nIDBZone[i], GXCOLOR_WHITE);
 	}
 }
 
@@ -450,18 +450,18 @@ void CFormRecipe::InspModuleItem_Show()
 		IDC_GXLBL_RECIPE_AZONE_SEQ09,
 		IDC_GXLBL_RECIPE_AZONE_SEQ10
 	};
-	int nIDCZone[10] = 
+	int nIDBZone[10] = 
 	{
-		IDC_GXLBL_RECIPE_CZONE_SEQ01,
-		IDC_GXLBL_RECIPE_CZONE_SEQ02,
-		IDC_GXLBL_RECIPE_CZONE_SEQ03,
-		IDC_GXLBL_RECIPE_CZONE_SEQ04,
-		IDC_GXLBL_RECIPE_CZONE_SEQ05,
-		IDC_GXLBL_RECIPE_CZONE_SEQ06,
-		IDC_GXLBL_RECIPE_CZONE_SEQ07,
-		IDC_GXLBL_RECIPE_CZONE_SEQ08,
-		IDC_GXLBL_RECIPE_CZONE_SEQ09,
-		IDC_GXLBL_RECIPE_CZONE_SEQ10
+		IDC_GXLBL_RECIPE_BZONE_SEQ01,
+		IDC_GXLBL_RECIPE_BZONE_SEQ02,
+		IDC_GXLBL_RECIPE_BZONE_SEQ03,
+		IDC_GXLBL_RECIPE_BZONE_SEQ04,
+		IDC_GXLBL_RECIPE_BZONE_SEQ05,
+		IDC_GXLBL_RECIPE_BZONE_SEQ06,
+		IDC_GXLBL_RECIPE_BZONE_SEQ07,
+		IDC_GXLBL_RECIPE_BZONE_SEQ08,
+		IDC_GXLBL_RECIPE_BZONE_SEQ09,
+		IDC_GXLBL_RECIPE_BZONE_SEQ10
 	};
 
 	int nIndex = 0, nCount = 0;
@@ -502,39 +502,39 @@ void CFormRecipe::InspModuleItem_Show()
 	}
 
 	nIndex = 0;
-	pVector = &m_RecipeBank.m_Module.m_vct_CZone_Bef;
+	pVector = &m_RecipeBank.m_Module.m_vct_BZone_Bef;
 	nCount = pVector->size();
 	for(int i = 0; i < nCount; i++)
 	{
 		if(nIndex >= 10)	break;
-		CGxUICtrl::SetStaticString(this, nIDCZone[nIndex], pVector->at(i));
-		CGxUICtrl::SetStaticColor(this, nIDCZone[nIndex], GXCOLOR_WHITE);
+		CGxUICtrl::SetStaticString(this, nIDBZone[nIndex], pVector->at(i));
+		CGxUICtrl::SetStaticColor(this, nIDBZone[nIndex], GXCOLOR_WHITE);
 		nIndex++;
 	}
-	pVector = &m_RecipeBank.m_Module.m_vct_CZone_Must;
+	pVector = &m_RecipeBank.m_Module.m_vct_BZone_Must;
 	nCount = pVector->size();
 	for(int i = 0; i < nCount; i++)
 	{
 		if(nIndex >= 10)	break;
-		CGxUICtrl::SetStaticString(this, nIDCZone[nIndex], pVector->at(i));
-		CGxUICtrl::SetStaticColor(this, nIDCZone[nIndex], GXCOLOR_BLUE_VIOLET);
+		CGxUICtrl::SetStaticString(this, nIDBZone[nIndex], pVector->at(i));
+		CGxUICtrl::SetStaticColor(this, nIDBZone[nIndex], GXCOLOR_BLUE_VIOLET);
 		nIndex++;
 	}
-	pVector = &m_RecipeBank.m_Module.m_vct_CZone_Aft;
+	pVector = &m_RecipeBank.m_Module.m_vct_BZone_Aft;
 	nCount = pVector->size();
 	for(int i = 0; i < nCount; i++)
 	{
 		if(nIndex >= 10)	break;
-		CGxUICtrl::SetStaticString(this, nIDCZone[nIndex], pVector->at(i));
-		CGxUICtrl::SetStaticColor(this, nIDCZone[nIndex], GXCOLOR_WHITE);
+		CGxUICtrl::SetStaticString(this, nIDBZone[nIndex], pVector->at(i));
+		CGxUICtrl::SetStaticColor(this, nIDBZone[nIndex], GXCOLOR_WHITE);
 		nIndex++;
 	}
 
 	// 나머지 빈칸은 공백으로 채운다 [9/16/2017 OSC]
 	for(; nIndex < 10; nIndex++)
 	{
-		CGxUICtrl::SetStaticString(this, nIDCZone[nIndex], _T(""));
-		CGxUICtrl::SetStaticColor(this, nIDCZone[nIndex], GXCOLOR_WHITE);
+		CGxUICtrl::SetStaticString(this, nIDBZone[nIndex], _T(""));
+		CGxUICtrl::SetStaticColor(this, nIDBZone[nIndex], GXCOLOR_WHITE);
 	}
 }
 

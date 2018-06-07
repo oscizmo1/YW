@@ -12,9 +12,9 @@ public:
 	std::vector<CString> m_vct_AZone_Must;
 	std::vector<CString> m_vct_AZone_Aft;
 
-	std::vector<CString> m_vct_CZone_Bef;
-	std::vector<CString> m_vct_CZone_Must;
-	std::vector<CString> m_vct_CZone_Aft;
+	std::vector<CString> m_vct_BZone_Bef;
+	std::vector<CString> m_vct_BZone_Must;
+	std::vector<CString> m_vct_BZone_Aft;
 
 
 	BOOL ReadFile(CString strPath);		// 무결성 확인하기 위해 return을 BOOL형으로... [9/6/2017 OSC]

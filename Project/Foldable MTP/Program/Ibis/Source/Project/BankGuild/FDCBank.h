@@ -64,6 +64,8 @@ public:
 	// 0 : Normal, 1 : Alarm
 	//Fire Alarm
 	//kjpark 20170929 FDC 실제값, 보정값, 보고값 구분
+	CString m_strOpPcFireAlarm;		// X_OP_PC_FIRE_ALARM
+	CString m_strAlignPgPCFireAlarm;// X_ALIGN_PG_PC_FIRE_ALARM 
 	CString m_strUtilBoxFireAlarm;	// X_UTIL_BOX_FIRE_ALARM
 	CString m_strETCBoxFireAlarm;	// X_ETC_BOX_FIRE_ALARM
 	CString m_strServoBoxFireAlarm;	// X_SERVO_BOX_FIRE_ALARM

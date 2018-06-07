@@ -466,7 +466,7 @@ void CFormMain::CellStatus_Init()
 	control.uIDAZoneDefect = IDC_GXSTC_MAIN_CH1_AZONE_TEXT;
 	control.uIDWriteDefect = IDC_GXSTC_MAIN_CH1_WRITE_TEXT;
 	control.uIDVerifyDefect = IDC_GXSTC_MAIN_CH1_VERIFY_TEXT;
-	control.uIDCZoneDefect = IDC_GXSTC_MAIN_CH1_CZONE_TEXT;
+	control.uIDBZoneDefect = IDC_GXSTC_MAIN_CH1_BZONE_TEXT;
 	control.uIDFinalDefect = IDC_GXSTC_MAIN_CH1_FINAL_TEXT;
 	control.posCell = CELL_POS_SHUTTLE1_CH1;
 	control.strOldCellID.Empty();
@@ -481,7 +481,7 @@ void CFormMain::CellStatus_Init()
 	control.uIDAZoneDefect = IDC_GXSTC_MAIN_CH2_AZONE_TEXT;
 	control.uIDWriteDefect = IDC_GXSTC_MAIN_CH2_WRITE_TEXT;
 	control.uIDVerifyDefect = IDC_GXSTC_MAIN_CH2_VERIFY_TEXT;
-	control.uIDCZoneDefect = IDC_GXSTC_MAIN_CH2_CZONE_TEXT;
+	control.uIDBZoneDefect = IDC_GXSTC_MAIN_CH2_BZONE_TEXT;
 	control.uIDFinalDefect = IDC_GXSTC_MAIN_CH2_FINAL_TEXT;
 	control.posCell = CELL_POS_SHUTTLE2_CH1;
 	control.strOldCellID.Empty();
@@ -575,13 +575,13 @@ void CFormMain::CellStatus_Update()
 				CGxUICtrl::SetStaticColor(this, control.uIDVerifyDefect, GXCOLOR_WHITE);
 			CGxUICtrl::SetStaticString(this, control.uIDVerifyDefect, pCell->m_MTPVerify.m_DefectName);
 
-			if(pCell->m_CZone.m_Class == GOOD_CELL)
-				CGxUICtrl::SetStaticColor(this, control.uIDCZoneDefect, GXCOLOR_ON);
-			else if(pCell->m_CZone.m_Class == REJECT_CELL)
-				CGxUICtrl::SetStaticColor(this, control.uIDCZoneDefect, GXCOLOR_RED);
+			if(pCell->m_BZone.m_Class == GOOD_CELL)
+				CGxUICtrl::SetStaticColor(this, control.uIDBZoneDefect, GXCOLOR_ON);
+			else if(pCell->m_BZone.m_Class == REJECT_CELL)
+				CGxUICtrl::SetStaticColor(this, control.uIDBZoneDefect, GXCOLOR_RED);
 			else
-				CGxUICtrl::SetStaticColor(this, control.uIDCZoneDefect, GXCOLOR_WHITE);
-			CGxUICtrl::SetStaticString(this, control.uIDCZoneDefect, pCell->m_CZone.m_DefectName);
+				CGxUICtrl::SetStaticColor(this, control.uIDBZoneDefect, GXCOLOR_WHITE);
+			CGxUICtrl::SetStaticString(this, control.uIDBZoneDefect, pCell->m_BZone.m_DefectName);
 
 			if(pCell->defaultData.m_LastClass == GOOD_CELL)
 				CGxUICtrl::SetStaticColor(this, control.uIDFinalDefect, GXCOLOR_ON);
@@ -608,8 +608,8 @@ void CFormMain::CellStatus_Update()
 			CGxUICtrl::SetStaticString(this, control.uIDWriteDefect, _T(""));
 			CGxUICtrl::SetStaticColor(this, control.uIDVerifyDefect, GXCOLOR_WHITE);
 			CGxUICtrl::SetStaticString(this, control.uIDVerifyDefect, _T(""));
-			CGxUICtrl::SetStaticColor(this, control.uIDCZoneDefect, GXCOLOR_WHITE);
-			CGxUICtrl::SetStaticString(this, control.uIDCZoneDefect, _T(""));
+			CGxUICtrl::SetStaticColor(this, control.uIDBZoneDefect, GXCOLOR_WHITE);
+			CGxUICtrl::SetStaticString(this, control.uIDBZoneDefect, _T(""));
 			CGxUICtrl::SetStaticColor(this, control.uIDFinalDefect, GXCOLOR_WHITE);
 			CGxUICtrl::SetStaticString(this, control.uIDFinalDefect, _T(""));
 		}

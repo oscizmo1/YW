@@ -103,9 +103,9 @@ UINT CThread_Main_Sequence::MainSequenceThr( LPVOID lpParam )
 		for(int i = 0; i < JIG_ID_MAX; i++)
 		{
 			pClass->ConfirmStart_AZone(_func, (JIG_ID)i);
-			pClass->ConfirmStart_MoveCZone(_func, (JIG_ID)i);
+			pClass->ConfirmStart_MoveBZone(_func, (JIG_ID)i);
 			pClass->ConfirmStart_MoveAZone(_func, (JIG_ID)i);
-			pClass->ConfirmStart_CZone(_func, (JIG_ID)i);
+			pClass->ConfirmStart_BZone(_func, (JIG_ID)i);
 		}
 
 		//-------------------------------------------------------------------------------------------------------------------------------
@@ -136,8 +136,8 @@ void CThread_Main_Sequence::StateAllReset()
 	for(int jig = 0; jig < JIG_ID_MAX; jig++)
 	{
 		m_pAZone[jig]->Reset();
-		m_pCZone[jig]->Reset();
-		m_pMoveCZone[jig]->Reset();
+		m_pBZone[jig]->Reset();
+		m_pMoveBZone[jig]->Reset();
 		m_pMoveAZone[jig]->Reset();
 	}
 }
@@ -147,8 +147,8 @@ void CThread_Main_Sequence::StateAllRun()
 	for(int jig = 0; jig < JIG_ID_MAX; jig++)
 	{
 		m_pAZone[jig]->Run();
-		m_pCZone[jig]->Run();
-		m_pMoveCZone[jig]->Run();
+		m_pBZone[jig]->Run();
+		m_pMoveBZone[jig]->Run();
 		m_pMoveAZone[jig]->Run();
 	}
 }
@@ -160,11 +160,11 @@ void CThread_Main_Sequence::GetStatePointer( )
 	m_pAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_AZone;
 	m_pAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_AZone;
 
-	m_pCZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_CZone;
-	m_pCZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_CZone;
+	m_pBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_BZone;
+	m_pBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_BZone;
 
-	m_pMoveCZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveCZone;
-	m_pMoveCZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveCZone;
+	m_pMoveBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveBZone;
+	m_pMoveBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveBZone;
 
 	m_pMoveAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveAZone;
 	m_pMoveAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveAZone;
@@ -327,9 +327,9 @@ void CThread_Main_Sequence::ConfirmStart_AZone( CUnitCtrlFunc &_func, JIG_ID jig
 {
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
 	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pBZone[jig]->IsStoped();
 	m_bRtn[4] = _func.GetZoneEnd(jig, ZONE_ID_A) ? FALSE:TRUE;
 	m_bRtn[5] = _func.Shuttle_Y_LOAD_Check(jig);	
 	if(theConfigBank.m_System.m_bInlineMode)
@@ -358,17 +358,17 @@ void CThread_Main_Sequence::ConfirmStart_AZone( CUnitCtrlFunc &_func, JIG_ID jig
 	}
 }
 
-void CThread_Main_Sequence::ConfirmStart_MoveCZone( CUnitCtrlFunc &_func, JIG_ID jig )
+void CThread_Main_Sequence::ConfirmStart_MoveBZone( CUnitCtrlFunc &_func, JIG_ID jig )
 {
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
 	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pBZone[jig]->IsStoped();
 	m_bRtn[4] = _func.CellTagExist(m_CellPosCh1[jig], m_CellPosCh2[jig]);	
 	m_bRtn[5] = _func.GetZoneEnd(jig, ZONE_ID_A);
-	m_bRtn[6] = _func.GetZoneEnd(jig, ZONE_ID_C) ? FALSE:TRUE;
-	if(_func.Shuttle_Y_INSP_Check(jig) && _func.GetZoneEnd(jig, ZONE_ID_MOVE_C))
+	m_bRtn[6] = _func.GetZoneEnd(jig, ZONE_ID_B) ? FALSE:TRUE;
+	if(_func.Shuttle_Y_INSP_Check(jig) && _func.GetZoneEnd(jig, ZONE_ID_MOVE_B))
 		m_bRtn[7] = FALSE;	
 	if(theConfigBank.m_System.m_bInlineMode)
 	{
@@ -384,7 +384,7 @@ void CThread_Main_Sequence::ConfirmStart_MoveCZone( CUnitCtrlFunc &_func, JIG_ID
 // 		m_bRtn[7] = _func.Shuttle_Y_INSP_Check(jig) ? FALSE:TRUE;
 // 		if(IsReturnOk())
 		{
-			m_pMoveCZone[jig]->Start();
+			m_pMoveBZone[jig]->Start();
 		}
 	}
 }
@@ -393,13 +393,13 @@ void CThread_Main_Sequence::ConfirmStart_MoveAZone( CUnitCtrlFunc &_func, JIG_ID
 {
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
 	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pBZone[jig]->IsStoped();
 	// A, C존 아무도 완료 안 됬거나, C존이 완료되어 있으면 진행 [9/8/2017 OSC]
-	if(_func.GetZoneEnd(jig, ZONE_ID_C))
+	if(_func.GetZoneEnd(jig, ZONE_ID_B))
 		m_bRtn[4] = TRUE;
-	else if( (_func.GetZoneEnd(jig, ZONE_ID_A) == FALSE) && (_func.GetZoneEnd(jig, ZONE_ID_C) == FALSE) )
+	else if( (_func.GetZoneEnd(jig, ZONE_ID_A) == FALSE) && (_func.GetZoneEnd(jig, ZONE_ID_B) == FALSE) )
 		m_bRtn[4] = TRUE;
 	else if( (_func.CellTagExist(jig, JIG_CH_1) == FALSE) )
 		m_bRtn[4] = TRUE;
@@ -425,17 +425,17 @@ void CThread_Main_Sequence::ConfirmStart_MoveAZone( CUnitCtrlFunc &_func, JIG_ID
 	}
 }
 
-void CThread_Main_Sequence::ConfirmStart_CZone( CUnitCtrlFunc &_func, JIG_ID jig )
+void CThread_Main_Sequence::ConfirmStart_BZone( CUnitCtrlFunc &_func, JIG_ID jig )
 {
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
 	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pBZone[jig]->IsStoped();
 	m_bRtn[4] = _func.CellTagExist(m_CellPosCh1[jig], m_CellPosCh2[jig]);
-	m_bRtn[5] = _func.GetZoneEnd(jig, ZONE_ID_C) ? FALSE:TRUE;
+	m_bRtn[5] = _func.GetZoneEnd(jig, ZONE_ID_B) ? FALSE:TRUE;
 	m_bRtn[6] = _func.Shuttle_Y_INSP_Check(jig);	
-	m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_C);
+	m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_B);
 	if(IsReturnOk())
 	{
 		// 원래 그랬는지 모르지만 MP2100 함수 한번 호출하면 되게 오래 걸린다..
@@ -444,7 +444,7 @@ void CThread_Main_Sequence::ConfirmStart_CZone( CUnitCtrlFunc &_func, JIG_ID jig
 // 		m_bRtn[6] = _func.Shuttle_Y_INSP_Check(jig);	
 // 		if(IsReturnOk())
 		{
-			m_pCZone[jig]->Start();
+			m_pBZone[jig]->Start();
 		}
 	}
 }

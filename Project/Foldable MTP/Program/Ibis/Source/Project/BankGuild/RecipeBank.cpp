@@ -219,27 +219,27 @@ void CRecipeBank::SaveRMSDataFile()
 // 		ini.WriteString(strSection	, _T("Data")				, strValue);
 // 	}
 // 
-// 	nCount = m_Module.m_vct_CZone_Bef.size();
+// 	nCount = m_Module.m_vct_BZone_Bef.size();
 // 	for(int i = 0; i < 10; i++)
 // 	{
 // 		if(i < nCount)
-// 			strValue.Format(_T("%s"), m_Module.m_vct_CZone_Bef[i]);
+// 			strValue.Format(_T("%s"), m_Module.m_vct_BZone_Bef[i]);
 // 		else
 // 			strValue.Empty();
 // 
-// 		strSection.Format(_T("CZONE_BEF_ITEM_%02d"), i+1);
+// 		strSection.Format(_T("BZONE_BEF_ITEM_%02d"), i+1);
 // 		ini.WriteString(strSection	, _T("Data")				, strValue);
 // 	}
 // 
-// 	nCount = m_Module.m_vct_CZone_Aft.size();
+// 	nCount = m_Module.m_vct_BZone_Aft.size();
 // 	for(int i = 0; i < 10; i++)
 // 	{
 // 		if(i < nCount)
-// 			strValue.Format(_T("%s"), m_Module.m_vct_CZone_Aft[i]);
+// 			strValue.Format(_T("%s"), m_Module.m_vct_BZone_Aft[i]);
 // 		else
 // 			strValue.Empty();
 // 
-// 		strSection.Format(_T("CZONE_AFT_ITEM_%02d"), i+1);
+// 		strSection.Format(_T("BZONE_AFT_ITEM_%02d"), i+1);
 // 		ini.WriteString(strSection	, _T("Data")				, strValue);
 // 	}
 
@@ -283,26 +283,26 @@ void CRecipeBank::CreateRecipe_fromRMSData( CString strRecipeName )
 // 			m_Module.m_vct_AZone_Aft.push_back(strValue);
 // 	}
 // 
-// 	m_Module.m_vct_CZone_Bef.clear();
+// 	m_Module.m_vct_BZone_Bef.clear();
 // 	for(int i = 0; i < 10; i++)
 // 	{
-// 		strSection.Format(_T("CZONE_BEF_ITEM_%02d"), i+1);
+// 		strSection.Format(_T("BZONE_BEF_ITEM_%02d"), i+1);
 // 		strValue = ini.GetString(strSection	, _T("Data"));
 // 		if(strValue.IsEmpty())
 // 			break;
 // 		else
-// 			m_Module.m_vct_CZone_Bef.push_back(strValue);
+// 			m_Module.m_vct_BZone_Bef.push_back(strValue);
 // 	}
 // 
-// 	m_Module.m_vct_CZone_Aft.clear();
+// 	m_Module.m_vct_BZone_Aft.clear();
 // 	for(int i = 0; i < 10; i++)
 // 	{
-// 		strSection.Format(_T("CZONE_AFT_ITEM_%02d"), i+1);
+// 		strSection.Format(_T("BZONE_AFT_ITEM_%02d"), i+1);
 // 		strValue = ini.GetString(strSection	, _T("Data"));
 // 		if(strValue.IsEmpty())
 // 			break;
 // 		else
-// 			m_Module.m_vct_CZone_Aft.push_back(strValue);
+// 			m_Module.m_vct_BZone_Aft.push_back(strValue);
 // 	}
 
 	SaveRecipeFile(strRecipeName);

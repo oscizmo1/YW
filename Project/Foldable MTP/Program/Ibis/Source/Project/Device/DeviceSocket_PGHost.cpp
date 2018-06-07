@@ -230,18 +230,18 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 #ifdef NOT_USED
 	else if(strCommand == FORCE_START1_BEF)
 	{
-		if(pCell->m_Zone_C.CZoneForceStart1BefClass == CELL_LOG_NONE)
+		if(pCell->m_Zone_C.BZoneForceStart1BefClass == CELL_LOG_NONE)
 		{
-			if( (zone == ZONE_ID_C) || theProcBank.m_bEnableManualStateData )
+			if( (zone == ZONE_ID_B) || theProcBank.m_bEnableManualStateData )
 			{
 				if(strJudge == PG_JUDGE_GOOD)
 				{
-					pCell->m_Zone_C.CZoneForceStart1BefClass = CELL_LOG_OK;
-					pCell->m_Zone_C.m_strCZoneDefectForceStart1Bef = strJudge;
+					pCell->m_Zone_C.BZoneForceStart1BefClass = CELL_LOG_OK;
+					pCell->m_Zone_C.m_strBZoneDefectForceStart1Bef = strJudge;
 				}
 				else
 				{
-					pCell->m_Zone_C.CZoneForceStart1BefClass = CELL_LOG_NG;
+					pCell->m_Zone_C.BZoneForceStart1BefClass = CELL_LOG_NG;
 					if(strJudge == NG)
 					{
 						strTemp = t.GetNextToken(_T(","));
@@ -253,7 +253,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 					{
 						strTemp = strJudge;
 					}
-					pCell->m_Zone_C.m_strCZoneDefectForceStart1Bef = strTemp;
+					pCell->m_Zone_C.m_strBZoneDefectForceStart1Bef = strTemp;
 					pCell->defaultData.m_bIsInspectionSkip = TRUE;
 				}
 
@@ -270,16 +270,16 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 	}
 	else if(strCommand == FORCE_START2_BEF)
 	{
-		if( (zone == ZONE_ID_C) && (pCell->m_Zone_C.CZoneForceStart2BefClass == CELL_LOG_NONE) )
+		if( (zone == ZONE_ID_B) && (pCell->m_Zone_C.BZoneForceStart2BefClass == CELL_LOG_NONE) )
 		{
 			if(strJudge == PG_JUDGE_GOOD)
 			{
-				pCell->m_Zone_C.CZoneForceStart2BefClass = CELL_LOG_OK;
-				pCell->m_Zone_C.m_strCZoneDefectForceStart2Bef = strJudge;
+				pCell->m_Zone_C.BZoneForceStart2BefClass = CELL_LOG_OK;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart2Bef = strJudge;
 			}
 			else
 			{
-				pCell->m_Zone_C.CZoneForceStart2BefClass = CELL_LOG_NG;
+				pCell->m_Zone_C.BZoneForceStart2BefClass = CELL_LOG_NG;
 				if(strJudge == NG)
 				{
 					strTemp = t.GetNextToken(_T(","));
@@ -291,7 +291,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 				{
 					strTemp = strJudge;
 				}
-				pCell->m_Zone_C.m_strCZoneDefectForceStart2Bef = strTemp;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart2Bef = strTemp;
 				pCell->defaultData.m_bIsInspectionSkip = TRUE;
 			}
 
@@ -307,16 +307,16 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 	}
 	else if(strCommand == FORCE_START3_BEF)
 	{
-		if( (zone == ZONE_ID_C) && (pCell->m_Zone_C.CZoneForceStart3BefClass == CELL_LOG_NONE) )
+		if( (zone == ZONE_ID_B) && (pCell->m_Zone_C.BZoneForceStart3BefClass == CELL_LOG_NONE) )
 		{
 			if(strJudge == PG_JUDGE_GOOD)
 			{
-				pCell->m_Zone_C.CZoneForceStart3BefClass = CELL_LOG_OK;
-				pCell->m_Zone_C.m_strCZoneDefectForceStart3Bef = strJudge;
+				pCell->m_Zone_C.BZoneForceStart3BefClass = CELL_LOG_OK;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart3Bef = strJudge;
 			}
 			else
 			{
-				pCell->m_Zone_C.CZoneForceStart3BefClass = CELL_LOG_NG;
+				pCell->m_Zone_C.BZoneForceStart3BefClass = CELL_LOG_NG;
 				if(strJudge == NG)
 				{
 					strTemp = t.GetNextToken(_T(","));
@@ -328,7 +328,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 				{
 					strTemp = strJudge;
 				}
-				pCell->m_Zone_C.m_strCZoneDefectForceStart3Bef = strTemp;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart3Bef = strTemp;
 				pCell->defaultData.m_bIsInspectionSkip = TRUE;
 			}
 
@@ -347,18 +347,18 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 	{
 		//P0016Ch,15,FORCE_START,GOODB97B
 		//P002BCh,15,FORCE_START,NG,TSP CM BAND(FORCE_RAW)E418		
-		if(pCell->m_Zone_C.CZoneForceStart1Class == CELL_LOG_NONE)
+		if(pCell->m_Zone_C.BZoneForceStart1Class == CELL_LOG_NONE)
 		{
-			if( (zone == ZONE_ID_C) || theProcBank.m_bEnableManualStateData )
+			if( (zone == ZONE_ID_B) || theProcBank.m_bEnableManualStateData )
 			{
 				if(PG_JUDGE_GOOD == strJudge)
 				{
-					pCell->m_Zone_C.CZoneForceStart1Class = CELL_LOG_OK;
-					pCell->m_Zone_C.m_strCZoneDefectForceStart1 = strJudge;
+					pCell->m_Zone_C.BZoneForceStart1Class = CELL_LOG_OK;
+					pCell->m_Zone_C.m_strBZoneDefectForceStart1 = strJudge;
 				}
 				else
 				{
-					pCell->m_Zone_C.CZoneForceStart1Class = CELL_LOG_NG;
+					pCell->m_Zone_C.BZoneForceStart1Class = CELL_LOG_NG;
 					if(strJudge == NG)
 					{
 						strTemp = t.GetNextToken(_T(","));
@@ -370,7 +370,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 					{
 						strTemp = strJudge;
 					}
-					pCell->m_Zone_C.m_strCZoneDefectForceStart1 = strTemp;
+					pCell->m_Zone_C.m_strBZoneDefectForceStart1 = strTemp;
 					pCell->defaultData.m_bIsInspectionSkip = TRUE;
 				}
 
@@ -388,16 +388,16 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 	//kjpark 20161114 C Zone Foce 추가
 	else if(strCommand == FORCE_START2_AFT)
 	{
-		if( (zone == ZONE_ID_C) && (pCell->m_Zone_C.CZoneForceStart2Class == CELL_LOG_NONE) )
+		if( (zone == ZONE_ID_B) && (pCell->m_Zone_C.BZoneForceStart2Class == CELL_LOG_NONE) )
 		{
 			if(PG_JUDGE_GOOD == strJudge)
 			{
-				pCell->m_Zone_C.CZoneForceStart2Class = CELL_LOG_OK;
-				pCell->m_Zone_C.m_strCZoneDefectForceStart2 = strJudge;
+				pCell->m_Zone_C.BZoneForceStart2Class = CELL_LOG_OK;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart2 = strJudge;
 			}
 			else
 			{
-				pCell->m_Zone_C.CZoneForceStart2Class = CELL_LOG_NG;
+				pCell->m_Zone_C.BZoneForceStart2Class = CELL_LOG_NG;
 				if(strJudge == NG)
 				{
 					strTemp = t.GetNextToken(_T(","));
@@ -409,7 +409,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 				{
 					strTemp = strJudge;
 				}
-				pCell->m_Zone_C.m_strCZoneDefectForceStart2 = strTemp;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart2 = strTemp;
 				pCell->defaultData.m_bIsInspectionSkip = TRUE;
 			}
 			GetLocalTime(&pCell->cellTime.systmC_ForceStart2End);
@@ -425,16 +425,16 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 	//kjpark 20161114 C Zone Foce 추가
 	else if(strCommand == FORCE_START3_AFT)
 	{
-		if( (zone == ZONE_ID_C) && (pCell->m_Zone_C.CZoneForceStart3Class == CELL_LOG_NONE) )
+		if( (zone == ZONE_ID_B) && (pCell->m_Zone_C.BZoneForceStart3Class == CELL_LOG_NONE) )
 		{
 			if(PG_JUDGE_GOOD == strJudge)
 			{
-				pCell->m_Zone_C.CZoneForceStart3Class = CELL_LOG_OK;
-				pCell->m_Zone_C.m_strCZoneDefectForceStart3 = strJudge;
+				pCell->m_Zone_C.BZoneForceStart3Class = CELL_LOG_OK;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart3 = strJudge;
 			}
 			else
 			{
-				pCell->m_Zone_C.CZoneForceStart3Class = CELL_LOG_NG;
+				pCell->m_Zone_C.BZoneForceStart3Class = CELL_LOG_NG;
 				if(strJudge == NG)
 				{
 					strTemp = t.GetNextToken(_T(","));
@@ -446,7 +446,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 				{
 					strTemp = strJudge;
 				}
-				pCell->m_Zone_C.m_strCZoneDefectForceStart3 = strTemp;
+				pCell->m_Zone_C.m_strBZoneDefectForceStart3 = strTemp;
 				pCell->defaultData.m_bIsInspectionSkip = TRUE;
 			}
 			GetLocalTime(&pCell->cellTime.systmC_ForceStart3End);
@@ -466,7 +466,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 			theProcBank.m_AZone[nJigNo][ch].m_RecvSetZone = TRUE;
 // 			pCell->m_AZone.m_RecvSetZone = TRUE;
 		else if( strJudge == SET_ZONE_C)
-			pCell->m_CZone.m_RecvSetZone = TRUE;
+			pCell->m_BZone.m_RecvSetZone = TRUE;
 	}
 	else if( strCommand == PG_DOWN )
 	{
@@ -670,7 +670,7 @@ CString CDeviceSocket_PGHost::ParseMessage( CString strMsg )
 	}
 	else if(strCommand == ZONE_FIN)
 	{
-// 		if(zone == ZONE_ID_C)
+// 		if(zone == ZONE_ID_B)
 // 		{
 // 			
 // 		}

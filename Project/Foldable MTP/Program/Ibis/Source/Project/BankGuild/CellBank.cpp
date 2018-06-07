@@ -27,11 +27,11 @@ void CCellInfo::Init()
 
 	//kjpark 20170912 MCR 위치에따른 택타임 추가
 	m_AZonetoMCRZone.Init();
-	m_MCRZonetoCZone.Init();
-	m_CZonetoAZone.Init();
+	m_MCRZonetoBZone.Init();
+	m_BZonetoAZone.Init();
 
-	m_CZone.Init();
-	m_CZone.m_strCommand = SET_ZONE_C;
+	m_BZone.Init();
+	m_BZone.m_strCommand = SET_ZONE_C;
 
 	m_CellLoading.Init();
 	m_CellLoading.m_strCommand = CELL_LOADING;
@@ -253,8 +253,8 @@ void CCellInfo::LinkCellLogItem()
 	item = CCellLogItem(_T("LOADING TACT TIME"),			CELL_LOG_DATA_TACT,			&m_LoadingTactTime.m_timeStart, &m_LoadingTactTime.m_timeEnd);	m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("MCR MOVE TIME"),				CELL_LOG_DATA_TACT,			&m_AZonetoMCRZone.m_timeStart, &m_AZonetoMCRZone.m_timeEnd);	m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("MCR READ TIME"),				CELL_LOG_DATA_TACT,			&m_MCRReadTime.m_timeStart, &m_MCRReadTime.m_timeEnd);					m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("MTP MOVE TIME"),				CELL_LOG_DATA_TACT,			&m_MCRZonetoCZone.m_timeStart, &m_MCRZonetoCZone.m_timeEnd);	m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("UNLOAD READY TIME"),			CELL_LOG_DATA_TACT,			&m_CZonetoAZone.m_timeStart, &m_CZonetoAZone.m_timeEnd);		m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("MTP MOVE TIME"),				CELL_LOG_DATA_TACT,			&m_MCRZonetoBZone.m_timeStart, &m_MCRZonetoBZone.m_timeEnd);	m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("UNLOAD READY TIME"),			CELL_LOG_DATA_TACT,			&m_BZonetoAZone.m_timeStart, &m_BZonetoAZone.m_timeEnd);		m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("LAST CLASS"),					CELL_LOG_DATA_CLASS_CELL,	&defaultData.m_LastClass);							m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("LAST RESULT"),					CELL_LOG_DATA_STRING,		&defaultData.m_strLastResult);						m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("MES CODE"),						CELL_LOG_DATA_STRING,		&defaultData.MesCode);								m_listCellLogItem.AddTail(item);
@@ -282,25 +282,25 @@ void CCellInfo::LinkCellLogItem()
 	item = CCellLogItem(_T("AZONE CONTACT IDD2"),			CELL_LOG_DATA_STRING,		&m_CellLoading.m_CurrentText[IDD2]);							m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("N/A"),							CELL_LOG_DATA_INT,			NULL);															m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("N/A"),							CELL_LOG_DATA_INT,			NULL);															m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE START TIME"),				CELL_LOG_DATA_TIME,			&m_CZone.m_timeStart);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE END TIME"),				CELL_LOG_DATA_TIME,			&m_CZone.m_timeEnd);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE TACT TIME"),				CELL_LOG_DATA_TACT,			&m_CZone.m_timeStart, &m_CZone.m_timeEnd);					m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE WAITING"),				CELL_LOG_DATA_TACT,			&m_CZone.m_timeEnd, &m_CZone.m_timeWait);					m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE CLASS"),					CELL_LOG_DATA_CLASS_CELL,	&m_CZone.m_Class);											m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE DEFECT"),					CELL_LOG_DATA_STRING,		&m_CZone.m_DefectName);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP READY TIME"),			CELL_LOG_DATA_TACT,			&m_MTPReadyTime.m_timeStart, &m_MTPReadyTime.m_timeEnd);		m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP WRITE START TIME"),	CELL_LOG_DATA_TIME,			&m_MTPWrite.m_timeStart);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP WRITE END TIME"),		CELL_LOG_DATA_TIME,			&m_MTPWrite.m_timeEnd);											m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP WRITE TACT TIME"),	CELL_LOG_DATA_TACT,			&m_MTPWrite.m_timeStart, &m_MTPWrite.m_timeEnd);				m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP WRITE TYPE"),			CELL_LOG_DATA_STRING,		&m_MTPWrite.m_strMTPType);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP WRITE CLASS"),		CELL_LOG_DATA_CLASS_CELL,	&m_MTPWrite.m_Class);											m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP WRITE DEFECT"),		CELL_LOG_DATA_STRING,		&m_MTPWrite.m_DefectName);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP VERIFY START TIME"),	CELL_LOG_DATA_TIME,			&m_MTPVerify.m_timeStart);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP VERIFY END TIME"),	CELL_LOG_DATA_TIME,			&m_MTPVerify.m_timeEnd);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP VERIFY TACT TIME"),	CELL_LOG_DATA_TACT,			&m_MTPVerify.m_timeStart, &m_MTPVerify.m_timeEnd);				m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP VERIFY CLASS"),		CELL_LOG_DATA_CLASS_CELL,	&m_MTPVerify.m_Class);											m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE MTP VERIFY DEFECT"),		CELL_LOG_DATA_STRING,		&m_MTPVerify.m_DefectName);										m_listCellLogItem.AddTail(item);
-	item = CCellLogItem(_T("CZONE ETC TACT TIME"),			CELL_LOG_DATA_TACT,			&m_CZoneETCTime.m_timeStart, &m_CZoneETCTime.m_timeEnd);		m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE START TIME"),				CELL_LOG_DATA_TIME,			&m_BZone.m_timeStart);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE END TIME"),				CELL_LOG_DATA_TIME,			&m_BZone.m_timeEnd);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE TACT TIME"),				CELL_LOG_DATA_TACT,			&m_BZone.m_timeStart, &m_BZone.m_timeEnd);					m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE WAITING"),				CELL_LOG_DATA_TACT,			&m_BZone.m_timeEnd, &m_BZone.m_timeWait);					m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE CLASS"),					CELL_LOG_DATA_CLASS_CELL,	&m_BZone.m_Class);											m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE DEFECT"),					CELL_LOG_DATA_STRING,		&m_BZone.m_DefectName);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP READY TIME"),			CELL_LOG_DATA_TACT,			&m_MTPReadyTime.m_timeStart, &m_MTPReadyTime.m_timeEnd);		m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP WRITE START TIME"),	CELL_LOG_DATA_TIME,			&m_MTPWrite.m_timeStart);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP WRITE END TIME"),		CELL_LOG_DATA_TIME,			&m_MTPWrite.m_timeEnd);											m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP WRITE TACT TIME"),	CELL_LOG_DATA_TACT,			&m_MTPWrite.m_timeStart, &m_MTPWrite.m_timeEnd);				m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP WRITE TYPE"),			CELL_LOG_DATA_STRING,		&m_MTPWrite.m_strMTPType);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP WRITE CLASS"),		CELL_LOG_DATA_CLASS_CELL,	&m_MTPWrite.m_Class);											m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP WRITE DEFECT"),		CELL_LOG_DATA_STRING,		&m_MTPWrite.m_DefectName);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP VERIFY START TIME"),	CELL_LOG_DATA_TIME,			&m_MTPVerify.m_timeStart);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP VERIFY END TIME"),	CELL_LOG_DATA_TIME,			&m_MTPVerify.m_timeEnd);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP VERIFY TACT TIME"),	CELL_LOG_DATA_TACT,			&m_MTPVerify.m_timeStart, &m_MTPVerify.m_timeEnd);				m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP VERIFY CLASS"),		CELL_LOG_DATA_CLASS_CELL,	&m_MTPVerify.m_Class);											m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE MTP VERIFY DEFECT"),		CELL_LOG_DATA_STRING,		&m_MTPVerify.m_DefectName);										m_listCellLogItem.AddTail(item);
+	item = CCellLogItem(_T("BZONE ETC TACT TIME"),			CELL_LOG_DATA_TACT,			&m_BZoneETCTime.m_timeStart, &m_BZoneETCTime.m_timeEnd);		m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("N/A"),							CELL_LOG_DATA_INT,			NULL);															m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("N/A"),							CELL_LOG_DATA_INT,			NULL);															m_listCellLogItem.AddTail(item);
 	item = CCellLogItem(_T("CORRELATION"),					CELL_LOG_DATA_STRING,		&m_PG_LOG_INFO.m_CORRELATION);									m_listCellLogItem.AddTail(item);

@@ -10,16 +10,16 @@
 #define STATE_RESTART						_T("RESTART_")
 #define STATE_SHUTTLE1_AZONE				_T("SHUTTLE1_AZONE_")
 #define STATE_SHUTTLE1_MOVE_AZONE			_T("SHUTTLE1_MOVE_AZONE_")
-#define STATE_SHUTTLE1_MOVE_CZONE			_T("SHUTTLE1_MOVE_CZONE_")
-#define STATE_SHUTTLE1_CZONE				_T("SHUTTLE1_CZONE_")
+#define STATE_SHUTTLE1_MOVE_BZONE			_T("SHUTTLE1_MOVE_BZONE_")
+#define STATE_SHUTTLE1_BZONE				_T("SHUTTLE1_BZONE_")
 #define STATE_SHUTTLE2_AZONE				_T("SHUTTLE2_AZONE_")
 #define STATE_SHUTTLE2_MOVE_AZONE			_T("SHUTTLE2_MOVE_AZONE_")
-#define STATE_SHUTTLE2_MOVE_CZONE			_T("SHUTTLE2_MOVE_CZONE_")
-#define STATE_SHUTTLE2_CZONE				_T("SHUTTLE2_CZONE_")
+#define STATE_SHUTTLE2_MOVE_BZONE			_T("SHUTTLE2_MOVE_BZONE_")
+#define STATE_SHUTTLE2_BZONE				_T("SHUTTLE2_BZONE_")
 #define STATE_SHUTTLE3_AZONE				_T("SHUTTLE3_AZONE_")
 #define STATE_SHUTTLE3_MOVE_AZONE			_T("SHUTTLE3_MOVE_AZONE_")
-#define STATE_SHUTTLE3_MOVE_CZONE			_T("SHUTTLE3_MOVE_CZONE_")
-#define STATE_SHUTTLE3_CZONE				_T("SHUTTLE3_CZONE_")
+#define STATE_SHUTTLE3_MOVE_BZONE			_T("SHUTTLE3_MOVE_BZONE_")
+#define STATE_SHUTTLE3_BZONE				_T("SHUTTLE3_BZONE_")
 
 #define STATE_SHUTTLE1_PDT_IF				_T("SHUTTLE1_PDT_IF")
 #define STATE_SHUTTLE2_PDT_IF				_T("SHUTTLE2_PDT_IF")
@@ -66,7 +66,7 @@ public:
 	CString MesCode(CString strDefectName, BOOL &bRetryAble, int nJudge = CONST_JUDGE_NAME::JUDGE_MCR);
 	int GetDefectFromJudge( ZONE_ID zone, CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
 	int AZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
-	int CZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
+	int BZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
 	int MCRJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
 	int LastJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
 	CONST_JUDGE_NAME::ID ModuleListJudgeFlow( std::vector<CString> *pVector, CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass );
@@ -93,10 +93,10 @@ public:
 	void CellLog_MCRReadTime_SetEndTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
 	void CellLog_AZoneETCTime_SetStartTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
 	void CellLog_AZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
-	void CellLog_CZoneMTPReadyTime_SetStartTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
-	void CellLog_CZoneMTPReadyTime_SetEndTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
-	void CellLog_CZoneETCTime_SetStartTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
-	void CellLog_CZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
+	void CellLog_BZoneMTPReadyTime_SetStartTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
+	void CellLog_BZoneMTPReadyTime_SetEndTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
+	void CellLog_BZoneETCTime_SetStartTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
+	void CellLog_BZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
 	void CellLog_Write(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
 	//kjpark 20180107 신호기 로그에서 MTP 측정 값 가지고와서 셀로그에 넣기
 	void GetMTP_Isnpection_Value(JIG_ID jig, JIG_CH ch = JIG_CH_MAX);
@@ -158,16 +158,16 @@ public:
 	void AZonetoMCR_SetTimeEnd(JIG_ID jig);
 
 	//kjpark 20170912 MCR 위치에따른 택타임 추가
-	void MCRtoCZoneSetTimeStart(JIG_ID jig);
-	void MCRtoCZoneSetTimeEnd(JIG_ID jig);
+	void MCRtoBZoneSetTimeStart(JIG_ID jig);
+	void MCRtoBZoneSetTimeEnd(JIG_ID jig);
 
-	void CZone_SetTimeStart(JIG_ID jig);
-	void CZone_SetTimeEnd(JIG_ID jig);
-	void CZone_SetTimeWait(JIG_ID jig);
+	void BZone_SetTimeStart(JIG_ID jig);
+	void BZone_SetTimeEnd(JIG_ID jig);
+	void BZone_SetTimeWait(JIG_ID jig);
 
 	//kjpark 20170912 MCR 위치에따른 택타임 추가
-	void CZonetoAZone_SetTimeStart(JIG_ID jig);
-	void CZonetoAZone_SetTimeEnd(JIG_ID jig);
+	void BZonetoAZone_SetTimeStart(JIG_ID jig);
+	void BZonetoAZone_SetTimeEnd(JIG_ID jig);
 
 	void SetZoneA_Send(JIG_ID jig);
 	BOOL SetZoneA_Check(JIG_ID jig);
@@ -405,10 +405,36 @@ public:
 	BOOL Active_ALIGN_X_LEFT_Check(JIG_ID jig);
 	void Active_ALIGN_X_RIGHT_Move(JIG_ID jig);
 	BOOL Active_ALIGN_X_RIGHT_Check(JIG_ID jig);
-
+	//yjkim 180605 추가 V
+	//vac
 	void Shuttle_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
 	BOOL Shuttle_Vac_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
 	BOOL Shuttle_VacOut_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
+	//blow
+	void Shuttle_Blow_OnOff(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
+	BOOL Shuttle_Blow_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
+	BOOL Shuttle_BlowOut_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
+	//fpcb vac
+	void Shuttle_Fpcb_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
+	BOOL Shuttle_Fpcb_Vac_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
+	BOOL Shuttle_Fpcb_VacOut_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
+	//fpcb blow
+	void Shuttle_Fpcb_Blow_OnOff(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
+	BOOL Shuttle_Fpcb_Blow_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
+	BOOL Shuttle_Fpcb_BlowOut_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
+
+	//TILT
+	void Shuttle_Tilt_Up(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+	BOOL Shuttle_Tilt_Up_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+	BOOL Shuttle_Tilt_UpOut_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+
+	void Shuttle_Tilt_Down(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+	BOOL Shuttle_Tilt_Down_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+	BOOL Shuttle_Tilt_DownOut_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+
+	//IONIZER
+
+	//AILGN
 
 	//////////////////////////////////////////////////////////////////////////
 	// PDT 물류설비 Interface

@@ -31,7 +31,7 @@ public:
 
 	CTactTimeUnit m_Shuttle_MoveAZone[JIG_ID_MAX];
 	CTactTimeUnit m_Shuttle_MoveMCR[JIG_ID_MAX];
-	CTactTimeUnit m_Shuttle_MoveCZone[JIG_ID_MAX];
+	CTactTimeUnit m_Shuttle_MoveBZone[JIG_ID_MAX];
 	CTactTimeUnit m_InspectionZ_Up[JIG_ID_MAX];
 	CTactTimeUnit m_InspectionZ_Down[JIG_ID_MAX];
 	CTactTimeUnit m_RunTime[JIG_ID_MAX];

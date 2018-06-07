@@ -147,7 +147,7 @@ int CStateMoveBZone::Run()
 
 		theTactTimeLog.m_Shuttle_MoveAZone[m_Shuttle].End();
 		theTactTimeLog.m_RunTime[m_Shuttle].End();
-		CZonetoAZone_SetTimeEnd(m_Shuttle);
+		BZonetoAZone_SetTimeEnd(m_Shuttle);
 
 		CellLog_WaitTime_SetStartTime(m_Shuttle);
 

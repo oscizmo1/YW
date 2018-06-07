@@ -93,7 +93,7 @@ BOOL CConfigDefectPattern::FindPattern(CIM_DEFECT_POINT DefectPoint, DEFECT_PATT
 {
 // 	DEFECT_PATTERN listpattern;
 // 	CList <DEFECT_PATTERN, DEFECT_PATTERN> *pList;
-// 	if(zone == ZONE_ID_C)
+// 	if(zone == ZONE_ID_B)
 // 		pList = &m_listDefectPatternBZone;
 // 	else if(zone == ZONE_ID_D)
 // 		pList = &m_listDefectPatternDZone;

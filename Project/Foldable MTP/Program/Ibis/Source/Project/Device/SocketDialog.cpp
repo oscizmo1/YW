@@ -142,18 +142,8 @@ int CSocketDialog::GetSocketIndex(CString sName)
 {
 	int nIdx = 99;
 
-	if ( sName == SOCKET_MCR_1 )		// _T("UV_1")
-		nIdx = eCOMM_MCR_1;
-	else if ( sName == SOCKET_MCR_2 )		// _T("UV_1")
-		nIdx = eCOMM_MCR_2;
-	else if ( sName == SOCKET_MCR_3 )		// _T("UV_1")
-		nIdx = eCOMM_MCR_3;
-	else if ( sName == SOCKET_MCR_4 )		// _T("UV_1")
-		nIdx = eCOMM_MCR_4;
-	else if ( sName == SOCKET_MCR_5 )		// _T("UV_1")
-		nIdx = eCOMM_MCR_5;
-	else if ( sName == SOCKET_MCR_6 )		// _T("UV_1")
-		nIdx = eCOMM_MCR_6;
+	if ( sName == SOCKET_ACTIVEALIGN_PC )		// _T("ALIGN")
+		nIdx = eCOMM_ALIGNPC;
 	else if ( sName == SOCKET_PGPC )		// _T("PGPC")
 		nIdx = eCOMM_SignalPC;
 	else if ( sName == SOCKET_CIM )	//	_T("DATAPC")	//SONIC
@@ -178,13 +168,9 @@ BOOL CSocketDialog::GetCommConnected(int nIdx)
 	case eCOMM_DataPC :		// 데이터 PC 와의 통신
 		bResult = m_CIM.IsConnected();
 		break;
-	//kjpark 20161006 MCR 상하 수정
-	case eCOMM_MCR_1 :		// UVMCR #1과의 통신
-		bResult = m_MCR[JIG_ID_A][JIG_CH_1].IsConnected();
-		break;		
-	case eCOMM_MCR_3 :		// UVMCR #3과의 통신
-		bResult = m_MCR[JIG_ID_B][JIG_CH_1].IsConnected();
-		break;		
+	case eCOMM_ALIGNPC :		// ALIGN과의 통신
+		bResult = m_ActiveAlign.IsConnected();
+		break;
 	}
 
 	return bResult;			// 접속여부 회신
@@ -201,19 +187,6 @@ LRESULT CSocketDialog::OnSocketConnect( WPARAM wParam, LPARAM lParam )
 		CMainFrame* pMainFrm = (CMainFrame*)::AfxGetMainWnd();
 		::PostMessage(pMainFrm->m_hWnd, UDMSG_COMM_STATE, GetSocketIndex(pSocket->GetSocketName()), 1);		// 연결 이벤트
 
-		//kjpark 20161025 MCR 구현
-		if(pSocket->GetSocketName() == SOCKET_MCR_1)
-		{
-			//kjpark 20170831 MCR 구현 채널 별 구현 완료
-			theSocketInterFace.m_MCR[JIG_ID_A][JIG_CH_1].SetMCRConnectSDK(eCOMM_MCR_1);
-			theSocketInterFace.m_MCR[JIG_ID_A][JIG_CH_1].m_pIDReader->Connect();
-		}
-		if(pSocket->GetSocketName() == SOCKET_MCR_3)
-		{
-			//kjpark 20170831 MCR 구현 채널 별 구현 완료
-			theSocketInterFace.m_MCR[JIG_ID_B][JIG_CH_1].SetMCRConnectSDK(eCOMM_MCR_3);
-			theSocketInterFace.m_MCR[JIG_ID_B][JIG_CH_1].m_pIDReader->Connect();
-		}
 		if(pSocket->GetSocketName() == SOCKET_CIM)
 		{
 			// 연결될 때 마다 현재 상태 동기화 [11/28/2016 OSC]

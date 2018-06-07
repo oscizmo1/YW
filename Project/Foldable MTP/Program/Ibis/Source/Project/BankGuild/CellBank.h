@@ -245,12 +245,12 @@ public:
 	CCellDefectInfo_Zone		m_AZone;
 	//kjpark 20170912 MCR 위치에따른 택타임 추가
 	CCellDefectInfo_Zone		m_AZonetoMCRZone;
-	CCellDefectInfo_Zone		m_MCRZonetoCZone;
-	CCellDefectInfo_Zone		m_CZone;
-	// C존의 MTP 검사시간 이후부터 C존 AFT 검사 완료까지
-	CCellTactTime				m_CZoneETCTime;
+	CCellDefectInfo_Zone		m_MCRZonetoBZone;
+	CCellDefectInfo_Zone		m_BZone;
+	// C존의 MTP 검사시간 이후부터 B존 AFT 검사 완료까지
+	CCellTactTime				m_BZoneETCTime;
 	//kjpark 20170912 MCR 위치에따른 택타임 추가
-	CCellDefectInfo_Zone		m_CZonetoAZone;
+	CCellDefectInfo_Zone		m_BZonetoAZone;
 
 	CCellDefectInfo_CellLoading m_CellLoading;
 	CCellDefectInfo				m_MTPWrite;

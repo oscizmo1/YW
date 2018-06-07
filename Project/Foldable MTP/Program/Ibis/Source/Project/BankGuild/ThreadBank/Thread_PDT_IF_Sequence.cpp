@@ -17,7 +17,7 @@ CThread_PDT_IF_Sequence::CThread_PDT_IF_Sequence(void)
 	for(int jig = 0; jig < JIG_ID_MAX; jig++)
 	{
 // 		m_pAZone[jig] = NULL;
-// 		m_pMoveCZone[jig] = NULL;
+// 		m_pMoveBZone[jig] = NULL;
 // 		m_pMoveAZone[jig] = NULL;
 // 		m_pIF[jig] = NULL;
 
@@ -254,8 +254,8 @@ void CThread_PDT_IF_Sequence::GetStatePointer( )
 	m_pAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_AZone;
 	m_pAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_AZone;
 
-	m_pMoveCZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveCZone;
-	m_pMoveCZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveCZone;
+	m_pMoveBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveBZone;
+	m_pMoveBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveBZone;
 
 	m_pMoveAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveAZone;
 	m_pMoveAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveAZone;
@@ -393,7 +393,7 @@ void CThread_PDT_IF_Sequence::MTP_Able_AllOnOff( CUnitCtrlFunc &_func, JIG_ID ji
 	// 로딩 혹은 언로딩 할 준비가 되어 있으면 ABLE ON
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
 	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
 	m_bRtn[3] = m_pIF[jig]->IsStoped();
 	m_bRtn[4] = theConfigBank.m_System.m_bCIMQualMode ? FALSE:TRUE;
@@ -424,12 +424,9 @@ void CThread_PDT_IF_Sequence::ConfirmStart_IF( CUnitCtrlFunc &_func, JIG_ID jig 
 
 void CThread_PDT_IF_Sequence::MTP_HotLine_Check()
 {
-	BOOL bEMS1 = m_pfunc->GetInPutIOCheck(X_FRONT_EMS_SWITCH);
-	BOOL bEMS2 = m_pfunc->GetInPutIOCheck(X_RIGHT_EMS_SWITCH);
-	BOOL bEMS3 = m_pfunc->GetInPutIOCheck(X_PC_RACK_EMS_SWITCH);
-	BOOL bEMS4 = m_pfunc->GetInPutIOCheck(X_LEFT_EMS_SWITCH);
-	BOOL bEMS5 = m_pfunc->GetInPutIOCheck(X_BACK_DOOR_EMS_SWITCH);
-	BOOL bTotal = (bEMS1 || bEMS2 || bEMS3 || bEMS4 || bEMS5) ? TRUE:FALSE;
+	BOOL bEMS1 = m_pfunc->GetInPutIOCheck(X_EMS_SWITCH_1);
+	BOOL bEMS2 = m_pfunc->GetInPutIOCheck(X_EMS_SWITCH_2);
+	BOOL bTotal = (bEMS1 || bEMS2) ? TRUE:FALSE;
 	if(bTotal != m_bEMS)
 	{
 		m_bEMS = bTotal;
@@ -440,14 +437,14 @@ void CThread_PDT_IF_Sequence::MTP_HotLine_Check()
 	if(bValue != m_bDoorClose)
 	{
 		m_bDoorClose = bValue;
-		m_pfunc->SetOutPutIO(Y_HOT_LINE_MTP_DOOR_OPEN, bValue ? FALSE:TRUE);
+		m_pfunc->SetOutPutIO(Y_HOT_LINE_PDT_RESERVED, bValue ? FALSE:TRUE);
 	}
 
 	STO_STATE sto = m_pfunc->STO_Check();
 	if(sto != m_STO)
 	{
 		m_STO = sto;
-		m_pfunc->SetOutPutIO(Y_HOT_LINE_MTP_INTERLOCK, sto == STO_ALARM ? TRUE:FALSE);
+		m_pfunc->SetOutPutIO(Y_HOT_LINE_MTP_INTERACTIVE_1, sto == STO_ALARM ? TRUE:FALSE);
 	}
 }
 
@@ -459,10 +456,10 @@ BOOL CThread_PDT_IF_Sequence::PDT_HotLine_Check()
 		return FALSE;
 	if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_NET_READY) == FALSE)
 		return FALSE;
-	if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_DOOR_OPEN))
-		return FALSE;
-	if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_INTERLOCK))
-		return FALSE;
+	//if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_RESERVED))
+	//	return FALSE;
+	//if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_INTERACTIVE_1))
+	//	return FALSE;
 
 	return TRUE;
 }

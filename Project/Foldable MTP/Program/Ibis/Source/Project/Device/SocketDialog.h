@@ -71,7 +71,7 @@ public:
 	//////////////////////////////////////
 	//			Avtive_Align			//
 	//////////////////////////////////////
-//	CDeviceSocket_ActiveAlign m_ActiveAlign;
+	CDeviceSocket_ActiveAlign m_ActiveAlign;
 
 	void SetSocketConnect();
 

@@ -220,13 +220,13 @@ BOOL CUnitCtrlBank::CheckTeachMoveInterlock(TEACH_PARAM::ID idTeach, double dOff
 		}
 		break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-	case TEACH_PARAM::ACTIVE_ALIGN_X1_to_LEFT_X:
+	case TEACH_PARAM::ACTIVE_ALIGN_X1_to_LEFT:
 		break;
-	case TEACH_PARAM::ACTIVE_ALIGN_X1_to_RIGHT_X:
+	case TEACH_PARAM::ACTIVE_ALIGN_X1_to_RIGHT:
 		break;
-	case TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT_X:
+	case TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT:
 		break;
-	case TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT_X:
+	case TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT:
 		break;
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -516,8 +516,8 @@ int CUnitCtrlBank::GetDefectFromJudge( ZONE_ID zone, CCellInfo *pCell, CString &
 	case ZONE_ID_A: 
 		nJudgeIndex = AZoneJudgeFlow(pCell, strDefect, nClass);
 		break;
-	case ZONE_ID_C: 
-		nJudgeIndex = CZoneJudgeFlow(pCell, strDefect, nClass);
+	case ZONE_ID_B: 
+		nJudgeIndex = BZoneJudgeFlow(pCell, strDefect, nClass);
 		break;
 	case ZONE_ID_MAX: 
 		nJudgeIndex = LastJudgeFlow(pCell, strDefect, nClass);
@@ -560,7 +560,7 @@ int CUnitCtrlBank::AZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_C
 }
 
 //kjpark 20161016 Cell Result 항목 추가
-int CUnitCtrlBank::CZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass )
+int CUnitCtrlBank::BZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_CELL &nClass )
 {
 	if( pCell->defaultData.m_bPGAlarm/* && (pCell->defaultCellInfomation.m_PGAlarmZone == ZONE_ID_A)*/ )
 	{
@@ -571,15 +571,15 @@ int CUnitCtrlBank::CZoneJudgeFlow( CCellInfo *pCell, CString &strDefect, CLASS_C
 	else
 	{
 		CONST_JUDGE_NAME::ID nJudge;
-		nJudge = ModuleListJudgeFlow(&theRecipeBank.m_Module.m_vct_CZone_Bef, pCell, strDefect, nClass);
+		nJudge = ModuleListJudgeFlow(&theRecipeBank.m_Module.m_vct_BZone_Bef, pCell, strDefect, nClass);
 
 		if(nClass == GOOD_CELL)
 		{
-			nJudge = ModuleListJudgeFlow(&theRecipeBank.m_Module.m_vct_CZone_Must, pCell, strDefect, nClass);
+			nJudge = ModuleListJudgeFlow(&theRecipeBank.m_Module.m_vct_BZone_Must, pCell, strDefect, nClass);
 		}
 		if(nClass == GOOD_CELL)
 		{
-			nJudge = ModuleListJudgeFlow(&theRecipeBank.m_Module.m_vct_CZone_Aft, pCell, strDefect, nClass);
+			nJudge = ModuleListJudgeFlow(&theRecipeBank.m_Module.m_vct_BZone_Aft, pCell, strDefect, nClass);
 		}
 
 		return nJudge;
@@ -695,7 +695,7 @@ int CUnitCtrlBank::LastJudgeFlow(CCellInfo *pCell, CString &strDefect, CLASS_CEL
 	nJudge = AZoneJudgeFlow(pCell, strDefect, nClass);
 	if(nClass == GOOD_CELL)
 	{
-		nJudge = CZoneJudgeFlow(pCell, strDefect, nClass);
+		nJudge = BZoneJudgeFlow(pCell, strDefect, nClass);
 	}
 
 	// SDC 이정현프로 요청으로 MCR을 맨 나중에 체크하되 우선순위 맨 위로 선정 [11/23/2017 OSC]
@@ -748,8 +748,8 @@ void CUnitCtrlBank::JudgeZoneDefect(JIG_ID jig, ZONE_ID defectzone)
 			case ZONE_ID_A:
 				GetDefectFromJudge(defectzone, pCell, pCell->m_AZone.m_DefectName, pCell->m_AZone.m_Class);
 				break;
-			case ZONE_ID_C:
-				GetDefectFromJudge(defectzone, pCell, pCell->m_CZone.m_DefectName, pCell->m_CZone.m_Class);
+			case ZONE_ID_B:
+				GetDefectFromJudge(defectzone, pCell, pCell->m_BZone.m_DefectName, pCell->m_BZone.m_Class);
 				break;
 			}
 		}
@@ -1148,9 +1148,9 @@ void CUnitCtrlBank::CellLog_AZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch /*= JI
 	}
 }
 
-void CUnitCtrlBank::CellLog_CZoneMTPReadyTime_SetStartTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
+void CUnitCtrlBank::CellLog_BZoneMTPReadyTime_SetStartTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
 {
-	// 셔틀 C존 도착부터 C존 검사 시작 전까지
+	// 셔틀 C존 도착부터 B존 검사 시작 전까지
 	CCellInfo *pCell;
 	int nStart, nEnd;
 
@@ -1173,7 +1173,7 @@ void CUnitCtrlBank::CellLog_CZoneMTPReadyTime_SetStartTime(JIG_ID jig, JIG_CH ch
 	}
 }
 
-void CUnitCtrlBank::CellLog_CZoneMTPReadyTime_SetEndTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
+void CUnitCtrlBank::CellLog_BZoneMTPReadyTime_SetEndTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
 {
 	// 셔틀 C존 도착부터 C존 검사 시작 전까지
 	CCellInfo *pCell;
@@ -1198,7 +1198,7 @@ void CUnitCtrlBank::CellLog_CZoneMTPReadyTime_SetEndTime(JIG_ID jig, JIG_CH ch /
 	}
 }
 
-void CUnitCtrlBank::CellLog_CZoneETCTime_SetStartTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
+void CUnitCtrlBank::CellLog_BZoneETCTime_SetStartTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
 {
 	// C존의 MTP 검사시간 이후부터 C존 AFT 검사 완료까지
 	CCellInfo *pCell;
@@ -1218,12 +1218,12 @@ void CUnitCtrlBank::CellLog_CZoneETCTime_SetStartTime(JIG_ID jig, JIG_CH ch /*= 
 		pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
 		{
-			pCell->m_CZoneETCTime.SetTimeStart();
+			pCell->m_BZoneETCTime.SetTimeStart();
 		}
 	}
 }
 
-void CUnitCtrlBank::CellLog_CZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
+void CUnitCtrlBank::CellLog_BZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch /*= JIG_CH_MAX*/)
 {
 	// C존의 MTP 검사시간 이후부터 C존 AFT 검사 완료까지
 	CCellInfo *pCell;
@@ -1243,7 +1243,7 @@ void CUnitCtrlBank::CellLog_CZoneETCTime_SetEndTime(JIG_ID jig, JIG_CH ch /*= JI
 		pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
 		{
-			pCell->m_CZoneETCTime.SetTimeEnd();
+			pCell->m_BZoneETCTime.SetTimeEnd();
 		}
 	}
 }
@@ -2078,78 +2078,78 @@ void CUnitCtrlBank::AZonetoMCR_SetTimeEnd( JIG_ID jig )
 }
 
 //kjpark 20170912 MCR 위치에따른 택타임 추가
-void CUnitCtrlBank::MCRtoCZoneSetTimeStart( JIG_ID jig )
+void CUnitCtrlBank::MCRtoBZoneSetTimeStart( JIG_ID jig )
 {
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_MCRZonetoCZone.SetTimeStart();
+			pCell->m_MCRZonetoBZone.SetTimeStart();
 	}
 }
 
 //kjpark 20170912 MCR 위치에따른 택타임 추가
-void CUnitCtrlBank::MCRtoCZoneSetTimeEnd( JIG_ID jig )
+void CUnitCtrlBank::MCRtoBZoneSetTimeEnd( JIG_ID jig )
 {
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_MCRZonetoCZone.SetTimeEnd();
+			pCell->m_MCRZonetoBZone.SetTimeEnd();
 	}
 }
 
-void CUnitCtrlBank::CZone_SetTimeStart( JIG_ID jig )
+void CUnitCtrlBank::BZone_SetTimeStart( JIG_ID jig )
 {
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_CZone.SetTimeStart();
+			pCell->m_BZone.SetTimeStart();
 	}
 }
 
-void CUnitCtrlBank::CZone_SetTimeEnd( JIG_ID jig )
+void CUnitCtrlBank::BZone_SetTimeEnd( JIG_ID jig )
 {
 	// C존 검사 끝나는 시간
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_CZone.SetTimeEnd();
+			pCell->m_BZone.SetTimeEnd();
 	}
 }
 
-void CUnitCtrlBank::CZone_SetTimeWait( JIG_ID jig )
+void CUnitCtrlBank::BZone_SetTimeWait( JIG_ID jig )
 {
 	// 셔틀 A존으로 이동 시작 시간
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_CZone.SetTimeWait();
+			pCell->m_BZone.SetTimeWait();
 	}
 }
 
 //kjpark 20170912 MCR 위치에따른 택타임 추가
-void CUnitCtrlBank::CZonetoAZone_SetTimeStart( JIG_ID jig )
+void CUnitCtrlBank::BZonetoAZone_SetTimeStart( JIG_ID jig )
 {
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_CZonetoAZone.SetTimeStart();
+			pCell->m_BZonetoAZone.SetTimeStart();
 	}
 }
 
 //kjpark 20170912 MCR 위치에따른 택타임 추가
-void CUnitCtrlBank::CZonetoAZone_SetTimeEnd( JIG_ID jig )
+void CUnitCtrlBank::BZonetoAZone_SetTimeEnd( JIG_ID jig )
 {
 	for (int i = 0; i < JIG_CH_MAX; i++)
 	{
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
-			pCell->m_CZonetoAZone.SetTimeEnd();
+			pCell->m_BZonetoAZone.SetTimeEnd();
 	}
 }
 
@@ -2234,11 +2234,11 @@ void CUnitCtrlBank::SetZoneC_Send( JIG_ID jig )
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
 		{
-			if( (pCell->defaultData.m_bIsInspectionSkip == FALSE) && (pCell->m_CZone.m_RecvSetZone == FALSE) )
+			if( (pCell->defaultData.m_bIsInspectionSkip == FALSE) && (pCell->m_BZone.m_RecvSetZone == FALSE) )
 			{
-				theSocketInterFace.m_PGHost.SendMassageToPatternGenerator(pCell->m_CZone.m_strCommand, jig, (JIG_CH)i);
+				theSocketInterFace.m_PGHost.SendMassageToPatternGenerator(pCell->m_BZone.m_strCommand, jig, (JIG_CH)i);
 			}
-			pCell->m_CZone.SetTimeStart();
+			pCell->m_BZone.SetTimeStart();
 		}
 	}
 }
@@ -2252,7 +2252,7 @@ BOOL CUnitCtrlBank::SetZoneC_Check( JIG_ID jig )
 		{
 			if(pCell->defaultData.m_bIsInspectionSkip == FALSE)
 			{
-				if(pCell->m_CZone.m_RecvSetZone == FALSE)
+				if(pCell->m_BZone.m_RecvSetZone == FALSE)
 					return FALSE;
 			}
 		}
@@ -2267,7 +2267,7 @@ void CUnitCtrlBank::SetZoneC_TimeOut( JIG_ID jig )
 		CCellInfo *pCell = theCellBank.GetCellInfo(jig, (JIG_CH)i);
 		if(pCell)
 		{
-			pCell->m_CZone.m_RecvSetZone = TRUE;
+			pCell->m_BZone.m_RecvSetZone = TRUE;
 		}
 	}
 }
@@ -4638,10 +4638,10 @@ BOOL CUnitCtrlBank::CalcurateDefectSquare(JIG_ID jig)
 // 	SQUARE_POINT point;
 // 	CCellInfo *pCell;
 // 	ZONE_ID otherZone;
-// 	if(zone == ZONE_ID_C)
+// 	if(zone == ZONE_ID_B)
 // 		otherZone = ZONE_ID_D;
 // 	else
-// 		otherZone = ZONE_ID_C;
+// 		otherZone = ZONE_ID_B;
 // 	for(int ch = 0; ch < JIG_CH_MAX; ch++)
 // 	{
 // 		pCell = theCellBank.GetCellInfo(jig, (JIG_CH)ch);
@@ -5209,36 +5209,6 @@ BOOL CUnitCtrlBank::DoorClose_Check(BOOL bAlarm /*= FALSE*/)
 		bRet = FALSE;
 	}
 
-	if(theUnitFunc.GetInPutIOCheck(X_BACK_DOOR2_SENSOR))
-	{
-		if(bAlarm)
-		{
-			theProcBank.AlarmHappen(ALM_BACK_DOOR2_SENSOR);
-		}
-		else
-		{
-			theProcBank.m_strLastKorMsg = _T("BACK DOOR2 가 열렸습니다.");			//한
-			theProcBank.m_strLastEngMsg = _T("BACK DOOR2 door opened.");			//영
-			theProcBank.m_strLastVnmMsg =_T("Cửa phía sau số 2 đã bị mở.") ;		//베
-		}
-		bRet = FALSE;
-	}
-
-	if(theUnitFunc.GetInPutIOCheck(X_LEFT_DOOR_SENSOR))
-	{
-		if(bAlarm)
-		{
-			theProcBank.AlarmHappen(ALM_LEFT_DOOR_SENSOR);
-		}
-		else
-		{
-			theProcBank.m_strLastKorMsg = _T("LEFT DOOR 가 열렸습니다.");			//한
-			theProcBank.m_strLastEngMsg = _T("LEFT DOOR door opened.");				//영
-			theProcBank.m_strLastVnmMsg =_T("Cửa bên trái đã bị mở.") ;	//베
-		}
-		bRet = FALSE;
-	}
-
 	return bRet;
 }
 
@@ -5279,22 +5249,6 @@ BOOL CUnitCtrlBank::DoorLockOn_Check()
 		theProcBank.m_strLastKorMsg = _T("BACK DOOR1 LOCK을 ON해주세요");			//한
 		theProcBank.m_strLastEngMsg = _T("BACK DOOR1 door unlocked.");			//영
 		theProcBank.m_strLastVnmMsg =_T("Cửa phía sau số 1 đã bị mở.") ;		//베
-		bRet = FALSE;
-	}
-
-	if(theUnitFunc.GetOutPutIOCheck(Y_BACK_DOOR2_LOCK_ONOFF))
-	{
-		theProcBank.m_strLastKorMsg = _T("BACK DOOR2 LOCK을 ON해주세요");			//한
-		theProcBank.m_strLastEngMsg = _T("BACK DOOR2 door unlocked.");			//영
-		theProcBank.m_strLastVnmMsg =_T("Cửa phía sau số 2 đã bị mở.") ;		//베
-		bRet = FALSE;
-	}
-
-	if(theUnitFunc.GetOutPutIOCheck(Y_LEFT_DOOR_LOCK_ONOFF))
-	{
-		theProcBank.m_strLastKorMsg = _T("LEFT DOOR LOCK을 ON해주세요");			//한
-		theProcBank.m_strLastEngMsg = _T("LEFT DOOR door unlocked.");				//영
-		theProcBank.m_strLastVnmMsg =_T("Cửa bên trái đã bị mở.") ;	//베
 		bRet = FALSE;
 	}
 
@@ -5344,6 +5298,24 @@ BOOL CUnitCtrlBank::LightCurtain_Check(JIG_ID jig /*= JIG_ID_MAX*/, BOOL bAlarm 
 				theProcBank.m_strLastKorMsg =_T("SHUTTLE 2 light curtain을 감지 했습니다. ");		//한
 				theProcBank.m_strLastEngMsg =_T("SHUTTLE 2 light curtain detected.");			//영
 				theProcBank.m_strLastVnmMsg =_T("SHUTTLE 2 Light curtain phát hiện cảm biến.") ;		//베
+			}
+			bRet = FALSE;
+		}
+	}
+
+	if(  bRet  &&  ( (jig == JIG_ID_B ) || (jig == JIG_ID_MAX) )  )
+	{
+		if(GetInPutIOCheck(X_PDT_LIGHT_CURTAIN))
+		{
+			if(bAlarm)
+			{
+				theProcBank.AlarmHappen(ALM_SHUTTLE2_LIGHT_CURTAIN);
+			}
+			else
+			{
+				theProcBank.m_strLastKorMsg =_T("PDT light curtain을 감지 했습니다. ");		//한
+				theProcBank.m_strLastEngMsg =_T("PDT light curtain detected.");			//영
+				theProcBank.m_strLastVnmMsg =_T("PDT Light curtain phát hiện cảm biến.") ;		//베
 			}
 			bRet = FALSE;
 		}
@@ -5538,9 +5510,9 @@ void CUnitCtrlBank::Temp_Check()
 		theProcBank.AlarmHappen(ALM_OP_PC_TEMP_ALARM);
 		return;
 	}
-	if(GetInPutIOCheck(X_SIGNAL_PC_TEMP_ALARM))
+	if(GetInPutIOCheck(X_ALIGN_PG_PC_TEMP_ALARM))
 	{
-		theProcBank.AlarmHappen(ALM_SIGNAL_PC_TEMP_ALARM);
+		theProcBank.AlarmHappen(ALM_ALIGN_PG_PC_TEMP_ALARM);
 		return;
 	}
 	if(GetInPutIOCheck(X_C_BOX_B_TEMP_ALARM))
@@ -5552,7 +5524,7 @@ void CUnitCtrlBank::Temp_Check()
 
 void CUnitCtrlBank::EMSSwitch_Check()
 {
-	INPUT_ID id = X_FRONT_EMS_SWITCH;
+	INPUT_ID id = X_EMS_SWITCH_1;
 	BOOL  bValue = GetInPutIOCheck(id);
 	if(theProcBank.m_OldInput[id] != bValue)
 	{
@@ -5563,7 +5535,7 @@ void CUnitCtrlBank::EMSSwitch_Check()
 			return;
 		}
 	}
-	id = X_LEFT_EMS_SWITCH;
+	id = X_EMS_SWITCH_2;
 	bValue = GetInPutIOCheck(id);
 	if(theProcBank.m_OldInput[id] != bValue)
 	{
@@ -5571,40 +5543,6 @@ void CUnitCtrlBank::EMSSwitch_Check()
 		if(bValue)
 		{
 			theProcBank.AlarmHappen(ALM_LEFT_EMS_SWITCH);
-			return;
-		}
-	}
-	id = X_BACK_DOOR_EMS_SWITCH;
-	bValue = GetInPutIOCheck(id);
-	if(theProcBank.m_OldInput[id] != bValue)
-	{
-		theProcBank.m_OldInput[id] = bValue;
-		if(bValue)
-		{
-			theProcBank.AlarmHappen(ALM_BACK_DOOR_EMS_SWITCH);
-			return;
-		}
-	}
-	id = X_RIGHT_EMS_SWITCH;
-	bValue = GetInPutIOCheck(id);
-	if(theProcBank.m_OldInput[id] != bValue)
-	{
-		theProcBank.m_OldInput[id] = bValue;
-		if(bValue)
-		{
-			theProcBank.AlarmHappen(ALM_RIGHT_EMS_SWITCH);
-			return;
-		}
-	}
-
-	id = X_PC_RACK_EMS_SWITCH;
-	bValue = GetInPutIOCheck(id);
-	if(theProcBank.m_OldInput[id] != bValue)
-	{
-		theProcBank.m_OldInput[id] = bValue;
-		if(bValue)
-		{
-			theProcBank.AlarmHappen(ALM_MANUAL_MODE_EMS_SWITCH);
 			return;
 		}
 	}
@@ -5661,7 +5599,7 @@ void CUnitCtrlBank::MCR_Trigger(JIG_ID jig, JIG_CH ch, BOOL bOn )
 			switch(ch)
 			{
 			case JIG_CH_1:
-				SetOutPutIO((OUTPUT_ID) Y_MCR1_TRIGGER_ONOFF, bOn);
+				//SetOutPutIO((OUTPUT_ID) Y_MCR1_TRIGGER_ONOFF, bOn);
 				break;
 			}
 		}
@@ -5671,7 +5609,7 @@ void CUnitCtrlBank::MCR_Trigger(JIG_ID jig, JIG_CH ch, BOOL bOn )
 			switch(ch)
 			{
 			case JIG_CH_1:
-				SetOutPutIO((OUTPUT_ID) Y_MCR3_TRIGGER_ONOFF, bOn);
+				//SetOutPutIO((OUTPUT_ID) Y_MCR3_TRIGGER_ONOFF, bOn);
 				break;
 			}
 		}
@@ -6251,8 +6189,8 @@ BOOL CUnitCtrlBank::LoadingStop_IsAble(JIG_ID jig)
 
 BOOL CUnitCtrlBank::TransferStop_IsAble()
 {
-	if( GetZoneEnd(JIG_ID_A, ZONE_ID_C)
-		&& GetZoneEnd(JIG_ID_B, ZONE_ID_C)
+	if( GetZoneEnd(JIG_ID_A, ZONE_ID_B)
+		&& GetZoneEnd(JIG_ID_B, ZONE_ID_B)
 		&& Shuttle_Y_LOAD_Check(JIG_ID_A)
 		&& Shuttle_Y_LOAD_Check(JIG_ID_B)
 		)
@@ -6262,34 +6200,6 @@ BOOL CUnitCtrlBank::TransferStop_IsAble()
 	return FALSE;
 }
 
-//kjpark 20170831 MCR 구현 채널 별 구현 완료
-void CUnitCtrlBank::SetMCR_Reset(JIG_ID jig, JIG_CH ch, BOOL bOn)
-{
-	switch(jig)
-	{
-	case  JIG_ID_A:
-		{
-			switch(ch)
-			{
-			case JIG_CH_1:
-				SetOutPutIO((OUTPUT_ID) Y_MCR1_RESET, bOn);	
-				break;
-			}
-		}
-		break;
-	case  JIG_ID_B:
-		{
-			switch(ch)
-			{
-			case JIG_CH_1:
-				SetOutPutIO((OUTPUT_ID) Y_MCR3_RESET, bOn);	
-				break;
-			}
-		}
-		break;
-	}
-	SetOutPutIO((OUTPUT_ID) Y_MCR1_RESET, bOn);	
-}
 
 //kjpark 20170902 Teach Shuttle UI 및 버튼 동작 추가
 //kjpark 20180131 Robot Status interlock 회피 더 추가
@@ -6480,10 +6390,10 @@ void CUnitCtrlBank::Active_ALIGN_X_LEFT_Move(JIG_ID jig)
 	switch(jig)
 	{
 	case  JIG_ID_A:
-		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_LEFT_X);
+		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_LEFT);
 		break;
 	case  JIG_ID_B:
-		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT_X);
+		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT);
 		break;
 	}
 }
@@ -6494,10 +6404,10 @@ BOOL CUnitCtrlBank::Active_ALIGN_X_LEFT_Check(JIG_ID jig)
 	switch(jig)
 	{
 	case  JIG_ID_A:
-		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_LEFT_X);
+		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_LEFT);
 		break;
 	case  JIG_ID_B:
-		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT_X);
+		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT);
 		break;
 	}
 	return bRet;
@@ -6508,10 +6418,10 @@ void CUnitCtrlBank::Active_ALIGN_X_RIGHT_Move(JIG_ID jig)
 	switch(jig)
 	{
 	case  JIG_ID_A:
-		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_RIGHT_X);
+		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_RIGHT);
 		break;
 	case  JIG_ID_B:
-		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT_X);
+		theDeviceMotion.TeachMove(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT);
 		break;
 	}
 }
@@ -6522,10 +6432,10 @@ BOOL CUnitCtrlBank::Active_ALIGN_X_RIGHT_Check(JIG_ID jig)
 	switch(jig)
 	{
 	case  JIG_ID_A:
-		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_RIGHT_X);
+		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X1_to_RIGHT);
 		break;
 	case  JIG_ID_B:
-		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT_X);
+		bRet = theDeviceMotion.CheckTeachPosition(m_nThreadID, TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT);
 		break;
 	}
 	return bRet;
@@ -6537,11 +6447,11 @@ void CUnitCtrlBank::Shuttle_Vac_OnOff( JIG_ID jig, JIG_CH ch, VAC_STATE vac )
 
 	if(jig == JIG_ID_A && ch == JIG_CH_1)
 	{
-		SetOutPutIO(SHUTTLE1_CH1_VACCUM_ONOFF,value);
+		SetOutPutIO(Y_SHUTTLE1_VACCUM_ONOFF,value);
 	}
 	else if(jig == JIG_ID_B && ch == JIG_CH_1)
 	{
-		SetOutPutIO(SHUTTLE2_CH3_VACCUM_ONOFF, value);
+		SetOutPutIO(Y_SHUTTLE2_VACCUM_ONOFF, value);
 	}
 }
 
@@ -6554,11 +6464,11 @@ BOOL CUnitCtrlBank::Shuttle_Vac_Check( JIG_ID jig, JIG_CH ch, VAC_STATE vac )
 	BOOL bRet = FALSE;
 	if(jig == JIG_ID_A && ch == JIG_CH_1)
 	{
-		bRet = GetInPutIOCheck(X_SHUTTLE1_CH1_VACCUM_ON_SENSOR, value);
+		bRet = GetInPutIOCheck(X_SHUTTLE_1_VACCUM_ON_SENSOR, value);
 	}
 	else if(jig == JIG_ID_B && ch == JIG_CH_1)
 	{
-		bRet = GetInPutIOCheck(X_SHUTTLE2_CH3_VACCUM_ON_SENSOR, value);
+		bRet = GetInPutIOCheck(X_SHUTTLE_2_VACCUM_ON_SENSOR, value);
 	}
 	return bRet;
 }
@@ -6569,14 +6479,213 @@ BOOL CUnitCtrlBank::Shuttle_VacOut_Check( JIG_ID jig, JIG_CH ch, VAC_STATE vac )
 	BOOL bRet = FALSE;
 	if(jig == JIG_ID_A && ch == JIG_CH_1)
 	{
-		bRet= GetOutPutIOCheck(SHUTTLE1_CH1_VACCUM_ONOFF, value);
+		bRet= GetOutPutIOCheck(Y_SHUTTLE1_VACCUM_ONOFF, value);
 	}
 	else if(jig == JIG_ID_B && ch == JIG_CH_1)
 	{
-		bRet = GetOutPutIOCheck(SHUTTLE2_CH3_VACCUM_ONOFF, value);
+		bRet = GetOutPutIOCheck(Y_SHUTTLE2_VACCUM_ONOFF, value);
 	}
 	return bRet;
 }
+
+//yjkim 180605 UI 및 버튼 동작 추가
+//blow
+void CUnitCtrlBank::Shuttle_Blow_OnOff(JIG_ID jig, JIG_CH ch, BLOW_STATE blo)
+{
+	ONOFF value = (blo == BLOW_ON) ? ON : OFF;
+
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE1_BLOW_ONOFF,value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE2_BLOW_ONOFF,value);
+	}
+}
+BOOL CUnitCtrlBank::Shuttle_Blow_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo)
+{
+	if(theProcBank.m_bDryRunMode)
+		return TRUE;
+	return TRUE;
+}
+BOOL CUnitCtrlBank::Shuttle_BlowOut_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo)
+{
+	ONOFF value = (blo == BLOW_ON) ? ON : OFF ;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet= GetOutPutIOCheck(Y_SHUTTLE1_BLOW_ONOFF, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetOutPutIOCheck(Y_SHUTTLE2_BLOW_ONOFF, value);
+	}
+	return bRet;
+}
+
+//fpcb vac
+void CUnitCtrlBank::Shuttle_Fpcb_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac)
+{
+	ONOFF value = (vac == VAC_ON) ? ON : OFF;
+	if (jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE1_FPCB_VACCUM_ONOFF,value);
+	} 
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE2_FPCB_VACCUM_ONOFF,value);
+	}
+}
+BOOL CUnitCtrlBank::Shuttle_Fpcb_Vac_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac)
+{
+	if(theProcBank.m_bDryRunMode)
+		return TRUE;
+	ONOFF value = (vac== VAC_ON) ? ON:OFF;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet = GetInPutIOCheck(X_SHUTTLE_1_FPCB_VACCUM_ON_SENSOR, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetInPutIOCheck(X_SHUTTLE_2_FPCB_VACCUM_ON_SENSOR, value);
+	}
+	return bRet;
+}
+BOOL CUnitCtrlBank::Shuttle_Fpcb_VacOut_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac)
+{
+	ONOFF value = (vac == BLOW_ON) ? ON : OFF ;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet= GetOutPutIOCheck(Y_SHUTTLE1_FPCB_VACCUM_ONOFF, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetOutPutIOCheck(Y_SHUTTLE2_FPCB_VACCUM_ONOFF, value);
+	}
+	return bRet;
+}
+
+//fpcb blow
+void CUnitCtrlBank::Shuttle_Fpcb_Blow_OnOff(JIG_ID jig, JIG_CH ch, BLOW_STATE blo)
+{
+	ONOFF value = (blo == BLOW_ON) ? ON : OFF ;
+	if (jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE1_FPCB_BLOW_ONOFF,value);
+	} 
+	else if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE2_FPCB_BLOW_ONOFF,value);
+	}
+}
+BOOL CUnitCtrlBank::Shuttle_Fpcb_Blow_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo)
+{
+	if(theProcBank.m_bDryRunMode)
+		return TRUE;
+	return TRUE;
+}
+BOOL CUnitCtrlBank::Shuttle_Fpcb_BlowOut_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo)
+{
+	ONOFF value = (blo == BLOW_ON) ? ON : OFF ;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet= GetOutPutIOCheck(Y_SHUTTLE1_FPCB_BLOW_ONOFF, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetOutPutIOCheck(Y_SHUTTLE1_FPCB_BLOW_ONOFF, value);
+	}
+	return bRet;
+}
+//tilt
+void CUnitCtrlBank::Shuttle_Tilt_Up(JIG_ID jig, JIG_CH ch, TILT_STATE tilt)
+{
+	ONOFF value = (tilt == TILT_UP) ? ON : OFF ;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE_1_TILTING_UP,value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE_2_TILTING_UP,value);
+	}
+}
+BOOL CUnitCtrlBank::Shuttle_Tilt_Up_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt)
+{
+	if(theProcBank.m_bDryRunMode)
+		return TRUE;
+	ONOFF value = (tilt== TILT_UP) ? ON:OFF;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet = GetInPutIOCheck(X_SHUTTLE_1_TILTING_UP, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetInPutIOCheck(X_SHUTTLE_2_TILTING_UP, value);
+	}
+	return bRet;
+}
+BOOL CUnitCtrlBank::Shuttle_Tilt_UpOut_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt)
+{	
+	ONOFF value = (tilt == TILT_UP) ? ON : OFF ;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet= GetOutPutIOCheck(Y_SHUTTLE_1_TILTING_UP, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetOutPutIOCheck(Y_SHUTTLE_2_TILTING_UP, value);
+	}
+	return bRet;
+}
+
+void CUnitCtrlBank::Shuttle_Tilt_Down(JIG_ID jig, JIG_CH ch, TILT_STATE tilt)
+{
+	ONOFF value = (tilt == TILT_DOWN) ? ON : OFF ;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE_1_TILTING_DOWN,value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		SetOutPutIO(Y_SHUTTLE_2_TILTING_DOWN,value);
+	}
+}
+BOOL CUnitCtrlBank::Shuttle_Tilt_Down_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt)
+{
+	ONOFF value = (tilt== TILT_DOWN) ? ON:OFF;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet = GetInPutIOCheck(X_SHUTTLE_1_TILTING_DOWN, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetInPutIOCheck(X_SHUTTLE_2_TILTING_DOWN, value);
+	}
+	return bRet;
+}
+BOOL CUnitCtrlBank::Shuttle_Tilt_DownOut_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt)
+{
+	ONOFF value = (tilt == TILT_DOWN) ? ON : OFF ;
+	BOOL bRet = FALSE;
+	if(jig == JIG_ID_A && ch == JIG_CH_1)
+	{
+		bRet= GetOutPutIOCheck(Y_SHUTTLE_1_TILTING_DOWN, value);
+	}
+	else if(jig == JIG_ID_B && ch == JIG_CH_1)
+	{
+		bRet = GetOutPutIOCheck(Y_SHUTTLE_2_TILTING_DOWN, value);
+	}
+	return bRet;
+}
+
 
 void CUnitCtrlBank::MTP_IF_Servival_AllSet()
 {

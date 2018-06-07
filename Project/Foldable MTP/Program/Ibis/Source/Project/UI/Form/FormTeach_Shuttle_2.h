@@ -44,7 +44,6 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	void ClickBtnMCRRead_CH1();	
-	void ClickBtnLiveMode_CH1();
 
 	void ClickBtnAxis_Y_Load();
 	void ClickBtnAxis_Y_MANUAL();
@@ -74,15 +73,20 @@ public:
 	void SetMCRData_CH1(CString strBarcode = _T(""));
 	void SetMCRData_CH2(CString strBarcode = _T(""));
 
-	UINT m_AxisList[6];
+	UINT m_AxisList[8];
 	void Get_Check();
 	void UpdateShuttleState();
 
 	JIG_ID m_thisDlgShuttle;
 	virtual void OnInitialUpdate();
-	void ClickGxbtnTeachShuttle2VacCh3();
+	void ClickGxbtnTeachShuttle2VacCh1();
 	void ClickGxbtnTeachShuttle2ActiveALIGNLeftX();
 	void ClickGxbtnTeachShuttle2ActiveALIGNRightX();
+	void ClickGxbtnTeachShuttle2BlowCh1();
+	void ClickGxbtnTeachShuttle2FpcbVacCh1();
+	void ClickGxbtnTeachShuttle2FpcbBlowCh2();
+	void ClickGxbtnTeachShuttle2Down();
+	void ClickGxbtnTeachShuttle2Up();
 };
 
 

@@ -221,6 +221,21 @@
     <None Include="res\IbisDoc.ico">
       <Filter>Project\리소스 파일</Filter>
     </None>
+    <None Include="..\..\Source\Project\res\Ibis.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\..\Source\Project\res\IbisDoc.ico">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\..\Source\Project\res\sample.bmp">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\..\Source\Project\res\Tray.bmp">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
+    <None Include="..\..\Source\Project\res\cell.bmp">
+      <Filter>Project\리소스 파일</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -438,9 +453,6 @@
     </ClInclude>
     <ClInclude Include="..\ModuleInternal\UI\GridCtrl\TitleTip.h">
       <Filter>ModuleInternal\UI\GridCtrl</Filter>
-    </ClInclude>
-    <ClInclude Include="BankGuild\MCDefine.h">
-      <Filter>Project\BankGuild\Define &amp; Const Bank</Filter>
     </ClInclude>
     <ClInclude Include="..\ModuleInternal\Motion\MotionNMC2.h">
       <Filter>ModuleInternal\Motion</Filter>
@@ -685,12 +697,6 @@
     <ClInclude Include="StateMachine\StateAZone.h">
       <Filter>Project\StateMachine</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\StateCZone.h">
-      <Filter>Project\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine\StateMoveCZone.h">
-      <Filter>Project\StateMachine</Filter>
-    </ClInclude>
     <ClInclude Include="StateMachine\StateMoveAZone.h">
       <Filter>Project\StateMachine</Filter>
     </ClInclude>
@@ -853,12 +859,6 @@
     <ClInclude Include="UI\Form\FormReportStatisticsNGLastResult.h">
       <Filter>Project\UI\Form\Report</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\StateMoveBZone.h">
-      <Filter>Project\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine\StateBZone.h">
-      <Filter>Project\StateMachine</Filter>
-    </ClInclude>
     <ClInclude Include="Device\DeviceSocket_ActiveAlign.h">
       <Filter>Project\Device\Socket</Filter>
     </ClInclude>
@@ -869,6 +869,15 @@
       <Filter>Project\헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="IbisView.h">
+      <Filter>Project\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\statemoveBzone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine\stateBzone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Project\resource.h">
       <Filter>Project\헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1218,12 +1227,6 @@
     <ClCompile Include="StateMachine\StateAZone.cpp">
       <Filter>Project\StateMachine</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine\StateCZone.cpp">
-      <Filter>Project\StateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine\StateMoveCZone.cpp">
-      <Filter>Project\StateMachine</Filter>
-    </ClCompile>
     <ClCompile Include="StateMachine\StateMoveAZone.cpp">
       <Filter>Project\StateMachine</Filter>
     </ClCompile>
@@ -1383,12 +1386,6 @@
     <ClCompile Include="UI\Form\FormReportStatisticsNGLastResult.cpp">
       <Filter>Project\UI\Form\Report</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine\StateMoveBZone.cpp">
-      <Filter>Project\StateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine\StateBZone.cpp">
-      <Filter>Project\StateMachine</Filter>
-    </ClCompile>
     <ClCompile Include="Device\DeviceSocket_ActiveAlign.cpp">
       <Filter>Project\Device\Socket</Filter>
     </ClCompile>
@@ -1400,6 +1397,12 @@
     </ClCompile>
     <ClCompile Include="IbisView.cpp">
       <Filter>Project\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateMoveBZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateBZone.cpp">
+      <Filter>Project\StateMachine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

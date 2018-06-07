@@ -60,8 +60,8 @@ void CTactTimeLog::InitUnitName()
 		m_Shuttle_MoveAZone[i].SetUnitName(strText);
 		strText.Format(_T("SHUTTLE%d_MoveMCR"), i+1);
 		m_Shuttle_MoveMCR[i].SetUnitName(strText);
-		strText.Format(_T("SHUTTLE%d_MoveCZone"), i+1);
-		m_Shuttle_MoveCZone[i].SetUnitName(strText);
+		strText.Format(_T("SHUTTLE%d_MoveBZone"), i+1);
+		m_Shuttle_MoveBZone[i].SetUnitName(strText);
 		strText.Format(_T("InspectionZ%d_Up"), i+1);
 		m_InspectionZ_Up[i].SetUnitName(strText);
 		strText.Format(_T("InspectionZ%d_Down"), i+1);
@@ -79,7 +79,7 @@ void CTactTimeLog::Reset()
 	{
 		m_Shuttle_MoveAZone[i].Reset();
 		m_Shuttle_MoveMCR[i].Reset();
-		m_Shuttle_MoveCZone[i].Reset();
+		m_Shuttle_MoveBZone[i].Reset();
 		m_InspectionZ_Up[i].Reset();
 		m_InspectionZ_Down[i].Reset();
 	}

@@ -428,21 +428,21 @@ void CFormSignal::ClickBtnSelect_B3()
 {
 	//20170501 LMS OPERATION 추가
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("SETUP"), _T("PG_B3"));
-// 	GetSelectButton(ZONE_ID_C, JIG_CH_3);
+// 	GetSelectButton(ZONE_ID_B, JIG_CH_3);
 }
 //kjpark 20161021 Setup 신호기 UI 구현
 void CFormSignal::ClickBtnSelect_B4()
 {
 	//20170501 LMS OPERATION 추가
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("SETUP"), _T("PG_B4"));
-// 	GetSelectButton(ZONE_ID_C, JIG_CH_4);
+// 	GetSelectButton(ZONE_ID_B, JIG_CH_4);
 }
 //kjpark 20161021 Setup 신호기 UI 구현
 void CFormSignal::ClickBtnSelect_B5()
 {
 	//20170501 LMS OPERATION 추가
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("SETUP"), _T("PG_B5"));
-// 	GetSelectButton(ZONE_ID_C, JIG_CH_5);
+// 	GetSelectButton(ZONE_ID_B, JIG_CH_5);
 }
 //kjpark 20161021 Setup 신호기 UI 구현
 void CFormSignal::ClickBtnSelect_C1()
@@ -634,7 +634,7 @@ void CFormSignal::ClickBtnZoneSelect_B()
 {
 	//20170501 LMS OPERATION 추가
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("SETUP"), _T("SET_ZONE_B"));
-	for(int i = ZONE_ID_A ; i < ZONE_ID_MAX ; i++)
+	for(int i = JIG_ID_A ; i < JIG_ID_MAX ; i++)
 	{
 		for(int j = JIG_CH_1 ; j < JIG_CH_MAX ; j++)
 		{
@@ -2251,18 +2251,18 @@ BOOL CFormSignal::CheckSelectAllChanelPG(JIG_CH ch)
 void CFormSignal::ClickGxstcZoneB()
 {
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("SETUP"), _T("ZONE_B ALL"));
-// 	BOOL bAllSelect=CheckSelectAllZonePG(ZONE_ID_C);
+// 	BOOL bAllSelect=CheckSelectAllZonePG(ZONE_ID_B);
 // 	for(int j = JIG_CH_1 ; j < JIG_CH_MAX ; j++)
 // 	{
 // 		if(bAllSelect)
 // 		{
-// 			m_bButtonCheck[ZONE_ID_C][j] = TRUE;
-// 			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_C][j], GXCOLOR_ON);
+// 			m_bButtonCheck[ZONE_ID_B][j] = TRUE;
+// 			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_B][j], GXCOLOR_ON);
 // 		}
 // 		else
 // 		{
-// 			m_bButtonCheck[ZONE_ID_C][j] = FALSE;
-// 			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_C][j], GXCOLOR_OFF);
+// 			m_bButtonCheck[ZONE_ID_B][j] = FALSE;
+// 			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_B][j], GXCOLOR_OFF);
 // 		}
 // 	}
 	ClickBtnSelect_Multi();
@@ -2272,18 +2272,18 @@ void CFormSignal::ClickGxstcZoneB()
 void CFormSignal::ClickGxstcZoneC()
 {
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("SETUP"), _T("ZONE_C ALL"));
-	BOOL bAllSelect=CheckSelectAllZonePG(ZONE_ID_C);
+	BOOL bAllSelect=CheckSelectAllZonePG(ZONE_ID_B);
 	for(int j = JIG_CH_1 ; j < JIG_CH_MAX ; j++)
 	{
 		if(bAllSelect)
 		{
-			m_bButtonCheck[ZONE_ID_C][j] = TRUE;
-			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_C][j], GXCOLOR_ON);
+			m_bButtonCheck[ZONE_ID_B][j] = TRUE;
+			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_B][j], GXCOLOR_ON);
 		}
 		else
 		{
-			m_bButtonCheck[ZONE_ID_C][j] = FALSE;
-			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_C][j], GXCOLOR_OFF);
+			m_bButtonCheck[ZONE_ID_B][j] = FALSE;
+			CGxUICtrl::SetButtonColor(this,m_nCellButton[ZONE_ID_B][j], GXCOLOR_OFF);
 		}
 	}
 	ClickBtnSelect_Multi();
@@ -2763,7 +2763,7 @@ void CFormSignal::ClickGxbtnTeach1FunctionOptionSignalPowerReset()
 	}
 	if(m_bButtonCheck[JIG_ID_B][JIG_CH_1])
 	{
-		theUnitFunc.SetOutPutIO(Y_SIGNAL_PC3_RESET, ON);
+		theUnitFunc.SetOutPutIO(Y_SIGNAL_PC2_RESET, ON);
 	}
 		
 	Sleep(1000);
@@ -2775,7 +2775,7 @@ void CFormSignal::ClickGxbtnTeach1FunctionOptionSignalPowerReset()
 	}
 	if(m_bButtonCheck[JIG_ID_B][JIG_CH_1])
 	{
-		theUnitFunc.SetOutPutIO(Y_SIGNAL_PC3_RESET, OFF);
+		theUnitFunc.SetOutPutIO(Y_SIGNAL_PC2_RESET, OFF);
 	}
 
 }

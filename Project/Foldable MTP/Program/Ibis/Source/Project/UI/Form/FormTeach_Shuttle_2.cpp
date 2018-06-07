@@ -58,7 +58,6 @@ END_MESSAGE_MAP()
 
 BEGIN_EVENTSINK_MAP(CFormTeach_Shuttle_2, CFormView)
 	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_READ_ID_01, DISPID_CLICK, CFormTeach_Shuttle_2::ClickBtnMCRRead_CH1, VTS_NONE)
-	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_LIVE_01, DISPID_CLICK, CFormTeach_Shuttle_2::ClickBtnLiveMode_CH1, VTS_NONE)
 
 	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_Y_LOAD, DISPID_CLICK, CFormTeach_Shuttle_2::ClickBtnAxis_Y_Load, VTS_NONE)
 	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_Y_MANUAL, DISPID_CLICK, CFormTeach_Shuttle_2::ClickBtnAxis_Y_MANUAL, VTS_NONE)
@@ -70,9 +69,14 @@ BEGIN_EVENTSINK_MAP(CFormTeach_Shuttle_2, CFormView)
 	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_INSPECTION_Z_INSPECTION, DISPID_CLICK, CFormTeach_Shuttle_2::ClickBtnAxis_Z_Inspection, VTS_NONE)
 
 
-	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_VAC_CH3, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2VacCh3, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_VAC_CH1, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2VacCh1, VTS_NONE)
 	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_LEFT_X, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2ActiveALIGNLeftX, VTS_NONE)
 	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_RIGHT_X, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2ActiveALIGNRightX, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_BLOW_CH1, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2BlowCh1, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_FPCB_VAC_CH1, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2FpcbVacCh1, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_FPCB_BLOW_CH2, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2FpcbBlowCh2, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_DOWN, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2Down, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_2, IDC_GXBTN_TEACH_SHUTTLE_2_UP, DISPID_CLICK, CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2Up, VTS_NONE)
 END_EVENTSINK_MAP()
 
 // CFormTeach_Shuttle_22 진단입니다.
@@ -139,6 +143,8 @@ void CFormTeach_Shuttle_2::OnInitialUpdate()
 	m_AxisList[3] = IDC_GXBTN_TEACH_SHUTTLE_2_NSPECTION_X_INTSPECTION;
 	m_AxisList[4] = IDC_GXBTN_TEACH_SHUTTLE_2_INSPECTION_Z_UP;
 	m_AxisList[5] = IDC_GXBTN_TEACH_SHUTTLE_2_INSPECTION_Z_INSPECTION;
+	m_AxisList[6] = IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_LEFT_X;
+	m_AxisList[7] = IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_RIGHT_X;
 
 }
 void CFormTeach_Shuttle_2::OnTimer(UINT_PTR nIDEvent)
@@ -186,24 +192,6 @@ void CFormTeach_Shuttle_2::ClickBtnMCRRead_CH1()
 	theUnitFunc.MCR_Trigger(m_thisDlgShuttle, JIG_CH_1, TRUE);
 	Sleep(200);
 	theUnitFunc.MCR_Trigger(m_thisDlgShuttle, JIG_CH_1, FALSE);
-}
-
-void CFormTeach_Shuttle_2::ClickBtnLiveMode_CH1()
-{
-	m_bLiveMode_CH1 = !m_bLiveMode_CH1;
-	theUnitFunc.SetLiveMode(m_thisDlgShuttle, JIG_CH_1, m_bLiveMode_CH1);
-	if(m_bLiveMode_CH1)
-	{
-		//20170501 LMS OPERATION 추가
-		theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("ClickBtnLiveMode_CH1"));
-		CGxUICtrl::SetButtonEnabled(this, IDC_GXBTN_TEACH_SHUTTLE_2_READ_ID_01, FALSE);
-		CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_LIVE_01, GXCOLOR_VACUUM_ON);
-	}
-	else
-	{
-		CGxUICtrl::SetButtonEnabled(this, IDC_GXBTN_TEACH_SHUTTLE_2_READ_ID_01, TRUE);
-		CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_LIVE_01, GXCOLOR_OFF);
-	}
 }
 
 // MCR이 수신되었다.
@@ -305,6 +293,23 @@ void CFormTeach_Shuttle_2::ClickBtnAxis_Z_Inspection()
 	SetCurPageAxis(m_CurAxis,m_CurTeach,(UINT)IDC_GXBTN_TEACH_SHUTTLE_2_INSPECTION_Z_INSPECTION);
 }
 
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2ActiveALIGNLeftX()
+{
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("ClickBtnAxis_ACTIVE_ALIGN_LEFT"));
+	m_CurAxis = (AXIS_ID)AXIS_ACTIVE_ALIGN_X2;
+	m_CurTeach = TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT;
+	SetCurPageAxis(m_CurAxis,m_CurTeach,(UINT)IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_LEFT_X);
+}
+
+
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2ActiveALIGNRightX()
+{
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("ClickBtnAxis_ACTIVE_ALIGN_RIGHT"));
+	m_CurAxis = (AXIS_ID)AXIS_ACTIVE_ALIGN_X2;
+	m_CurTeach = TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT;
+	SetCurPageAxis(m_CurAxis,m_CurTeach,(UINT)IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_RIGHT_X);
+}
+
 void CFormTeach_Shuttle_2::Get_Check()
 {
 	if ( m_CurAxis != GetMainHandler()->GetSelectedAxis() )		
@@ -321,7 +326,13 @@ void CFormTeach_Shuttle_2::Get_Check()
 
 void CFormTeach_Shuttle_2::UpdateShuttleState()
 {
-	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_VAC_CH3_LAMP,theUnitFunc.Shuttle_Vac_Check(JIG_ID_B, JIG_CH_1, VAC_ON)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_VAC_CH1_LAMP,theUnitFunc.Shuttle_Vac_Check(JIG_ID_B, JIG_CH_1, VAC_ON)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_BLOW_CH1_LAMP,theUnitFunc.Shuttle_Blow_Check(JIG_ID_B, JIG_CH_1, BLOW_ON)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_FPCB_VAC_CH1_LAMP,theUnitFunc.Shuttle_Fpcb_Vac_Check(JIG_ID_B, JIG_CH_1, VAC_ON)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_FPCB_BLOW_CH1_LAMP,theUnitFunc.Shuttle_Fpcb_Blow_Check(JIG_ID_B, JIG_CH_1, BLOW_ON)? GXCOLOR_ON:GXCOLOR_OFF);
+	
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_DOWN_LAMP,theUnitFunc.Shuttle_Tilt_Down_Check	(JIG_ID_B, JIG_CH_1, TILT_DOWN)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_UP_LAMP,theUnitFunc.Shuttle_Tilt_Up_Check	(JIG_ID_B, JIG_CH_1, TILT_UP)? GXCOLOR_ON:GXCOLOR_OFF);
 
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_Y_LOAD_LAMP,theUnitFunc.Shuttle_Y_LOAD_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_Y_MANUAL_LAMP,theUnitFunc.Shuttle_Y_MANUAL_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
@@ -335,10 +346,10 @@ void CFormTeach_Shuttle_2::UpdateShuttleState()
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_RIGHT_X_LAMP,theUnitFunc.Active_ALIGN_X_RIGHT_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
 }
 
-void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2VacCh3()
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2VacCh1()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다Shuttle_Vac_OnOff
-	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 1"), _T("Shuttle_Vacuum_CH3"));
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Vacuum_CH2"));
 	if(theUnitFunc.Shuttle_VacOut_Check(JIG_ID_B, JIG_CH_1, VAC_ON))
 	{
 		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF);	
@@ -350,19 +361,71 @@ void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2VacCh3()
 }
 
 
-void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2ActiveALIGNLeftX()
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2BlowCh1()
 {
-	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("ClickBtnAxis_ACTIVE_ALIGN_LEFT_X"));
-	m_CurAxis = (AXIS_ID)AXIS_ACTIVE_ALIGN_X2;
-	m_CurTeach = TEACH_PARAM::ACTIVE_ALIGN_X2_to_LEFT_X;
-	SetCurPageAxis(m_CurAxis,m_CurTeach,(UINT)IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_LEFT_X);
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Blow_CH2"));
+	if(theUnitFunc.Shuttle_BlowOut_Check(JIG_ID_B, JIG_CH_1, BLOW_ON))
+	{
+		theUnitFunc.Shuttle_Blow_OnOff(JIG_ID_B, JIG_CH_1, BLOW_OFF);	
+	}
+	else
+	{
+		theUnitFunc.Shuttle_Blow_OnOff(JIG_ID_B, JIG_CH_1, BLOW_ON);	
+	}
 }
 
 
-void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2ActiveALIGNRightX()
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2FpcbVacCh1()
 {
-	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("ClickBtnAxis_ACTIVE_ALIGN_RIGHT_X"));
-	m_CurAxis = (AXIS_ID)AXIS_ACTIVE_ALIGN_X2;
-	m_CurTeach = TEACH_PARAM::ACTIVE_ALIGN_X2_to_RIGHT_X;
-	SetCurPageAxis(m_CurAxis,m_CurTeach,(UINT)IDC_GXBTN_TEACH_SHUTTLE_2_ACTIVE_ALIGN_RIGHT_X_LAMP);
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Fpcb_Vacuum_CH2"));
+	if(theUnitFunc.Shuttle_Fpcb_VacOut_Check(JIG_ID_B, JIG_CH_1, VAC_ON))
+	{
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF);	
+	}
+	else
+	{
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON);	
+	}
+}
+
+
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2FpcbBlowCh2()
+{
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Fpcb_Blow_CH2"));
+	if(theUnitFunc.Shuttle_Fpcb_BlowOut_Check(JIG_ID_B, JIG_CH_1, BLOW_ON))
+	{
+		theUnitFunc.Shuttle_Fpcb_Blow_OnOff(JIG_ID_B, JIG_CH_1, BLOW_OFF);	
+	}
+	else
+	{
+		theUnitFunc.Shuttle_Fpcb_Blow_OnOff(JIG_ID_B, JIG_CH_1, BLOW_ON);	
+	}
+}
+
+
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2Down()
+{
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Tilt_Down_CH2"));
+	if(theUnitFunc.Shuttle_Tilt_DownOut_Check(JIG_ID_B,JIG_CH_1,TILT_DOWN))
+	{
+		//theUnitFunc.Shuttle_Tilt_Down(JIG_ID_B,JIG_CH_1,TILT_UP);
+	}
+	else
+	{
+		theUnitFunc.Shuttle_Tilt_Down(JIG_ID_B,JIG_CH_1,TILT_DOWN);
+	}
+}
+
+
+void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2Up()
+{
+	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Tilt_Up_CH2"));
+	if(theUnitFunc.Shuttle_Tilt_UpOut_Check(JIG_ID_B,JIG_CH_1,TILT_UP))
+	{
+		//theUnitFunc.Shuttle_Tilt_Up(JIG_ID_B,JIG_CH_1,TILT_DOWN);
+	}
+	else
+	{
+		theUnitFunc.Shuttle_Tilt_Up(JIG_ID_B,JIG_CH_1,TILT_UP);
+	}
 }

@@ -24,14 +24,14 @@ BOOL CRecipeInspModule::ReadFile( CString strPath )
 	m_vct_AZone_Must.clear();
 	m_vct_AZone_Aft.clear();
 
-	m_vct_CZone_Bef.clear();
-	m_vct_CZone_Must.clear();
-	m_vct_CZone_Aft.clear();
+	m_vct_BZone_Bef.clear();
+	m_vct_BZone_Must.clear();
+	m_vct_BZone_Aft.clear();
 
 	// 필수 항목은 고정 [9/6/2017 OSC]
 	m_vct_AZone_Must.push_back(INSP_MODULE_CELL_LOADING);
-	m_vct_CZone_Must.push_back(INSP_MODULE_MTP_WRITE);
-	m_vct_CZone_Must.push_back(INSP_MODULE_MTP_VERIFY);
+	m_vct_BZone_Must.push_back(INSP_MODULE_MTP_WRITE);
+	m_vct_BZone_Must.push_back(INSP_MODULE_MTP_VERIFY);
 
 
 	FILE *fStream;
@@ -56,9 +56,9 @@ BOOL CRecipeInspModule::ReadFile( CString strPath )
 		else if(strListName == _T("SET_ZONE_A_AFT"))
 			pVector = &m_vct_AZone_Aft;
 		else if(strListName == _T("SET_ZONE_C_BEF"))
-			pVector = &m_vct_CZone_Bef;
+			pVector = &m_vct_BZone_Bef;
 		else if(strListName == _T("SET_ZONE_C_AFT"))
-			pVector = &m_vct_CZone_Aft;
+			pVector = &m_vct_BZone_Aft;
 		else
 			continue;
 
@@ -116,15 +116,15 @@ void CRecipeInspModule::SaveFile( CString strPath )
 	file.WriteString(strBuf);
 
 	strListName = _T("SET_ZONE_C_BEF");
-	strBuf.Format(_T("%s=%s\n"), strListName, VectorToString(&m_vct_CZone_Bef));
+	strBuf.Format(_T("%s=%s\n"), strListName, VectorToString(&m_vct_BZone_Bef));
 	file.WriteString(strBuf);
 
 	strListName = _T("SET_ZONE_C_MUST");
-	strBuf.Format(_T("%s=%s\n"), strListName, VectorToString(&m_vct_CZone_Must));
+	strBuf.Format(_T("%s=%s\n"), strListName, VectorToString(&m_vct_BZone_Must));
 	file.WriteString(strBuf);
 
 	strListName = _T("SET_ZONE_C_AFT");
-	strBuf.Format(_T("%s=%s\n"), strListName, VectorToString(&m_vct_CZone_Aft));
+	strBuf.Format(_T("%s=%s\n"), strListName, VectorToString(&m_vct_BZone_Aft));
 	file.WriteString(strBuf);
 
 	file.Close();

@@ -32,7 +32,7 @@ struct CELL_STATUS
 	UINT uIDAZoneDefect;
 	UINT uIDWriteDefect;
 	UINT uIDVerifyDefect;
-	UINT uIDCZoneDefect;
+	UINT uIDBZoneDefect;
 	UINT uIDFinalDefect;
 
 	CELL_POS posCell;

@@ -45,7 +45,6 @@ public:
 	
 	//kjpark 20170902 Teach Shuttle UI 및 버튼 동작 추가
 	void ClickBtnMCRRead_CH1();	
-	void ClickBtnLiveMode_CH1();
 	
 	//kjpark 20170902 Teach Shuttle UI 및 버튼 동작 추가
 	void ClickBtnAxis_Y_Load();
@@ -54,6 +53,9 @@ public:
 	void ClickBtnAxis_X_Inspection();
 	void ClickBtnAxis_Z_Up();
 	void ClickBtnAxis_Z_Inspection();
+
+	void ClickGxbtnTeachShuttle1ActiveALIGNLeftX();
+	void ClickGxbtnTeachShuttle1ActiveALIGNRightX();
 	
 public:	
 	AXIS_ID			m_CurAxis;
@@ -75,15 +77,18 @@ public:
 	void SetMCRData_CH1(CString strBarcode = _T(""));
 
 	//kjpark 20170902 Teach Shuttle UI 및 버튼 동작 추가
-	UINT m_AxisList[6];
+	UINT m_AxisList[8];
 	void Get_Check();
 	void UpdateShuttleState();
 	
 	JIG_ID m_thisDlgShuttle;
 	virtual void OnInitialUpdate();
 	void ClickGxbtnTeachShuttle1VacCh1();
-	void ClickGxbtnTeachShuttle1ActiveALIGNLeftX();
-	void ClickGxbtnTeachShuttle1ActiveALIGNRightX();
+	void ClickGxbtnTeachShuttle1BlowCh1();
+	void ClickGxbtnTeachShuttle1FpcbVacCh1();
+	void ClickGxbtnTeachShuttle1FpcbBlowCh1();
+	void ClickGxbtnTeachShuttle1Down();
+	void ClickGxbtnTeachShuttle1Up();
 };
 
 

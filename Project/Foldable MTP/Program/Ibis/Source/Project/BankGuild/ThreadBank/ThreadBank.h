@@ -2,10 +2,8 @@
 
 #include "StateMachine/StateRestart.h"
 #include "StateMachine/StateAZone.h"
-#include "StateMachine/StateMoveCZone.h"
-#include "StateMachine/StateMoveAZone.h"
-#include "StateMachine/StateCZone.h"
 #include "StateMachine/StateMoveBZone.h"
+#include "StateMachine/StateMoveAZone.h"
 #include "StateMachine/StateBZone.h"
 #include "StateMachine/StatePDT_IF.h"
 
@@ -24,15 +22,11 @@ public:
 	CStateRestart					m_stateRestart;
 	CStateAZone						m_stateShuttle1_AZone;
 	CStateMoveAZone					m_stateShuttle1_MoveAZone;
-	CStateMoveCZone					m_stateShuttle1_MoveCZone;
-	CStateCZone						m_stateShuttle1_CZone;
 	CStateMoveBZone					m_stateShuttle1_MoveBZone;
 	CStateBZone						m_stateShuttle1_BZone;
 
 	CStateAZone						m_stateShuttle2_AZone;
 	CStateMoveAZone					m_stateShuttle2_MoveAZone;
-	CStateMoveCZone					m_stateShuttle2_MoveCZone;
-	CStateCZone						m_stateShuttle2_CZone;
 	CStateMoveBZone					m_stateShuttle2_MoveBZone;
 	CStateBZone						m_stateShuttle2_BZone;
 
