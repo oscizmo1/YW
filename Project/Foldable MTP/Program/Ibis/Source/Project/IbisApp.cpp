@@ -402,6 +402,16 @@ void CIbisApp::InitializeLog()
 	theLog[LOG_SEQUENCE_BZONE].SetAddDay(FALSE);
 	theLog[LOG_SEQUENCE_BZONE].SetPartition(FALSE);
 
+	theLog[LOG_SEQUENCE_CZONE].SetType(CLogUnit::WriteType_NoWait);
+	theLog[LOG_SEQUENCE_CZONE].SetFolderPath(theConfigBank.m_System.m_strDebugLogPath);
+	theLog[LOG_SEQUENCE_CZONE].SetSubFolderName(_T("Sequence"));
+	theLog[LOG_SEQUENCE_CZONE].SetFileName(_T("Sequence_CZone.txt"));
+	theLog[LOG_SEQUENCE_CZONE].SetOffsetHour(theConfigBank.m_Option.m_OffsetHour);
+	theLog[LOG_SEQUENCE_CZONE].SetOffsetMin(0);
+	theLog[LOG_SEQUENCE_CZONE].SetAddTime(TRUE);
+	theLog[LOG_SEQUENCE_CZONE].SetAddDay(FALSE);
+	theLog[LOG_SEQUENCE_CZONE].SetPartition(FALSE);
+
 	theLog[LOG_SEQUENCE_PDT_IF].SetType(CLogUnit::WriteType_NoWait);
 	theLog[LOG_SEQUENCE_PDT_IF].SetFolderPath(theConfigBank.m_System.m_strDebugLogPath);
 	theLog[LOG_SEQUENCE_PDT_IF].SetSubFolderName(_T("Sequence"));

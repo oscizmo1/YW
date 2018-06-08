@@ -880,6 +880,15 @@
     <ClInclude Include="..\..\Source\Project\resource.h">
       <Filter>Project\헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Dialog\MCRDialog.h">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateCZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine\StateMoveCZone.h">
+      <Filter>Project\StateMachine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -1402,6 +1411,15 @@
       <Filter>Project\StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="StateMachine\StateBZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialog\MCRDialog.cpp">
+      <Filter>Project\UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateCZone.cpp">
+      <Filter>Project\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine\StateMoveCZone.cpp">
       <Filter>Project\StateMachine</Filter>
     </ClCompile>
   </ItemGroup>

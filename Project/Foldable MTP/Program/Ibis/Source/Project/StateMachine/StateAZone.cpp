@@ -32,86 +32,7 @@ int CStateAZone::Run()
 
 			//AZone_SetTimeStart(m_Shuttle); 20180312 AZONE TACT TIME 변경(STATEPDT_IF -> CellLoading_SetStartTime(m_Shuttle, (JIG_CH)i); 이동)
 			m_Timer.Start();
-			nStep = stepZoneACheck;
-		}
-		else
-		{
-			// 셔틀 도착하면 뮤팅 해제 [10/2/2017 OSC]
-			theUnitFunc.LightCurtainMute_OnOff(m_Shuttle, ON);
-			theUnitFunc.LightCurtainMuteLamp_OnOff(m_Shuttle, ON);
-
-			m_Timer.Start();
 			nStep++;
-		}
-		break;
-
-		// 어떻게 방도가 없어서 패턴 On/Off 스위치 한번 더 누르는 거로.. [9/27/2017 OSC]
-	case stepPatternOffSwitchCheck:
-		if( (theProcBank.m_bDryRunMode == FALSE && theConfigBank.m_Option.m_bUseLoofTest == FALSE) 
-			&& (theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_A] == FALSE) )
-		{
-			if(CellTagExist(m_Shuttle, JIG_CH_1))
-			{
-				if(CellInfo_GetInspFinish(m_Shuttle))
-				{
-					m_bRtn[0] = (m_Shuttle == JIG_ID_A) ? GetInPutIOCheck(X_SHUTTLE_1_PATTERN_ONOFF_SW):TRUE;
-					m_bRtn[1] = (m_Shuttle == JIG_ID_B) ? GetInPutIOCheck(X_SHUTTLE_2_PATTERN_ONOFF_SW):TRUE;
-// 					m_bRtn[3] = LoadingStop_IsRequire(m_Shuttle) ? FALSE:TRUE;
-				}
-			}
-		}
-		if(IsReturnOk())
-		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepPatternOffSwitchCheck"), m_strStateName);
-
-			if(theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_A] == FALSE)
-			{
-				theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_A] = TRUE;
-
-				if(theConfigBank.m_Option.m_bUseLoofTest)
-				{
-					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON);
-				}
-				else
-				{
-					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF);
-				}
-
-				// Loading Stop인 경우 R인 것을들 전부 L로 보고하고 리트라이를 취소한다 [12/1/2017 OSC]
-				if(theProcBank.LoadingStop_IsRequire())
-				{
-					CIM_CellLoadingStop(m_Shuttle);
-				}
-// 				else if(theProcBank.PreUnitInterlock_IsEmpty()
-// 					&& theConfigBank.m_CIM.GetFunction(EFID_INTERLOCK_CONTROL)->)
-// 				{
-// 
-// 				}
-				CIM_CellTrackOut(m_Shuttle);
-
-				CellLog_Write(m_Shuttle);
-
-
-				CellLoading_InitInfo(m_Shuttle, JIG_CH_1, FALSE);
-
-				// CellSkip Reset [9/16/2017 OSC]
-				AZoneCellSkip_Reset(m_Shuttle);
-
-				// CellData 생성... 나중에 앞설비 연동하면 거기서 채널 사용유무 받아와야 함 [9/7/2017 OSC]
-				AZoneCellData_Create(m_Shuttle, JIG_CH_1);
-
-				SetZoneA_Send(m_Shuttle);
-			}
-
-			if( theProcBank.AZoneChannelNotUse_Check(m_Shuttle, JIG_CH_1))
-			{
-				// 지그 통채로 스킵이면 이후 진행하지 않는다 [9/18/2017 OSC]
-			}
-			else
-			{
-				m_Timer.Start();
-				nStep++;
-			}
 		}
 		break;
 
@@ -122,35 +43,9 @@ int CStateAZone::Run()
 		{
 			theLog[m_LogIndex].AddBuf(_T("[%s] stepZoneACheck"), m_strStateName);
 
-			if(theConfigBank.m_System.m_bInlineMode || theConfigBank.m_Option.m_bUseLoofTest)
+			if(theConfigBank.m_System.m_bInlineMode)
 			{
 				CellLog_LoadingTactTime_SetEndTime(m_Shuttle);
-
-				if(theConfigBank.m_Option.m_bUseLoofTest
-					|| theConfigBank.m_System.m_bCIMQualMode)
-				{
-					if(theProcBank.AZoneCellNG_Check(m_Shuttle, JIG_CH_1) == FALSE)
-					{
-						CellLoading_InitInfo(m_Shuttle, JIG_CH_1, FALSE);
-						CellLoading_SetStartTime(m_Shuttle, JIG_CH_1);
-						CellLoading_Send(m_Shuttle, JIG_CH_1, TRUE);
-					}
-				}
-				else
-				{
-
-				}
-
-				m_Timer.Start();
-				nStep = stepBefStart;
-			}
-			else
-			{
-				// 작업자 스위치 접근 허용 [9/7/2017 OSC]
-				if(theProcBank.PreInterlock_IsEmpty(EFST_LOADING))
-				{
-					GetMainHandler()->m_bAZoneOperatorReady[m_Shuttle] = TRUE;
-				}
 				m_Timer.Start();
 				nStep++;
 			}
@@ -158,28 +53,6 @@ int CStateAZone::Run()
 		else if(m_Timer.Stop(FALSE) > 5.)
 		{
 			SetZoneA_TimeOut(m_Shuttle);
-		}
-		break;
-
-		// 강원호프로 요청으로 무조건 PG ON 버튼 한번 이상 눌러야 함 [11/21/2017 OSC]
-	case stepPatternOnSwitchCheck:
-		if( (theProcBank.m_bDryRunMode == FALSE)) 
-		{
-			m_bRtn[0] = theProcBank.AZoneCellNG_Check(m_Shuttle, JIG_CH_1) ? TRUE:CellLoading_SendCheck(m_Shuttle, JIG_CH_1);
-			m_bRtn[2] = theProcBank.LoadingStop_IsRequire() ? FALSE:TRUE;
-
-		}
-		if(IsReturnOk())
-		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepPatternOnSwitchCheck"), m_strStateName);
-
-			CellLog_WaitTime_SetEndTime(m_Shuttle);
-			AZone_SetTimeStart(m_Shuttle);
-			CellLog_TactTime_SetStartTime(m_Shuttle);
-			CellLoading_SetStartTime(m_Shuttle, JIG_CH_1);
-
-			m_Timer.Start();
-			nStep++;
 		}
 		break;
 
@@ -282,7 +155,7 @@ int CStateAZone::Run()
 				CellLog_AZoneETCTime_SetEndTime(m_Shuttle);
 				AZone_SetTimeEnd(m_Shuttle);
 
-				if(theConfigBank.m_System.m_bInlineMode || theConfigBank.m_Option.m_bUseLoofTest)
+				if(theConfigBank.m_System.m_bInlineMode)
 				{
 					JudgeZoneDefect(m_Shuttle,ZONE_ID_A);
 					TMD_INFO_Send(m_Shuttle);
@@ -290,45 +163,9 @@ int CStateAZone::Run()
 					Host_Version_Send(m_Shuttle);
 					Client_Version_Send(m_Shuttle);
 					m_Timer.Start();
-					nStep = stepTMDInfoCheck;
-				}
-				else
-				{
-					m_Timer.Start();
 					nStep++;
 				}
 			}
-		}
-		break;
-
-		// 작업자 양수버튼 [9/11/2017 OSC]
-	case stepReadySwitchCheck:
-		m_bRtn[0] = ReadySwitch_Check(m_Shuttle);
-		m_bRtn[1] = theProcBank.AZoneChannelNotUse_Check(m_Shuttle, JIG_CH_1) ? TRUE:Shuttle_Vac_Check(m_Shuttle, JIG_CH_1, VAC_ON);
-		m_bRtn[3] = GetCellSkipCheck(m_Shuttle, JIG_CH_1) ? AZoneDefect_GoodCheck(m_Shuttle, JIG_CH_1):TRUE;
-		// 이미 A존 진입했다고 하더라도 지그 통채로 스킵이면 이후 진행하지 않는다 [9/18/2017 OSC]
-		if( theProcBank.AZoneChannelNotUse_Check(m_Shuttle, JIG_CH_1))
-			m_bRtn[5] = FALSE;
-		if(IsReturnOk())
-		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepReadySwitchCheck"), m_strStateName);
-			GetMainHandler()->m_bAZoneOperatorReady[m_Shuttle] = FALSE;
-			theUnitFunc.LightCurtainMute_OnOff(m_Shuttle, OFF);
-			theUnitFunc.LightCurtainMuteLamp_OnOff(m_Shuttle, OFF);
-			AZoneCell_RemoveSkipCell(m_Shuttle);
-			TMD_INFO_Send(m_Shuttle);
-			CellLog_SetOperatorID(m_Shuttle);
-
-			if(theConfigBank.m_System.m_bInlineMode == FALSE)
-				theTactTimeLog.m_RunTime[m_Shuttle].Start();
-			m_Timer.Start();
-			nStep++;
-		}
-		else
-		{
-			// 메인화면 표시 위해 미리 존 디펙 산출 [9/12/2017 OSC]
-			// 다시 번복될 경우 대비해서 계속 해줘야 한다 ㅠㅠ
-			JudgeZoneDefect(m_Shuttle,ZONE_ID_A);
 		}
 		break;
 

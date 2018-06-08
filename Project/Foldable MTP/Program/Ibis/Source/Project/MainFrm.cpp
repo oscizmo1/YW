@@ -64,6 +64,7 @@
 #include "UI\Form\FormOptions.h"
 #include "UI\Form\FormCIM.h"
 #include "UI\Dialog\DlgDoor.h"
+#include "UI\Dialog\MCRDialog.h"
 
 
 
@@ -298,6 +299,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pGUIFrame->AddDialog(this, eDLG_MsgUnitInterlock,	CDlgMsgUnitInerlock::IDD,	new CDlgMsgUnitInerlock());
 	m_pGUIFrame->AddDialog(this, eDLG_MsgOPCall,		CDlgMsgOPCall::IDD,			new CDlgMsgOPCall());
 	m_pGUIFrame->AddDialog(this, eDLG_MsgTerminal,		CDlgMsgTerminal::IDD,		new CDlgMsgTerminal());
+	m_pGUIFrame->AddDialog(this, eDLG_McrReader	,		CMCRDialog::IDD,			new CMCRDialog(theProcBank.GetStrHandMcrHandle(), theProcBank.GetHandMcrDoneHandle()));
 
 
 	// 생성된 기본적인 Dialogbar를 화면에 보여준다.

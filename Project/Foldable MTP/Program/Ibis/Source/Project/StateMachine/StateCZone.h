@@ -13,19 +13,19 @@ public:
 
 	enum
 	{
-		stepStart,	
-		//kjpark 20180122 Y Shuttle 정지 후 다시 런하면 알람치는 시퀀스 수정
-		stepY_MoveCheck,
-		stepX_INSPCheck,
-		stepZ_DownChk,
+		stepStart,
 
-		stepZoneCCheck,
+		stepPatternOffSwitchCheck,
+		stepZoneACheck,
+		stepPatternOnSwitchCheck,
 
 		stepBefStart,		
 		stepMustStart,		
-		stepAftStart,		
+		stepAftStart,
 
-		stepZ_UpCheck,		
+		stepReadySwitchCheck,
+
+		stepTMDInfoCheck,
 
 		stepEnd					
 	};

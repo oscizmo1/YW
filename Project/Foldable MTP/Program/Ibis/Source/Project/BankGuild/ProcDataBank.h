@@ -365,5 +365,40 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	CProcDataPG m_PGData[JIG_ID_MAX][JIG_CH_MAX];
+
+
+	////////////////////HAND MCR//////////////////////////////////////////////
+protected:
+	// Hand MCR로 읽은 Cell ID [4/2/2018 LSH]
+	CString m_strHandMcrData;
+	BOOL m_bHandMcrDone;
+
+	//// Auto MCR로 읽은 Cell ID [4/3/2018 LSH]
+	//CString m_strAutoMcrData[JIG_CH_MAX];
+	//BOOL m_bAutoMcrRecive[JIG_CH_MAX];
+
+public:
+	// 변수의 Handle을 반환 해준다 [4/3/2018 LSH]
+	CString* GetStrHandMcrHandle() { return &m_strHandMcrData; };
+	BOOL* GetHandMcrDoneHandle() { return &m_bHandMcrDone; };
+
+	// 입력 받은 Cell ID가 유효한지 확인 [4/12/2018 LSH]
+	BOOL ChkHandMcrCellIdValidity();
+
+	// 현재 저장되어 있는 Hand MCR Cell ID를 반환한다 [4/2/2018 LSH]
+	CString GetHandMcrCellId() { CString strTemp=m_strHandMcrData; m_strHandMcrData.Empty(); m_bHandMcrDone=FALSE; return strTemp; };
+	BOOL GetHandMcrDoneCheck() { return m_bHandMcrDone; };
+
+	//// MCR 값 입력 함수 [4/3/2018 LSH]
+	//void SetAutoMcrCellId(JIG_CH nCh, CString strData) { m_strAutoMcrData[nCh] = strData; };
+	//void SetAutoMcrDoneCheck(JIG_CH nCh, BOOL strData) { m_bAutoMcrRecive[nCh] = strData; };
+
+	//// 입력 받은 Cell ID가 유효한지 확인 [4/12/2018 LSH]
+	//BOOL ChkAutoMcrCellIdValidity( JIG_CH nCh );
+
+	//// 현재 저장되어 있는 Auto MCR Cell ID를 반환한다 [4/2/2018 LSH]
+	//CString GetAutoMcrCellId(JIG_CH nCh) { CString strTemp=m_strAutoMcrData[nCh]; m_strAutoMcrData[nCh].Empty(); m_bAutoMcrRecive[nCh]=FALSE; return strTemp; };
+	//BOOL GetAutoMcrDoneCheck(JIG_CH nCh) { return m_bAutoMcrRecive[nCh]; };
+
 };
 

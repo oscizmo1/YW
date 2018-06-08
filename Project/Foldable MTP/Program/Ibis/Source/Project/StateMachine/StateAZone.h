@@ -15,15 +15,11 @@ public:
 	{
 		// A Zone Set
 		stepStart,		
-		stepPatternOffSwitchCheck,
 		stepZoneACheck,
-		stepPatternOnSwitchCheck,
 
 		stepBefStart,		
 		stepMustStart,		
 		stepAftStart,		
-
-		stepReadySwitchCheck,
 
 		stepTMDInfoCheck,
 

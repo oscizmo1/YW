@@ -437,14 +437,14 @@ void CThread_PDT_IF_Sequence::MTP_HotLine_Check()
 	if(bValue != m_bDoorClose)
 	{
 		m_bDoorClose = bValue;
-		m_pfunc->SetOutPutIO(Y_HOT_LINE_PDT_RESERVED, bValue ? FALSE:TRUE);
+		m_pfunc->SetOutPutIO(Y_HOT_LINE_MTP_DOOR_OPEN, bValue ? FALSE:TRUE);
 	}
 
 	STO_STATE sto = m_pfunc->STO_Check();
 	if(sto != m_STO)
 	{
 		m_STO = sto;
-		m_pfunc->SetOutPutIO(Y_HOT_LINE_MTP_INTERACTIVE_1, sto == STO_ALARM ? TRUE:FALSE);
+		m_pfunc->SetOutPutIO(Y_HOT_LINE_MTP_INTERLOCK, sto == STO_ALARM ? TRUE:FALSE);
 	}
 }
 
@@ -456,10 +456,10 @@ BOOL CThread_PDT_IF_Sequence::PDT_HotLine_Check()
 		return FALSE;
 	if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_NET_READY) == FALSE)
 		return FALSE;
-	//if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_RESERVED))
-	//	return FALSE;
-	//if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_INTERACTIVE_1))
-	//	return FALSE;
+	if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_DOOR_OPEN))
+		return FALSE;
+	if(m_pfunc->GetInPutIOCheck(X_HOT_LINE_PDT_INTERLOCK))
+		return FALSE;
 
 	return TRUE;
 }

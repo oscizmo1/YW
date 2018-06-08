@@ -21,6 +21,7 @@
 #include "UI\Dialog\DlgbarBottom.h"
 #include "UI\Dialog\DlgMCRManualRead.h"
 #include "UI\Dialog\DlgOtherDefect.h"
+#include "UI\Dialog\MCRDialog.h"
 // kjpark 20171016 계측기 코릴레이션 하강 / 원복 버튼
 // #include "UI\Dialog\DlgCoRelation.h"
 
@@ -95,6 +96,8 @@ BEGIN_EVENTSINK_MAP(CFormMain, CFormView)
 	ON_EVENT(CFormMain, IDC_GXSTC_MAIN_CH2, DISPID_CLICK, CFormMain::ClickGxstcMainCh3, VTS_NONE)
 	ON_EVENT(CFormMain, IDC_GXBTN_CREATECELLINFO, DISPID_CLICK, CFormMain::ClickGxbtnCreatecellinfo, VTS_NONE)
 	ON_EVENT(CFormMain, IDC_GXBTN_LOADING_STOP, DISPID_CLICK, CFormMain::ClickGxbtnLoadingStop, VTS_NONE)
+	ON_EVENT(CFormMain, IDC_GXBTN_MAIN_HAND_MCR_CH1, DISPID_CLICK, CFormMain::ClickGxbtnMainHandMcrCh1, VTS_NONE)
+	ON_EVENT(CFormMain, IDC_GXBTN_MAIN_HAND_MCR_CH2, DISPID_CLICK, CFormMain::ClickGxbtnMainHandMcrCh2, VTS_NONE)
 END_EVENTSINK_MAP()
 
 // CFormMain 진단입니다.
@@ -1414,4 +1417,17 @@ void CFormMain::ClickGxbtnLoadingStop()
 
 		theProcBank.UserLoadingStop_OnOff(TRUE);
 	}
+}
+
+// mcr
+void CFormMain::ClickGxbtnMainHandMcrCh1()
+{
+	::PostMessageW( AfxGetApp()->GetMainWnd()->m_hWnd, MSG_SHOW_DIALOG, eDLG_McrReader, NULL );
+}
+
+
+void CFormMain::ClickGxbtnMainHandMcrCh2()
+{
+
+	::PostMessageW( AfxGetApp()->GetMainWnd()->m_hWnd, MSG_SHOW_DIALOG, eDLG_McrReader, NULL );
 }

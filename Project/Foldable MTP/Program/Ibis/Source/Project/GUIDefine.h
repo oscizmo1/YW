@@ -64,5 +64,6 @@ enum {
 	eDLG_MsgOPCall,						// 상위 Operator Call 메세지 표시 화면
 	eDLG_MsgTerminal,						// 상위 Terminal 메세지 표시 화면
 	eMAX_DLGCount,
+	eDLG_McrReader,
 
 };

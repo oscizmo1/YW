@@ -190,7 +190,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\icon\수동.ico" />
     <None Include="..\ModuleExternal\Accura\AccuraClient.dll" />
     <None Include="..\ModuleExternal\Accura\AccuraClientDbg.dll" />
     <None Include="..\ModuleExternal\CIF50\cif32dll.dll" />
@@ -367,8 +366,10 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StateMachine\StateAZone.h" />
     <ClInclude Include="StateMachine\StateCorelation.h" />
+    <ClInclude Include="StateMachine\StateCZone.h" />
     <ClInclude Include="StateMachine\StateMoveAZone.h" />
     <ClInclude Include="statemachine\stateBzone.h" />
+    <ClInclude Include="StateMachine\StateMoveCZone.h" />
     <ClInclude Include="StateMachine\StatePDT_IF.h" />
     <ClInclude Include="StateMachine\StateRestart.h" />
     <ClInclude Include="statemachine\statemoveBzone.h" />
@@ -400,6 +401,7 @@
     <ClInclude Include="UI\Dialog\DlgReportSub.h" />
     <ClInclude Include="UI\Dialog\DlgTPCodeList.h" />
     <ClInclude Include="UI\Dialog\DlgUserLogin.h" />
+    <ClInclude Include="UI\Dialog\MCRDialog.h" />
     <ClInclude Include="UI\Form\FormAlarm.h" />
     <ClInclude Include="UI\Form\FormAlarmLamp.h" />
     <ClInclude Include="UI\Form\FormCIM.h" />
@@ -544,8 +546,10 @@
     <ClCompile Include="MainFrmMsg.cpp" />
     <ClCompile Include="StateMachine\StateAZone.cpp" />
     <ClCompile Include="StateMachine\StateCorelation.cpp" />
+    <ClCompile Include="StateMachine\StateCZone.cpp" />
     <ClCompile Include="StateMachine\StateMoveAZone.cpp" />
     <ClCompile Include="StateMachine\StateBZone.cpp" />
+    <ClCompile Include="StateMachine\StateMoveCZone.cpp" />
     <ClCompile Include="StateMachine\StatePDT_IF.cpp" />
     <ClCompile Include="StateMachine\StateRestart.cpp" />
     <ClCompile Include="StateMachine\StateMoveBZone.cpp" />
@@ -581,6 +585,7 @@
     <ClCompile Include="UI\Dialog\DlgReportSub.cpp" />
     <ClCompile Include="UI\Dialog\DlgTPCodeList.cpp" />
     <ClCompile Include="UI\Dialog\DlgUserLogin.cpp" />
+    <ClCompile Include="UI\Dialog\MCRDialog.cpp" />
     <ClCompile Include="UI\Form\FormAlarm.cpp" />
     <ClCompile Include="UI\Form\FormAlarmLamp.cpp" />
     <ClCompile Include="UI\Form\FormCIM.cpp" />

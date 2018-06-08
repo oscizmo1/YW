@@ -1434,3 +1434,32 @@ void CProcDataBank::PDT_IF_NoCheckVacOff_Clear()
 		}
 	}
 }
+
+//MCR
+BOOL CProcDataBank::ChkHandMcrCellIdValidity()
+{
+	BOOL bRes = FALSE;
+
+	// 문자열의 길이를 가져온다 [4/12/2018 LSH]
+	int nLenght = m_strHandMcrData.GetLength();
+
+	// MCR문자열의 길이를 13~16자 안에 들어가야 한다 [4/12/2018 LSH]
+	if( nLenght >= 13 && nLenght <= 16 )
+		bRes = TRUE;
+
+	return bRes;
+}
+//
+//BOOL CProcDataBank::ChkAutoMcrCellIdValidity( JIG_CH nCh )
+//{
+//	BOOL bRes = FALSE;
+//
+//	// 문자열의 길이를 가져온다 [4/12/2018 LSH]
+//	int nLenght = m_strAutoMcrData[nCh].GetLength();
+//
+//	// MCR문자열의 길이를 13~16자 안에 들어가야 한다 [4/12/2018 LSH]
+//	if( nLenght >= 13 && nLenght <= 16 )
+//		bRes = TRUE;
+//
+//	return bRes;
+//}

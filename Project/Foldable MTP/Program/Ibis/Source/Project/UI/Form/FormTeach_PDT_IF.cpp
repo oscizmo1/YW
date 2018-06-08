@@ -461,8 +461,8 @@ void CFormTeach_PDT_IF::HotLineGrid_Init()
 	m_GridHotLine.SetItemText(1		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_ALIVE, _T("%X")));
 	m_GridHotLine.SetItemText(2		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_EMERGENCY, _T("%X")));
 	m_GridHotLine.SetItemText(3		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_NET_READY, _T("%X")));
-	m_GridHotLine.SetItemText(4		, 1, CStringSupport::N2C(Y_HOT_LINE_PDT_RESERVED, _T("%X")));
-	m_GridHotLine.SetItemText(5		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_INTERACTIVE_1, _T("%X")));
+	m_GridHotLine.SetItemText(4		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_DOOR_OPEN, _T("%X")));
+	m_GridHotLine.SetItemText(5		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_INTERLOCK, _T("%X")));
 	m_GridHotLine.SetItemText(6		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_INTERACTIVE_2, _T("%X")));
 	m_GridHotLine.SetItemText(7		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_INTERACTIVE_3, _T("%X")));
 	m_GridHotLine.SetItemText(8		, 1, CStringSupport::N2C(Y_HOT_LINE_MTP_SUB_EMO, _T("%X")));
@@ -470,8 +470,8 @@ void CFormTeach_PDT_IF::HotLineGrid_Init()
 	m_GridHotLine.SetItemText(1		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_ALIVE, _T("%X")));
 	m_GridHotLine.SetItemText(2		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_EMERGENCY, _T("%X")));
 	m_GridHotLine.SetItemText(3		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_NET_READY, _T("%X")));
-	m_GridHotLine.SetItemText(4		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_RESERVED, _T("%X")));
-	m_GridHotLine.SetItemText(5		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_INTERACTIVE_1, _T("%X")));
+	m_GridHotLine.SetItemText(4		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_DOOR_OPEN, _T("%X")));
+	m_GridHotLine.SetItemText(5		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_INTERLOCK, _T("%X")));
 	m_GridHotLine.SetItemText(6		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_INTERACTIVE_2, _T("%X")));
 	m_GridHotLine.SetItemText(7		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_INTERACTIVE_3, _T("%X")));
 	m_GridHotLine.SetItemText(8		, 2, CStringSupport::N2C(X_HOT_LINE_PDT_SUB_EMO, _T("%X")));

@@ -1,4 +1,4 @@
-ï»¿#include "stdafx.h"
+#include "stdafx.h"
 #include "StateCZone.h"
 #include "IbisApp.h"
 
@@ -21,102 +21,158 @@ int CStateCZone::Run()
 	switch(nStep)
 	{
 	case stepStart:
-		//m_bRtn[1] = Inspection_Z_UP_Check(m_Shuttle);
-		//kjpark 20180122 Y Shuttle ì •ì§€ í›„ ë‹¤ì‹œ ëŸ°í•˜ë©´ ì•ŒëŒì¹˜ëŠ” ì‹œí€€ìŠ¤ ìˆ˜ì •
+		// State NameÀ» ¼ÅÆ² ÀÌ¸§ Æ÷ÇÔÇØ¼­ ´Ù½Ã ÁöÁ¤ÇÑ´Ù [9/19/2017 OSC]
+		theLog[m_LogIndex].AddBuf(_T("[%s] stepStart"), m_strStateName);
+
+		// ¼ÅÆ² µµÂøÇÏ¸é ¹ÂÆÃ ÇØÁ¦ [10/2/2017 OSC]
+		theUnitFunc.LightCurtainMute_OnOff(m_Shuttle, ON);
+		theUnitFunc.LightCurtainMuteLamp_OnOff(m_Shuttle, ON);
+
+		m_Timer.Start();
+		nStep++;
+		break;
+
+		// ¾î¶»°Ô ¹æµµ°¡ ¾ø¾î¼­ ÆĞÅÏ On/Off ½ºÀ§Ä¡ ÇÑ¹ø ´õ ´©¸£´Â °Å·Î.. [9/27/2017 OSC]
+	case stepPatternOffSwitchCheck:
+		if( (theProcBank.m_bDryRunMode == FALSE && theConfigBank.m_Option.m_bUseLoofTest == FALSE) 
+			&& (theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_B] == FALSE) )
+		{
+			if(CellTagExist(m_Shuttle, JIG_CH_1))
+			{
+				if(CellInfo_GetInspFinish(m_Shuttle))
+				{
+					m_bRtn[0] = (m_Shuttle == JIG_ID_A) ? GetInPutIOCheck(X_SHUTTLE_1_PATTERN_ONOFF_SW):TRUE;
+					m_bRtn[1] = (m_Shuttle == JIG_ID_B) ? GetInPutIOCheck(X_SHUTTLE_2_PATTERN_ONOFF_SW):TRUE;
+				//	m_bRtn[3] = LoadingStop_IsRequire(m_Shuttle) ? FALSE:TRUE;
+				}
+			}
+		}
 		if(IsReturnOk())
 		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepStart"), m_strStateName);
-			Shuttle_Y_INSP_Move(m_Shuttle);
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepPatternOffSwitchCheck"), m_strStateName);
 
-			if(theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_C] == FALSE)
+			if(theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_B] == FALSE)
 			{
-				theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_C] = TRUE;
-				MCRtoCZoneSetTimeEnd(m_Shuttle);
-				CZone_SetTimeStart(m_Shuttle);
-				CellLog_CZoneMTPReadyTime_SetStartTime(m_Shuttle);
-				SetZoneC_Send(m_Shuttle);
+				theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_B] = TRUE;
+
+				if(theConfigBank.m_Option.m_bUseLoofTest)
+				{
+					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON);
+				}
+				else
+				{
+					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF);
+				}
+
+				// Loading StopÀÎ °æ¿ì RÀÎ °ÍÀ»µé ÀüºÎ L·Î º¸°íÇÏ°í ¸®Æ®¶óÀÌ¸¦ Ãë¼ÒÇÑ´Ù [12/1/2017 OSC]
+				if(theProcBank.LoadingStop_IsRequire())
+				{
+					CIM_CellLoadingStop(m_Shuttle);
+				}
+				//else if(theProcBank.PreUnitInterlock_IsEmpty()
+				//&& theConfigBank.m_CIM.GetFunction(EFID_INTERLOCK_CONTROL)->)
+				//{
+				// 
+				//}
+				CIM_CellTrackOut(m_Shuttle);
+
+				CellLog_Write(m_Shuttle);
+
+
+				CellLoading_InitInfo(m_Shuttle, JIG_CH_1, FALSE);
+
+				// CellSkip Reset [9/16/2017 OSC]
+				AZoneCellSkip_Reset(m_Shuttle);
+
+				// CellData »ı¼º... ³ªÁß¿¡ ¾Õ¼³ºñ ¿¬µ¿ÇÏ¸é °Å±â¼­ Ã¤³Î »ç¿ëÀ¯¹« ¹Ş¾Æ¿Í¾ß ÇÔ [9/7/2017 OSC]
+				AZoneCellData_Create(m_Shuttle, JIG_CH_1);
+
+				SetZoneA_Send(m_Shuttle);
 			}
 
-			m_Timer.Start();
-			nStep++;
-		}
-		break;
-	//kjpark 20180122 Y Shuttle ì •ì§€ í›„ ë‹¤ì‹œ ëŸ°í•˜ë©´ ì•ŒëŒì¹˜ëŠ” ì‹œí€€ìŠ¤ ìˆ˜ì •
-	case stepY_MoveCheck:
-		m_bRtn[0] = LightCurtain_Check(m_Shuttle);
-		m_bRtn[1] = Shuttle_Y_INSP_Check(m_Shuttle);
-		if(IsReturnOk())
-		{
-			// State Nameì„ ì…”í‹€ ì´ë¦„ í¬í•¨í•´ì„œ ë‹¤ì‹œ ì§€ì •í•œë‹¤ [9/19/2017 OSC]
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepY_MoveCheck"), m_strStateName);
-			
-			Inspection_X_INSP_Move(m_Shuttle);
-			m_Timer.Start();
-			nStep++;
-		}
-		else if(m_Timer.Stop(FALSE) > 10.)
-		{
-			// í•­ìƒ ëª¨í„° ì²´í¬ë³´ë‹¤ Light Curtainì„ ë¨¼ì € ì²´í¬í•´ì„œ ìš°ì„ ê¶Œì„ ë‘”ë‹¤ [9/27/2017 OSC]
-			if(m_bRtn[0] == FALSE)			SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE1_LIGHT_CURTAIN, m_Shuttle));
-			else if(m_bRtn[1] == FALSE)		SetError(GetAlarmID_of_Shuttle(ALM_AXIS_JIG_SHUTTLE_Y1, m_Shuttle));
-		}
-		break;
-		//kjpark 20170925 MTP WRITE í• ë•Œ Xì¶• ë™ì‘ 
-	case stepX_INSPCheck:
-		m_bRtn[0] = LightCurtain_Check(m_Shuttle);
-		m_bRtn[1] = Inspection_X_INSP_Check(m_Shuttle);
-		if(IsReturnOk())
-		{
-			Inspection_Z_INSP_Move(m_Shuttle);
-			theTactTimeLog.m_InspectionZ_Down[m_Shuttle].Start();
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepX_INSPCheck"), m_strStateName);
-			m_Timer.Start();		
-			nStep++;
-		}	
-		else if(m_Timer.Stop(FALSE) > 5.)
-		{
-			// í•­ìƒ ëª¨í„° ì²´í¬ë³´ë‹¤ Light Curtainì„ ë¨¼ì € ì²´í¬í•´ì„œ ìš°ì„ ê¶Œì„ ë‘”ë‹¤ [9/27/2017 OSC]
-			if(m_bRtn[0] == FALSE)			SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE1_LIGHT_CURTAIN, m_Shuttle));
-			else if(m_bRtn[1] == FALSE)		SetError(GetAlarmID_of_Shuttle(ALM_AXIS_INSPECTION_X1, m_Shuttle));
-		}
-		break;
-	case stepZ_DownChk:		
-		m_bRtn[0] = LightCurtain_Check(m_Shuttle);
-		m_bRtn[1] = Inspection_Z_INSP_Check(m_Shuttle);
-		if(IsReturnOk())
-		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepZ_DownChk"), m_strStateName);
-			theTactTimeLog.m_InspectionZ_Down[m_Shuttle].End();
-			m_Timer.Start();
-			nStep++;
-		}
-		else if(m_Timer.Stop(FALSE) > 5.)
-		{
-			// í•­ìƒ ëª¨í„° ì²´í¬ë³´ë‹¤ Light Curtainì„ ë¨¼ì € ì²´í¬í•´ì„œ ìš°ì„ ê¶Œì„ ë‘”ë‹¤ [9/27/2017 OSC]
-			if(m_bRtn[0] == FALSE)			SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE1_LIGHT_CURTAIN, m_Shuttle));
-			else if(m_bRtn[1] == FALSE)		SetError(GetAlarmID_of_Shuttle(ALM_AXIS_INSPECTION_Z1, m_Shuttle));
+			if( theProcBank.AZoneChannelNotUse_Check(m_Shuttle, JIG_CH_1))
+			{
+				// Áö±× ÅëÃ¤·Î ½ºÅµÀÌ¸é ÀÌÈÄ ÁøÇàÇÏÁö ¾Ê´Â´Ù [9/18/2017 OSC]
+			}
+			else
+			{
+				m_Timer.Start();
+				nStep++;
+			}
 		}
 		break;
 
-		// ZONE_A ì²´í¬ [9/11/2017 OSC]
-	case stepZoneCCheck:
-		m_bRtn[0] = SetZoneC_Check(m_Shuttle);
+		// ZONE_A Ã¼Å© [9/11/2017 OSC]
+	case stepZoneACheck:
+		m_bRtn[0] = SetZoneA_Check(m_Shuttle);
 		if(IsReturnOk())
 		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepZoneCCheck"), m_strStateName);
-			CellLog_CZoneMTPReadyTime_SetEndTime(m_Shuttle);
-			m_Timer.Start();
-			nStep++;
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepZoneACheck"), m_strStateName);
+
+			if(theConfigBank.m_Option.m_bUseLoofTest)
+			{
+				CellLog_LoadingTactTime_SetEndTime(m_Shuttle);
+
+				if(theConfigBank.m_Option.m_bUseLoofTest
+					|| theConfigBank.m_System.m_bCIMQualMode)
+				{
+					if(theProcBank.AZoneCellNG_Check(m_Shuttle, JIG_CH_1) == FALSE)
+					{
+						CellLoading_InitInfo(m_Shuttle, JIG_CH_1, FALSE);
+						CellLoading_SetStartTime(m_Shuttle, JIG_CH_1);
+						CellLoading_Send(m_Shuttle, JIG_CH_1, TRUE);
+					}
+				}
+				else
+				{
+
+				}
+
+				m_Timer.Start();
+				nStep = stepBefStart;
+			}
+			else
+			{
+				// ÀÛ¾÷ÀÚ ½ºÀ§Ä¡ Á¢±Ù Çã¿ë [9/7/2017 OSC]
+				if(theProcBank.PreInterlock_IsEmpty(EFST_LOADING))
+				{
+					GetMainHandler()->m_bAZoneOperatorReady[m_Shuttle] = TRUE;
+				}
+				m_Timer.Start();
+				nStep++;
+			}
 		}
 		else if(m_Timer.Stop(FALSE) > 5.)
 		{
-			SetZoneC_TimeOut(m_Shuttle);
+			SetZoneA_TimeOut(m_Shuttle);
+		}
+		break;
+
+		// °­¿øÈ£ÇÁ·Î ¿äÃ»À¸·Î ¹«Á¶°Ç PG ON ¹öÆ° ÇÑ¹ø ÀÌ»ó ´­·¯¾ß ÇÔ [11/21/2017 OSC]
+	case stepPatternOnSwitchCheck:
+		if( (theProcBank.m_bDryRunMode == FALSE)) 
+		{
+			m_bRtn[0] = theProcBank.AZoneCellNG_Check(m_Shuttle, JIG_CH_1) ? TRUE:CellLoading_SendCheck(m_Shuttle, JIG_CH_1);
+			m_bRtn[2] = theProcBank.LoadingStop_IsRequire() ? FALSE:TRUE;
+
+		}
+		if(IsReturnOk())
+		{
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepPatternOnSwitchCheck"), m_strStateName);
+
+			CellLog_WaitTime_SetEndTime(m_Shuttle);
+			AZone_SetTimeStart(m_Shuttle);
+			CellLog_TactTime_SetStartTime(m_Shuttle);
+			CellLoading_SetStartTime(m_Shuttle, JIG_CH_1);
+
+			m_Timer.Start();
+			nStep++;
 		}
 		break;
 
 	case stepBefStart:
-		// Start()í•¨ìˆ˜ê°€ í˜¸ì¶œ ë  ë•Œë§ˆë‹¤ m_strCurrentModuleNameê°€ INSP_MODULE_NONEë¡œ ë¦¬ì…‹ë˜ê¸° ë•Œë¬¸ì— 
-		// ì´ì „ ì§„í–‰í•˜ë˜ê±´ ë¬´ì‹œë˜ê³  ì²˜ìŒë¶€í„° ë‹¤ì‹œ ì‹œì‘ëœë‹¤ [8/30/2017 OSC]
+		// Start()ÇÔ¼ö°¡ È£Ãâ µÉ ¶§¸¶´Ù m_strCurrentModuleName°¡ INSP_MODULE_NONE·Î ¸®¼ÂµÇ±â ¶§¹®¿¡ 
+		// ÀÌÀü ÁøÇàÇÏ´ø°Ç ¹«½ÃµÇ°í Ã³À½ºÎÅÍ ´Ù½Ã ½ÃÀÛµÈ´Ù [8/30/2017 OSC]
 		if( m_pCurrentModule && (m_strCurrentModuleName != INSP_MODULE_NONE) )
 		{
 			m_pCurrentModule->Run();
@@ -124,12 +180,12 @@ int CStateCZone::Run()
 		}
 		if(bNext)
 		{
-			m_pCurrentModule = theInspModuleBank.GetNextModule_CZone_Bef(m_strCurrentModuleName, m_Shuttle);
+			m_pCurrentModule = theInspModuleBank.GetNextModule_AZone_Bef(m_strCurrentModuleName, m_Shuttle);
 			if(m_pCurrentModule)
 			{
 				theLog[m_LogIndex].AddBuf(_T("[%s] stepBefStart Module %s -> %s"), m_strStateName, m_strCurrentModuleName, m_pCurrentModule->m_ModuleName);
 				m_strCurrentModuleName = m_pCurrentModule->m_ModuleName;
-				// SetParam ì•ˆì—ì„œ Resetì´ í˜¸ì¶œëœë‹¤ [8/30/2017 OSC]
+				// SetParam ¾È¿¡¼­ ResetÀÌ È£ÃâµÈ´Ù [8/30/2017 OSC]
 				m_pCurrentModule->SetParam(m_strStateName, m_nThreadID, FALSE, m_LogIndex);
 				m_pCurrentModule->SetShuttle(m_Shuttle);
 				m_pCurrentModule->Start();
@@ -144,8 +200,8 @@ int CStateCZone::Run()
 		break;
 
 	case stepMustStart:
-		// Start()í•¨ìˆ˜ê°€ í˜¸ì¶œ ë  ë•Œë§ˆë‹¤ m_strCurrentModuleNameê°€ INSP_MODULE_NONEë¡œ ë¦¬ì…‹ë˜ê¸° ë•Œë¬¸ì— 
-		// ì´ì „ ì§„í–‰í•˜ë˜ê±´ ë¬´ì‹œë˜ê³  ì²˜ìŒë¶€í„° ë‹¤ì‹œ ì‹œì‘ëœë‹¤ [8/30/2017 OSC]
+		// Start()ÇÔ¼ö°¡ È£Ãâ µÉ ¶§¸¶´Ù m_strCurrentModuleName°¡ INSP_MODULE_NONE·Î ¸®¼ÂµÇ±â ¶§¹®¿¡ 
+		// ÀÌÀü ÁøÇàÇÏ´ø°Ç ¹«½ÃµÇ°í Ã³À½ºÎÅÍ ´Ù½Ã ½ÃÀÛµÈ´Ù [8/30/2017 OSC]
 		if( m_pCurrentModule && (m_strCurrentModuleName != INSP_MODULE_NONE) )
 		{
 			m_pCurrentModule->Run();
@@ -153,12 +209,12 @@ int CStateCZone::Run()
 		}
 		if(bNext)
 		{
-			m_pCurrentModule = theInspModuleBank.GetNextModule_CZone_Must(m_strCurrentModuleName, m_Shuttle);
+			m_pCurrentModule = theInspModuleBank.GetNextModule_AZone_Must(m_strCurrentModuleName, m_Shuttle);
 			if(m_pCurrentModule)
 			{
 				theLog[m_LogIndex].AddBuf(_T("[%s] stepMustStart Module %s -> %s"), m_strStateName, m_strCurrentModuleName, m_pCurrentModule->m_ModuleName);
 				m_strCurrentModuleName = m_pCurrentModule->m_ModuleName;
-				// SetParam ì•ˆì—ì„œ Resetì´ í˜¸ì¶œëœë‹¤ [8/30/2017 OSC]
+				//SetParam ¾È¿¡¼­ ResetÀÌ È£ÃâµÈ´Ù [8/30/2017 OSC]
 				m_pCurrentModule->SetParam(m_strStateName, m_nThreadID, FALSE, m_LogIndex);
 				m_pCurrentModule->SetShuttle(m_Shuttle);
 				m_pCurrentModule->Start();
@@ -167,19 +223,17 @@ int CStateCZone::Run()
 			{
 				theLog[m_LogIndex].AddBuf(_T("[%s] stepMustStart Complete"), m_strStateName);
 				m_strCurrentModuleName = INSP_MODULE_NONE;
-
-				// Zì¶• ìƒìŠ¹ [8/10/2017 OSC]
-				Inspection_Z_UP_Move(m_Shuttle);
-				theTactTimeLog.m_InspectionZ_Up[m_Shuttle].Start();
-				CellLog_CZoneETCTime_SetStartTime(m_Shuttle);
+				// CellLoading Àü¿ëº¯¼ö¿¡ ÀÖ´Â °ÍÀ» ¿Å°Ü´ã´Â´Ù
+				CellLoading_CopyInfo(m_Shuttle, JIG_CH_1);
+				CellLog_AZoneETCTime_SetStartTime(m_Shuttle);
 				nStep++;
 			}
 		}
 		break;
 
 	case stepAftStart:
-		// Start()í•¨ìˆ˜ê°€ í˜¸ì¶œ ë  ë•Œë§ˆë‹¤ m_strCurrentModuleNameê°€ INSP_MODULE_NONEë¡œ ë¦¬ì…‹ë˜ê¸° ë•Œë¬¸ì— 
-		// ì´ì „ ì§„í–‰í•˜ë˜ê±´ ë¬´ì‹œë˜ê³  ì²˜ìŒë¶€í„° ë‹¤ì‹œ ì‹œì‘ëœë‹¤ [8/30/2017 OSC]
+		// Start()ÇÔ¼ö°¡ È£Ãâ µÉ ¶§¸¶´Ù m_strCurrentModuleName°¡ INSP_MODULE_NONE·Î ¸®¼ÂµÇ±â ¶§¹®¿¡ 
+		// ÀÌÀü ÁøÇàÇÏ´ø°Ç ¹«½ÃµÇ°í Ã³À½ºÎÅÍ ´Ù½Ã ½ÃÀÛµÈ´Ù [8/30/2017 OSC]
 		if( m_pCurrentModule && (m_strCurrentModuleName != INSP_MODULE_NONE) )
 		{
 			m_pCurrentModule->Run();
@@ -187,12 +241,12 @@ int CStateCZone::Run()
 		}
 		if(bNext)
 		{
-			m_pCurrentModule = theInspModuleBank.GetNextModule_CZone_Aft(m_strCurrentModuleName, m_Shuttle);
+			m_pCurrentModule = theInspModuleBank.GetNextModule_AZone_Aft(m_strCurrentModuleName, m_Shuttle);
 			if(m_pCurrentModule)
 			{
 				theLog[m_LogIndex].AddBuf(_T("[%s] stepAftStart Module %s -> %s"), m_strStateName, m_strCurrentModuleName, m_pCurrentModule->m_ModuleName);
 				m_strCurrentModuleName = m_pCurrentModule->m_ModuleName;
-				// SetParam ì•ˆì—ì„œ Resetì´ í˜¸ì¶œëœë‹¤ [8/30/2017 OSC]
+				// SetParam ¾È¿¡¼­ ResetÀÌ È£ÃâµÈ´Ù [8/30/2017 OSC]
 				m_pCurrentModule->SetParam(m_strStateName, m_nThreadID, FALSE, m_LogIndex);
 				m_pCurrentModule->SetShuttle(m_Shuttle);
 				m_pCurrentModule->Start();
@@ -202,56 +256,70 @@ int CStateCZone::Run()
 				theLog[m_LogIndex].AddBuf(_T("[%s] stepAftStart Complete"), m_strStateName);
 				m_strCurrentModuleName = INSP_MODULE_NONE;
 
-				CellLog_CZoneETCTime_SetEndTime(m_Shuttle);
-				CZone_SetTimeEnd(m_Shuttle);
+				CellLog_AZoneETCTime_SetEndTime(m_Shuttle);
+				AZone_SetTimeEnd(m_Shuttle);
+
 				m_Timer.Start();
 				nStep++;
 			}
 		}
 		break;
 
-	case stepZ_UpCheck:				
-		m_bRtn[0] = LightCurtain_Check(m_Shuttle);
-		m_bRtn[1] = Inspection_Z_UP_Check(m_Shuttle);
+		// ÀÛ¾÷ÀÚ ¾ç¼ö¹öÆ° [9/11/2017 OSC]
+	case stepReadySwitchCheck:
+		m_bRtn[0] = ReadySwitch_Check(m_Shuttle);
+		m_bRtn[1] = theProcBank.AZoneChannelNotUse_Check(m_Shuttle, JIG_CH_1) ? TRUE:Shuttle_Vac_Check(m_Shuttle, JIG_CH_1, VAC_ON);
+		m_bRtn[3] = GetCellSkipCheck(m_Shuttle, JIG_CH_1) ? AZoneDefect_GoodCheck(m_Shuttle, JIG_CH_1):TRUE;
+		// ÀÌ¹Ì AÁ¸ ÁøÀÔÇß´Ù°í ÇÏ´õ¶óµµ Áö±× ÅëÃ¤·Î ½ºÅµÀÌ¸é ÀÌÈÄ ÁøÇàÇÏÁö ¾Ê´Â´Ù [9/18/2017 OSC]
+		if( theProcBank.AZoneChannelNotUse_Check(m_Shuttle, JIG_CH_1))
+			m_bRtn[5] = FALSE;
 		if(IsReturnOk())
 		{
-			theLog[m_LogIndex].AddBuf(_T("[%s] stepZ_UpCheck"), m_strStateName);
-			theTactTimeLog.m_InspectionZ_Up[m_Shuttle].End();
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepReadySwitchCheck"), m_strStateName);
+			GetMainHandler()->m_bAZoneOperatorReady[m_Shuttle] = FALSE;
+			theUnitFunc.LightCurtainMute_OnOff(m_Shuttle, OFF);
+			theUnitFunc.LightCurtainMuteLamp_OnOff(m_Shuttle, OFF);
+			AZoneCell_RemoveSkipCell(m_Shuttle);
+			TMD_INFO_Send(m_Shuttle);
+			CellLog_SetOperatorID(m_Shuttle);
+
+			theTactTimeLog.m_RunTime[m_Shuttle].Start();
 			m_Timer.Start();
 			nStep++;
 		}
-		else if(m_Timer.Stop(FALSE) > 5.)
+		else
 		{
-			// í•­ìƒ ëª¨í„° ì²´í¬ë³´ë‹¤ Light Curtainì„ ë¨¼ì € ì²´í¬í•´ì„œ ìš°ì„ ê¶Œì„ ë‘”ë‹¤ [9/27/2017 OSC]
-			if(m_bRtn[0] == FALSE)		SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE1_LIGHT_CURTAIN, m_Shuttle));
-			else if(m_bRtn[1] == FALSE)	SetError(GetAlarmID_of_Shuttle(ALM_AXIS_INSPECTION_Z1, m_Shuttle));
+			// ¸ŞÀÎÈ­¸é Ç¥½Ã À§ÇØ ¹Ì¸® Á¸ µğÆå »êÃâ [9/12/2017 OSC]
+			// ´Ù½Ã ¹øº¹µÉ °æ¿ì ´ëºñÇØ¼­ °è¼Ó ÇØÁà¾ß ÇÑ´Ù ¤Ğ¤Ğ
+			JudgeZoneDefect(m_Shuttle,ZONE_ID_B);
+		}
+		break;
+
+	case stepTMDInfoCheck:
+		m_bRtn[0] = CellTagExist(m_Shuttle, JIG_CH_1) ? TMD_INFO_Check(m_Shuttle, JIG_CH_1):TRUE;
+		if(IsReturnOk())
+		{
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepTMDInfoCheck"), m_strStateName);
+			m_Timer.Start();
+			nStep++;
+		}
+		else if(m_Timer.Stop(FALSE) > 2.)
+		{
+			TMD_INFO_Timeout(m_Shuttle);
 		}
 		break;
 
 	case stepEnd:
 		theLog[m_LogIndex].AddBuf(_T("[%s] stepEnd"), m_strStateName);
-		// ë©”ì¸í™”ë©´ í‘œì‹œ ìœ„í•´ ë¯¸ë¦¬ ì¡´ ë””í™ ì‚°ì¶œ [9/12/2017 OSC]
-		JudgeZoneDefect(m_Shuttle,ZONE_ID_C);
-
-		//20170913 hhkim ìµœì¢… íŒì •
-		JudgeFinalClass(m_Shuttle,JIG_CH_1);
-		CIM_CellCimJudge(m_Shuttle);
-		//20170913 hhkim InspectionEnd
-		CIM_CellAllInspectionEnd(m_Shuttle);
-
-		//kjpark 20180107 ì‹ í˜¸ê¸° ë¡œê·¸ì—ì„œ MTP ì¸¡ì • ê°’ ê°€ì§€ê³ ì™€ì„œ ì…€ë¡œê·¸ì— ë„£ê¸°
-		GetMTP_Isnpection_Value(m_Shuttle, JIG_CH_1);
-
-		// ìƒì‚°ì •ë³´ Update - LSH171217
-		Product_CountUpdate(m_Shuttle);
-
-		CZone_SetTimeWait(m_Shuttle);
-
-		SetZoneEnd(m_Shuttle, ZONE_ID_C);
-		if(theConfigBank.m_System.m_bInlineMode)
-			PatternReset_Send(m_Shuttle, JIG_CH_MAX);
-		CZonetoAZone_SetTimeStart(m_Shuttle);
+		SetZoneEnd(m_Shuttle, ZONE_ID_B);
 		m_pCurrentModule = NULL;
+		//kjpark 20170913 MCR À§Ä¡¿¡¼­ ZÃà  Ã¼Å©
+		Inspection_Z_UP_Move(m_Shuttle);
+		//kjpark 20170912 MCR À§Ä¡¿¡µû¸¥ ÅÃÅ¸ÀÓ Ãß°¡
+		AZonetoMCR_SetTimeStart(m_Shuttle);
+
+		AZone_SetTimeWait(m_Shuttle);
+
 		nStep = stepIdle;
 		break;
 	}

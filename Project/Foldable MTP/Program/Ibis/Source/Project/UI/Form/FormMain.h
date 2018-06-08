@@ -142,6 +142,8 @@ public:
 	void ClickGxstcMainCh3();
 	void ClickGxbtnCreatecellinfo();
 	void ClickGxbtnLoadingStop();
+	void ClickGxbtnMainHandMcrCh1();
+	void ClickGxbtnMainHandMcrCh2();
 };
 
 
