@@ -1,0 +1,91 @@
+// stdafx.h : 잘 변경되지 않고 자주 사용하는
+// 표준 시스템 포함 파일 및 프로젝트 관련 포함 파일이 
+// 들어 있는 포함 파일입니다.
+
+#pragma once
+
+#ifndef VC_EXTRALEAN
+#define VC_EXTRALEAN		// Windows 헤더에서 거의 사용되지 않는 내용을 제외시킵니다.
+#endif
+
+// 아래 지정된 플랫폼보다 우선하는 플랫폼을 대상으로 하는 경우 다음 정의를 수정하십시오.
+// 다른 플랫폼에 사용되는 해당 값의 최신 정보는 MSDN을 참조하십시오.
+#ifndef WINVER				// Windows 95 및 Windows NT 4 이후 버전에서만 기능을 사용할 수 있습니다.
+#define WINVER 0x0400		// Windows 98과 Windows 2000 이후 버전에 맞도록 적합한 값으로 변경해 주십시오.
+#endif
+
+#ifndef _WIN32_WINNT		// Windows NT 4 이후 버전에서만 기능을 사용할 수 있습니다.
+#define _WIN32_WINNT 0x0400		// Windows 98과 Windows 2000 이후 버전에 맞도록 적합한 값으로 변경해 주십시오.
+#endif						
+
+#ifndef _WIN32_WINDOWS		// Windows 98 이후 버전에서만 기능을 사용할 수 있습니다.
+#define _WIN32_WINDOWS 0x0410 // Windows Me 이후 버전에 맞도록 적합한 값으로 변경해 주십시오.
+#endif
+
+#ifndef _WIN32_IE			// IE 4.0 이후 버전에서만 기능을 사용할 수 있습니다.
+#define _WIN32_IE 0x0400	// IE 5.0 이후 버전에 맞도록 적합한 값으로 변경해 주십시오.
+#endif
+
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// 일부 CString 생성자는 명시적으로 선언됩니다.
+
+// MFC의 공통 부분과 무시 가능한 경고 메시지에 대한 숨기기를 해제합니다.
+#define _AFX_ALL_WARNINGS
+
+#include <afxwin.h>         // MFC 핵심 및 표준 구성 요소
+#include <afxext.h>         // MFC 익스텐션
+#include <afxdisp.h>        // MFC 자동화 클래스
+
+#include <afxdtctl.h>		// Internet Explorer 4 공용 컨트롤에 대한 MFC 지원
+#ifndef _AFX_NO_AFXCMN_SUPPORT
+#include <afxcmn.h>			// Windows 공용 컨트롤에 대한 MFC 지원
+#endif // _AFX_NO_AFXCMN_SUPPORT
+
+#include <afxcontrolbars.h>     // MFC support for ribbons and control bars
+
+#include <afxsock.h>		// MFC 소켓 익스텐션
+#include <direct.h>
+
+
+#pragma comment(lib, "mil.lib")
+#pragma comment(lib, "milim.lib")
+#pragma comment(lib, "milpat.lib")
+#pragma comment(lib, "milBlob.lib")
+
+#pragma comment(lib, "Lib\\VC60FP39.lib")
+#pragma comment(lib, "Lib\\CIF32DLL.lib")
+#pragma comment(lib, "Lib\\MdFunc32.lib")
+// #pragma comment(lib, "Lib\\MnetEx2.lib")
+
+// Public class
+#include "../Public class/dblPoint.h"
+//#include "../Public class/dblSize.h"
+#include "../Public class/HistoryEdit.h"
+#include "../Public class/FileSupport.h"
+#include "../Public class/DataSocket.h"
+#include "../Public class/Ini.h"
+#include "../Public class/StopWatch.h"
+#include "../Public class/Etc.h"
+
+
+#include "ErrorDefine.h"
+#include "MotionDefine.h"
+#include "NetworkDefine.h"
+#include "UserDefine.h"
+#include "WorkDefine.h"
+#include "StructDefine.h"
+#include "MySocketData.h"
+#include <afxdhtml.h>
+
+LineType GetLineType();
+MachinePCType GetMachinePCType();
+LangueageType GetLanguageType();
+void SetLineType(LineType linetype);
+void SetMachinePCType(MachinePCType machinetype);
+void SetLanguageType(LangueageType languagetype);
+BOOL IsSimulation();
+void SetSimulation(BOOL bSimulate);
+void SetEngineerPassWord(CString strEngPassWord);
+void SetSuperUserPassWord(CString strSuperPassWord);
+
+CString GetEngineerPassWord();
+CString GetSuperUserPassWord();

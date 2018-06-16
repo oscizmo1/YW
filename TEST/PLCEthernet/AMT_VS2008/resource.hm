@@ -1,0 +1,4 @@
+// Microsoft Visual C++ generated Help ID include file.
+// Used by MT.rc
+//
+#define HIDC_BTN_USER_EDIT              0x80690002    // IDD_DIALOG_USER_CHANGE
