@@ -23,18 +23,8 @@ int CStateRestart::Run()
 		{
 			theLog[m_LogIndex].AddBuf(_T("[%s] stepStart"), m_strStateName);
 
-// 			SetOutPutIO(Y_BUZZER_K3, ON);
-// 			Sleep(200);
-// 			SetOutPutIO(Y_BUZZER_K3, OFF);
 			m_LastAlarm = ALM_NONE;
 			theProcBank.PDT_IF_NoCheckVacOff_Clear();
-			for(int jig = 0; jig < JIG_ID_MAX; jig++)
-			{
-				for(int ch = 0; ch < JIG_CH_MAX; ch++)
-				{
-					MCR_Trigger((JIG_ID)jig, (JIG_CH)ch, OFF);
-				}
-			}
 			theTactTimeLog.Reset();
 
 			nStep++;
@@ -69,6 +59,7 @@ int CStateRestart::Run()
 		if(IsReturnOk())
 		{
 			theLog[m_LogIndex].AddBuf(_T("[%s] stepZUpChk"), m_strStateName);
+			Restart_BlowOff();
 			nStep++;
 			m_Timer.Start();
 		}		
@@ -121,11 +112,13 @@ void CStateRestart::Restart_VacuumOn()
 			{
 				if(CellTagExist((JIG_ID)jig, (JIG_CH)i) || theConfigBank.m_Option.m_bUseLoofTest)
 				{
-					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON );				
+					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON, BLOW_OFF );				
+					Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON, BLOW_OFF );				
 				}
 				else
 				{
-					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF);	
+					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_ON);	
+					Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_ON);	
 				}
 			}
 		}
@@ -138,11 +131,13 @@ void CStateRestart::Restart_VacuumOn()
 			{
 				if(CellTagExist((JIG_ID)jig, (JIG_CH)i) && GetZoneEnd((JIG_ID)jig, ZONE_ID_A))
 				{
-					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON );				
+					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON, BLOW_OFF );				
+					Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON, BLOW_OFF );				
 				}
 				else
 				{
-					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF);	
+					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_ON);	
+					Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_ON);	
 				}
 			}
 		}
@@ -171,6 +166,44 @@ BOOL CStateRestart::Restart_VacuumChk()
 	}	
 	
 	return TRUE;
+}
+
+void CStateRestart::Restart_BlowOff()
+{
+	if(theConfigBank.m_System.m_bInlineMode || theConfigBank.m_Option.m_bUseLoofTest)
+	{
+		for(int jig = 0; jig < JIG_ID_MAX; jig++)
+		{
+			for(int i = 0; i < JIG_CH_MAX; i++)
+			{
+				if(CellTagExist((JIG_ID)jig, (JIG_CH)i) || theConfigBank.m_Option.m_bUseLoofTest)
+				{
+				}
+				else
+				{
+					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_OFF);	
+					Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_OFF);	
+				}
+			}
+		}
+	}
+	else
+	{
+		for(int jig = 0; jig < JIG_ID_MAX; jig++)
+		{
+			for(int i = 0; i < JIG_CH_MAX; i++)
+			{
+				if(CellTagExist((JIG_ID)jig, (JIG_CH)i) && GetZoneEnd((JIG_ID)jig, ZONE_ID_A))
+				{
+				}
+				else
+				{
+					Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_OFF);	
+					Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_OFF);	
+				}
+			}
+		}
+	}
 }
 
 //kjpark 20170915 Restart ±¸Çö

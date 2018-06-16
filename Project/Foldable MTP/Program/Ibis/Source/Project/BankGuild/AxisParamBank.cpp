@@ -28,56 +28,56 @@ void CAxisParamBank::InitializeAxisType()
 	m_Axis[	AXIS_INSPECTION_X1			].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_INSPECTION_X1			].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_INSPECTION_X1			].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_INSPECTION_X1			].m_nModuleNo = 1;
+	m_Axis[	AXIS_INSPECTION_X1			].m_nModuleNo = 0;
 	m_Axis[	AXIS_INSPECTION_X1			].m_nInnerNo = 0;
 
 	m_Axis[	AXIS_INSPECTION_Z1			].m_strAxisName = _T("AXIS_INSPECTION_Z1");
 	m_Axis[	AXIS_INSPECTION_Z1			].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_INSPECTION_Z1			].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_INSPECTION_Z1			].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_INSPECTION_Z1			].m_nModuleNo = 1;
+	m_Axis[	AXIS_INSPECTION_Z1			].m_nModuleNo = 0;
 	m_Axis[	AXIS_INSPECTION_Z1			].m_nInnerNo = 1;
 
 	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_strAxisName = _T("AXIS_ACTIVE_ALIGN_X1");
 	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_nModuleNo = 1;
+	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_nModuleNo = 0;
 	m_Axis[	AXIS_ACTIVE_ALIGN_X1		].m_nInnerNo = 2;
 
 	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_strAxisName = _T("AXIS_JIG_SHUTTLE_Y1");
 	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_nModuleNo = 1;
+	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_nModuleNo = 0;
 	m_Axis[	AXIS_JIG_SHUTTLE_Y1			].m_nInnerNo = 3;
 
 	m_Axis[	AXIS_INSPECTION_X2			].m_strAxisName = _T("AXIS_INSPECTION_X2");
 	m_Axis[	AXIS_INSPECTION_X2			].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_INSPECTION_X2			].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_INSPECTION_X2			].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_INSPECTION_X2			].m_nModuleNo = 2;
+	m_Axis[	AXIS_INSPECTION_X2			].m_nModuleNo = 1;
 	m_Axis[	AXIS_INSPECTION_X2			].m_nInnerNo = 0;
 
 	m_Axis[	AXIS_INSPECTION_Z2			].m_strAxisName = _T("AXIS_INSPECTION_Z2");
 	m_Axis[	AXIS_INSPECTION_Z2			].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_INSPECTION_Z2			].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_INSPECTION_Z2			].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_INSPECTION_Z2			].m_nModuleNo = 2;
+	m_Axis[	AXIS_INSPECTION_Z2			].m_nModuleNo = 1;
 	m_Axis[	AXIS_INSPECTION_Z2			].m_nInnerNo = 1;
 
 	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_strAxisName = _T("AXIS_ACTIVE_ALIGN_X2");
 	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_nModuleNo = 2;
+	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_nModuleNo = 1;
 	m_Axis[	AXIS_ACTIVE_ALIGN_X2		].m_nInnerNo = 2;
 
 	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_strAxisName = _T("AXIS_JIG_SHUTTLE_Y2");
 	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_DeviceType = CAxisParam::DEVICE_TYPE_NMC;
 	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_MotorType = CAxisParam::MOTOR_TYPE_SERVO;
 	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_OriginType = CAxisParam::ORIGIN_TYPE_LIMIT_N;
-	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_nModuleNo = 2;
+	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_nModuleNo = 1;
 	m_Axis[	AXIS_JIG_SHUTTLE_Y2			].m_nInnerNo = 3;
 }
 

@@ -1012,7 +1012,9 @@ void CMainFrame::AllCellTrackOut()
 		theCellBank.RemoveCellTag((JIG_ID)jig, JIG_CH_1);
 
 		// Vac Off
-		theUnitFunc.Shuttle_Vac_OnOff((JIG_ID)jig, JIG_CH_1, VAC_OFF);
+		theUnitFunc.Shuttle_Vac_OnOff((JIG_ID)jig, JIG_CH_1, VAC_OFF, BLOW_ON);
+		Sleep(200);
+		theUnitFunc.Shuttle_Vac_OnOff((JIG_ID)jig, JIG_CH_1, VAC_OFF, BLOW_OFF);
 	}
 
 }

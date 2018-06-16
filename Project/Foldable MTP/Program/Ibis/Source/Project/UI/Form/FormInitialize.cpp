@@ -283,7 +283,8 @@ BOOL CFormInitialize::CheckInterlock()
 
 void CFormInitialize::InitCylinder()
 {
-	//yjkim 05.30
+	theUnitFunc.Shuttle_Tilt_UpDown(JIG_ID_A, TILT_DOWN);
+	theUnitFunc.Shuttle_Tilt_UpDown(JIG_ID_B, TILT_DOWN);
 }
 
 BOOL CFormInitialize::CheckCylinder()
@@ -292,17 +293,16 @@ BOOL CFormInitialize::CheckCylinder()
 
 	////////////////////////////////////////////////////////////////////////
 	 //검사부
-	//yjkim 05.30
- //	if(theUnitFunc.GetInPutIOCheck(X_INSP_A_JIG_TILTING_UP) == FALSE)
- //	{
- //		m_strLastMsg.Format(_T("A Jig Tilt Up Fail"));
- //		return FALSE;
- //	}
-	//if(theUnitFunc.GetInPutIOCheck(X_INSP_A_JIG_TILTING_UP) == FALSE)
-	//{
-	//	m_strLastMsg.Format(_T("B Jig Tilt Up Fail"));
-	//	return FALSE;
-	//}
+	if(theUnitFunc.Shuttle_Tilt_UpDown_Check(JIG_ID_A, TILT_DOWN) == FALSE)
+	{
+		m_strLastMsg.Format(_T("A Jig Tilt Down Fail"));
+		return FALSE;
+	}
+	if(theUnitFunc.Shuttle_Tilt_UpDown_Check(JIG_ID_B, TILT_DOWN) == FALSE)
+	{
+		m_strLastMsg.Format(_T("B Jig Tilt Down Fail"));
+		return FALSE;
+	}
 
 	return TRUE;
 }
@@ -522,6 +522,7 @@ BOOL CFormInitialize::Initializing()
 	case stepInitCylinder:
 		m_StepOriginStatus[LED_CYLINDER_INIT] = ORIGIN_START;
 		SetLogListUpdate(_T("Cylinder Init Start"));
+		InitCylinder();
 		m_Timer.Start();
 		nStep++;
 		break;
@@ -635,7 +636,11 @@ BOOL CFormInitialize::Initializing()
 
 	// 계속 진행 가능하면 TRUE [10/22/2016 OSC]
 	if(m_Step > stepEnd)
+	{
+		CGxButtonEx *pBtn = (CGxButtonEx*)GetDlgItem(IDC_GXBTN_INITIALIZE_CANCEL);
+		pBtn->SetEnable(TRUE);					//07.15.KHS
 		return FALSE;
+	}
 	else
 		return TRUE;
 }

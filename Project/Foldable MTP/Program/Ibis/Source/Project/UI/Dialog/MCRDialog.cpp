@@ -5,6 +5,9 @@
 #include "MCRDialog.h"
 #include "afxdialogex.h"
 
+
+#include "UI\Form\FormMain.h"
+
 // CMCRDialog 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CMCRDialog, CDialog)
@@ -102,9 +105,6 @@ void CMCRDialog::OnBnClickedOk()
 			GetMainHandler()->m_nLangIdx);
 		dlgMsgBox.DoModal();
 	}
-
-	// 입력 완료 변수를 TRUE로 변경 [4/2/2018 LSH]
-	m_bReadDone = TRUE;
 
 	CDialog::OnOK();
 }

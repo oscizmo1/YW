@@ -89,6 +89,17 @@ public:
 	void ClickGxbtnTeachShuttle1FpcbBlowCh1();
 	void ClickGxbtnTeachShuttle1Down();
 	void ClickGxbtnTeachShuttle1Up();
+	void ClickGxbtnTeachShuttle1Grab();
+
+	// Align관련 변수 [5/11/2018 LSH]
+	ALIGN_VALUE m_Align_Value[JIG_CH_MAX];
+	CStopWatch m_swAlignTimer[JIG_CH_MAX];
+	DOUBLE m_dAlignIntervalTime[JIG_CH_MAX];
+	UINT m_nAlignStartButton[JIG_CH_MAX];
+	UINT m_nAlignInterval[JIG_CH_MAX];
+	UINT m_nAlignX[JIG_CH_MAX];
+	UINT m_nAlignY[JIG_CH_MAX];
+	UINT m_nAlignT[JIG_CH_MAX];
 };
 
 

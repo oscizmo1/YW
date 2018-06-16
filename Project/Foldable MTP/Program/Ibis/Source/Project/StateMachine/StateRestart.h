@@ -27,6 +27,7 @@ public:
 
 	void Restart_VacuumOn();
 	BOOL Restart_VacuumChk();
+	void Restart_BlowOff();
 	void Restart_ZUp();
 	BOOL Restart_ZUpChk();	
 };

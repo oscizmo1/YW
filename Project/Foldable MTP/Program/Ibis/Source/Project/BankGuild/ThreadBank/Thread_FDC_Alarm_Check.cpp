@@ -173,7 +173,7 @@ UINT CThread_FDC_Alarm_Check::FDCMonitorThr( LPVOID lpParam )
 		// Door I/O [10/17/2017 OSC]
 		theFDCBank.m_nFrontDoor1Open.Format(_T("%d,%d,%d"), _func.GetInPutIOCheck(X_FRONT_DOOR1_SENSOR, ON),_func.GetInPutIOCheck(X_FRONT_DOOR1_SENSOR, ON),_func.GetInPutIOCheck(X_FRONT_DOOR1_SENSOR, ON));// = _func.GetInPutIOCheck(X_FRONT_DOOR1_SENSOR);
 		theFDCBank.m_nFrontDoor2Open.Format(_T("%d,%d,%d"), _func.GetInPutIOCheck(X_FRONT_DOOR2_SENSOR, ON),_func.GetInPutIOCheck(X_FRONT_DOOR2_SENSOR, ON),_func.GetInPutIOCheck(X_FRONT_DOOR2_SENSOR, ON));// = _func.GetInPutIOCheck(X_FRONT_DOOR2_SENSOR);
-		theFDCBank.m_nBackDoor1Open.Format(_T("%d,%d,%d"), _func.GetInPutIOCheck(X_BACK_DOOR1_SENSOR, ON),_func.GetInPutIOCheck(X_BACK_DOOR1_SENSOR, ON),_func.GetInPutIOCheck(X_BACK_DOOR1_SENSOR, ON));// = _func.GetInPutIOCheck(X_BACK_DOOR1_SENSOR);
+		theFDCBank.m_nLeftDoorOpen.Format(_T("%d,%d,%d"), _func.GetInPutIOCheck(X_LEFT_DOOR_SENSOR, ON),_func.GetInPutIOCheck(X_LEFT_DOOR_SENSOR, ON),_func.GetInPutIOCheck(X_LEFT_DOOR_SENSOR, ON));// = _func.GetInPutIOCheck(X_BACK_DOOR1_SENSOR);
 		theFDCBank.m_nRightDoorOpen.Format(_T("%d,%d,%d"), _func.GetInPutIOCheck(X_RIGNT_DOOR_SENSOR, ON),_func.GetInPutIOCheck(X_RIGNT_DOOR_SENSOR, ON),_func.GetInPutIOCheck(X_RIGNT_DOOR_SENSOR, ON));// = _func.GetInPutIOCheck(X_RIGNT_DOOR_SENSOR);
 		//////////////////////////////////////////////////////////////////////////
 		// Main Air

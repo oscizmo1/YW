@@ -47,6 +47,8 @@ public:
 	CString GetCellId() { m_bReadDone = FALSE; return m_strMCRID; };
 	BOOL GetReadDone() { return m_bReadDone; };
 
+	BOOL m_bClickCellID;
+
 	afx_msg void OnBnClickedOk();
 };
 

@@ -6,6 +6,22 @@
 1. Update 내용
   - Upate 상세 내용 및 설명, 관련 Source code
 ================================================================================
+#Y_M_MTP_18.06.16.02	[OSC]
+1. Initialize시 Tilting Down
+2. Tilting Up/Down 함수 개선
+3. C존 Sequence에 Tilt Up / Down 추가
+4. Dry Run 검증
+
+#Y_M_MTP_18.06.16.01	[OSC]
+1. Blow 임시 수정
+
+#Y_M_MTP_18.06.15.01	[OSC]
+1. Line Source 병합
+
+#Y_M_MTP_18.06.13.01	[OSC]
+1. 각 State의 ConfirmStart 점검
+2. Move*Zone State 점검
+
 #Y_M_MTP_18.05.31.01	[OSC]
 1. TPOC 기준으로 폴더 셋팅
 

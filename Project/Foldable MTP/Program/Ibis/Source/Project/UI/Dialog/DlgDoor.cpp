@@ -58,7 +58,7 @@ void CDlgDoor::InitGrid()
  	t.nIn = X_FRONT_DOOR1_SENSOR;						t.nOut = Y_FRONT_DOOR1_LOCK_ONOFF;					m_vecDoor.push_back(t);
  	t.nIn = X_FRONT_DOOR2_SENSOR;						t.nOut = Y_FRONT_DOOR2_LOCK_ONOFF;					m_vecDoor.push_back(t);
  	t.nIn = X_RIGNT_DOOR_SENSOR;						t.nOut = Y_RIGNT_DOOR_LOCK_ONOFF;					m_vecDoor.push_back(t);
- 	t.nIn = X_BACK_DOOR1_SENSOR;						t.nOut = Y_BACK_DOOR1_LOCK_ONOFF;					m_vecDoor.push_back(t);
+ 	t.nIn = X_LEFT_DOOR_SENSOR;							t.nOut = Y_LEFT_DOOR_LOCK_ONOFF;					m_vecDoor.push_back(t);
 	//===============================================================================================================================
 	m_Grid.SetEditable(FALSE);
 	m_Grid.SetDefCellHeight(50);

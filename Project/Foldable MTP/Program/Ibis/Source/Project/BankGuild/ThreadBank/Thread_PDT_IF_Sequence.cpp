@@ -254,11 +254,14 @@ void CThread_PDT_IF_Sequence::GetStatePointer( )
 	m_pAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_AZone;
 	m_pAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_AZone;
 
+	m_pMoveAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveAZone;
+	m_pMoveAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveAZone;
+
 	m_pMoveBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveBZone;
 	m_pMoveBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveBZone;
 
-	m_pMoveAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveAZone;
-	m_pMoveAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveAZone;
+	m_pMoveCZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveCZone;
+	m_pMoveCZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveCZone;
 
 	m_pIF[JIG_ID_A] = &theThreadBank.m_stateShuttle1_PDT_IF;
 	m_pIF[JIG_ID_B] = &theThreadBank.m_stateShuttle2_PDT_IF;
@@ -393,10 +396,10 @@ void CThread_PDT_IF_Sequence::MTP_Able_AllOnOff( CUnitCtrlFunc &_func, JIG_ID ji
 	// 로딩 혹은 언로딩 할 준비가 되어 있으면 ABLE ON
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
-	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pIF[jig]->IsStoped();
-	m_bRtn[4] = theConfigBank.m_System.m_bCIMQualMode ? FALSE:TRUE;
+	m_bRtn[1] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[2] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[4] = m_pIF[jig]->IsStoped();
 	if(IsReturnOk())
 	{
 		if(_func.CellInfo_CheckLoadable(jig) || _func.CellInfo_CheckUnloadable(jig))

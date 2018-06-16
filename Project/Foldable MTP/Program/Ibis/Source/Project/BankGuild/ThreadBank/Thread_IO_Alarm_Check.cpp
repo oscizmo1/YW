@@ -52,6 +52,7 @@ UINT CThread_IO_Alarm_Check::IOAlarmCheckThr( LPVOID lpParam )
 			_func.MCPower_Check();
 			_func.AutoTeachKey_AutoCheck(TRUE);
 		}
+		_func.Door_Key_On_Check();
 		//////////////////////////////////////////////////////////////////////////
 		// STO 체크
 		// STO가 해제됬을 경우 Y축 자동 서보온.

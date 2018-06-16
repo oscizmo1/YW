@@ -15,6 +15,8 @@ public:
 	{
 		stepStart,
 
+		stepTiltUpCheck,
+
 		stepPatternOffSwitchCheck,
 		stepZoneACheck,
 		stepPatternOnSwitchCheck,
@@ -24,6 +26,8 @@ public:
 		stepAftStart,
 
 		stepReadySwitchCheck,
+
+		stepTiltDownCheck,
 
 		stepTMDInfoCheck,
 

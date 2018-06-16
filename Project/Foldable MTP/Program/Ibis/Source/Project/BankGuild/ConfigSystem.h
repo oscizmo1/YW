@@ -43,6 +43,7 @@ public:
 	// 물류 연동 [10/5/2017 OSC]
 	BOOL m_bInlineMode;
 	int m_MachineIndex;	// 물류 연동시 검사기 1번위치인지 2번위치인지 3번위치인지...
+	BOOL m_bInlineConfirm;	// InlineMode 사용하면서 작업자존 사용시 [6/13/2018 OSC]
 
 	// 물류 연동시 CIM Qual 모드 [12/15/2017 OSC]
 	BOOL m_bCIMQualMode;

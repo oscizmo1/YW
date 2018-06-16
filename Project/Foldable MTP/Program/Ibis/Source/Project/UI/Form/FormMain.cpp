@@ -1373,7 +1373,7 @@ void CFormMain::ClickGxbtnCreatecellinfo()
 		if(theProcBank.AZoneChannelNotUse_Check(JIG_ID_A, JIG_CH_1) == FALSE)
 		{
 			theUnitFunc.AZoneCellData_Create(JIG_ID_A, JIG_CH_1);
-			theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_ON);
+			theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_ON, BLOW_OFF);
 		}
 	}
 	/* CH3 */
@@ -1382,7 +1382,7 @@ void CFormMain::ClickGxbtnCreatecellinfo()
 		if(theProcBank.AZoneChannelNotUse_Check(JIG_ID_B, JIG_CH_1) == FALSE)
 		{
 			theUnitFunc.AZoneCellData_Create(JIG_ID_B, JIG_CH_1);
-			theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON);
+			theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON, BLOW_OFF);
 		}
 	}
 }

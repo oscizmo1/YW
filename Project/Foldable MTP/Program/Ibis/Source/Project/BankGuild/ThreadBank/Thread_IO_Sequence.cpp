@@ -143,7 +143,10 @@ UINT CThread_IO_Sequence::IOSequenceThr( LPVOID lpParam )
 						if(theProcBank.AZoneChannelNotUse_Check((JIG_ID)jig, (JIG_CH)i) == FALSE)
 						{
 							if(theCellBank.GetCellTag((JIG_ID)jig, (JIG_CH)i).IsExist())
-								_func.Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON);
+							{
+								_func.Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON, BLOW_OFF);
+								_func.Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_ON, BLOW_OFF);
+							}
 						}
 					}
 					pClass->swVacuum[jig].bRequireActionOn = FALSE;
@@ -154,7 +157,17 @@ UINT CThread_IO_Sequence::IOSequenceThr( LPVOID lpParam )
 					{
 						if(theProcBank.AZoneChannelNotUse_Check((JIG_ID)jig, (JIG_CH)i) == FALSE)
 						{
-							_func.Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF);
+							_func.Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_ON);
+							_func.Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_ON);
+						}
+					}
+					Sleep(200);
+					for(int i=JIG_CH_1; i<JIG_CH_MAX; i++)
+					{
+						if(theProcBank.AZoneChannelNotUse_Check((JIG_ID)jig, (JIG_CH)i) == FALSE)
+						{
+							_func.Shuttle_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_OFF);
+							_func.Shuttle_Fpcb_Vac_OnOff((JIG_ID)jig, (JIG_CH)i, VAC_OFF, BLOW_OFF);
 						}
 					}
 					pClass->swVacuum[jig].bRequireActionOff = FALSE;

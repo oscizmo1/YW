@@ -13,6 +13,7 @@
 #include "UI\GausGUI\GxStaticEx.h"
 //kjpark 20161025 MCR 구현
 #include "Etc/FileSupport.h"
+#include "UI/Dialog/DlgMCRManualRead.h"
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
@@ -79,6 +80,7 @@ BEGIN_EVENTSINK_MAP(CFormTeach_Shuttle_1, CFormView)
 	ON_EVENT(CFormTeach_Shuttle_1, IDC_GXBTN_TEACH_SHUTTLE_1_FPCB_BLOW_CH1, DISPID_CLICK, CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1FpcbBlowCh1, VTS_NONE)
 	ON_EVENT(CFormTeach_Shuttle_1, IDC_GXBTN_TEACH_SHUTTLE_1_DOWN, DISPID_CLICK, CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1Down, VTS_NONE)
 	ON_EVENT(CFormTeach_Shuttle_1, IDC_GXBTN_TEACH_SHUTTLE_1_UP, DISPID_CLICK, CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1Up, VTS_NONE)
+	ON_EVENT(CFormTeach_Shuttle_1, IDC_GXBTN_TEACH_SHUTTLE_1_GRAB, DISPID_CLICK, CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1Grab, VTS_NONE)
 END_EVENTSINK_MAP()
 
 // CFormTeach_Shuttle_12 진단입니다.
@@ -346,8 +348,8 @@ void CFormTeach_Shuttle_1::UpdateShuttleState()
 	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_FPCB_VAC_CH1_LAMP,theUnitFunc.Shuttle_Fpcb_Vac_Check(JIG_ID_A, JIG_CH_1, VAC_ON)? GXCOLOR_ON:GXCOLOR_OFF);
 	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_FPCB_BLOW_CH1_LAMP,theUnitFunc.Shuttle_Fpcb_Blow_Check(JIG_ID_A, JIG_CH_1, BLOW_ON)? GXCOLOR_ON:GXCOLOR_OFF);
 
-	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_DOWN_LAMP,theUnitFunc.Shuttle_Tilt_Down_Check(JIG_ID_A, JIG_CH_1, TILT_DOWN)? GXCOLOR_ON:GXCOLOR_OFF);
-	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_UP_LAMP,theUnitFunc.Shuttle_Tilt_Up_Check(JIG_ID_A, JIG_CH_1, TILT_UP)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_DOWN_LAMP,theUnitFunc.Shuttle_Tilt_UpDown_Check(JIG_ID_A, TILT_DOWN)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_UP_LAMP,theUnitFunc.Shuttle_Tilt_UpDown_Check(JIG_ID_A, TILT_UP)? GXCOLOR_ON:GXCOLOR_OFF);
 
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_Y_LOAD_LAMP,theUnitFunc.Shuttle_Y_LOAD_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_1_Y_MANUAL_LAMP,theUnitFunc.Shuttle_Y_MANUAL_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
@@ -366,11 +368,13 @@ void CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1VacCh1()
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 1"), _T("Shuttle_Vacuum_CH1"));
 	if(theUnitFunc.Shuttle_VacOut_Check(JIG_ID_A, JIG_CH_1, VAC_ON))
 	{
-		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_OFF);	
+		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_OFF, BLOW_ON);	
+		Sleep(200);
+		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_OFF, BLOW_OFF);	
 	}
 	else
 	{
-		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_ON);	
+		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_ON, BLOW_OFF);	
 	}
 }
 
@@ -394,11 +398,13 @@ void CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1FpcbVacCh1()
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 1"), _T("Shuttle_Fpcb_Vacuum_CH1"));
 	if(theUnitFunc.Shuttle_Fpcb_VacOut_Check(JIG_ID_A, JIG_CH_1, VAC_ON))
 	{
-		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_OFF);	
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_OFF, BLOW_ON);
+		Sleep(200);
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_OFF, BLOW_OFF);	
 	}
 	else
 	{
-		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_ON);	
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_A, JIG_CH_1, VAC_ON, BLOW_OFF);	
 	}
 }
 
@@ -420,26 +426,41 @@ void CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1FpcbBlowCh1()
 void CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1Down()
 {
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 1"), _T("Shuttle_Tilt_Down_CH1"));
-	if(theUnitFunc.Shuttle_Tilt_DownOut_Check(JIG_ID_A,JIG_CH_1,TILT_DOWN))
-	{
-		theUnitFunc.Shuttle_Tilt_Down(JIG_ID_A,JIG_CH_1,TILT_UP);
-	}
-	else
-	{
-		theUnitFunc.Shuttle_Tilt_Down(JIG_ID_A,JIG_CH_1,TILT_DOWN);
-	}
+	theUnitFunc.Shuttle_Tilt_UpDown(JIG_ID_A,TILT_DOWN);
 }
 
 
 void CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1Up()
 {
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 1"), _T("Shuttle_Tilt_Up_CH1"));
-	if(theUnitFunc.Shuttle_Tilt_UpOut_Check(JIG_ID_A,JIG_CH_1,TILT_UP))
+	if(theUnitFunc.Shuttle_Y_MANUAL_Check(JIG_ID_A))
 	{
-		theUnitFunc.Shuttle_Tilt_Up(JIG_ID_A,JIG_CH_1,TILT_DOWN);
+		theUnitFunc.Shuttle_Tilt_UpDown(JIG_ID_A, TILT_UP);
 	}
 	else
 	{
-		theUnitFunc.Shuttle_Tilt_Up(JIG_ID_A,JIG_CH_1,TILT_UP);
+		CGxMsgBox	dlgMsgBox;
+		dlgMsgBox.SetLangName(2, _T("VTM"));		// 언어의 이름을 변경
+		dlgMsgBox.SetTitle(_T("알림"), _T("Confirm"), _T("Confirm"));
+		dlgMsgBox.SetMessage(FALSE, 
+			_T("Shuttle이 MANUAL위치가 아닙니다."), 
+			_T("Shuttle is not MANUAL position."),		
+			_T("Shuttle is not MANUAL position.") , GetMainHandler()->m_nLangIdx);
+
+		dlgMsgBox.DoModal();
+		return;
 	}
+}
+
+
+void CFormTeach_Shuttle_1::ClickGxbtnTeachShuttle1Grab()
+{
+	// 타이머 시작 [5/11/2018 LSH]
+	m_swAlignTimer[JIG_CH_1].Start();
+
+	// Align value를 초기화 한다 [5/11/2018 LSH]
+	m_Align_Value[JIG_CH_1].clear();
+	m_dAlignIntervalTime[JIG_CH_1] = 0.0;
+	// Align Grab Send [5/11/2018 LSH]
+	theSocketInterFace.m_ActiveAlign.ActiveAlignGrab(JIG_CH_1);
 }

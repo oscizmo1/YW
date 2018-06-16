@@ -121,6 +121,8 @@ int CStateBZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -150,6 +152,8 @@ int CStateBZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -184,6 +188,8 @@ int CStateBZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -248,6 +254,7 @@ int CStateBZone::Run()
 		BZone_SetTimeWait(m_Shuttle);
 
 		SetZoneEnd(m_Shuttle, ZONE_ID_B);
+		ResetZoneEnd(m_Shuttle, ZONE_ID_MOVE_B);				
 		if(theConfigBank.m_System.m_bInlineMode)
 			PatternReset_Send(m_Shuttle, JIG_CH_MAX);
 		BZonetoAZone_SetTimeStart(m_Shuttle);

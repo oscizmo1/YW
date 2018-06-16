@@ -165,9 +165,6 @@
     <None Include="res\icon1.ico">
       <Filter>Project\리소스 파일</Filter>
     </None>
-    <None Include="..\..\..\icon\수동.ico">
-      <Filter>Project\리소스 파일</Filter>
-    </None>
     <None Include="res\GausBase.ico">
       <Filter>Project\리소스 파일</Filter>
     </None>
@@ -219,21 +216,6 @@
       <Filter>Project\리소스 파일</Filter>
     </None>
     <None Include="res\IbisDoc.ico">
-      <Filter>Project\리소스 파일</Filter>
-    </None>
-    <None Include="..\..\Source\Project\res\Ibis.ico">
-      <Filter>Project\리소스 파일</Filter>
-    </None>
-    <None Include="..\..\Source\Project\res\IbisDoc.ico">
-      <Filter>Project\리소스 파일</Filter>
-    </None>
-    <None Include="..\..\Source\Project\res\sample.bmp">
-      <Filter>Project\리소스 파일</Filter>
-    </None>
-    <None Include="..\..\Source\Project\res\Tray.bmp">
-      <Filter>Project\리소스 파일</Filter>
-    </None>
-    <None Include="..\..\Source\Project\res\cell.bmp">
       <Filter>Project\리소스 파일</Filter>
     </None>
   </ItemGroup>
@@ -877,9 +859,6 @@
     <ClInclude Include="statemachine\stateBzone.h">
       <Filter>Project\StateMachine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Project\resource.h">
-      <Filter>Project\헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Dialog\MCRDialog.h">
       <Filter>Project\UI\Dialog</Filter>
     </ClInclude>
@@ -888,6 +867,9 @@
     </ClInclude>
     <ClInclude Include="StateMachine\StateMoveCZone.h">
       <Filter>Project\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="BankGuild\MCDefine.h">
+      <Filter>Project\BankGuild\Define &amp; Const Bank</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

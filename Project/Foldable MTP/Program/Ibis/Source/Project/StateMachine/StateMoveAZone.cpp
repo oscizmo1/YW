@@ -19,17 +19,16 @@ int CStateMoveAZone::Run()
 
 	switch(nStep)
 	{
-
-	//20170913 hhkim C->A zone
 	case stepStart:
 		if(theConfigBank.m_System.m_bInlineMode)
 		{
 			if(PDT_IF_ArmStatus_Check(m_Shuttle))
 				m_bRtn[0] = FALSE;
 		}
+		m_bRtn[2] = LightCurtain_Check(m_Shuttle);
+		m_bRtn[3] = Inspection_Z_UP_Check(m_Shuttle);
 		if(IsReturnOk())
 		{
-			// State Name을 셔틀 이름 포함해서 다시 지정한다 [9/19/2017 OSC]
 			theLog[m_LogIndex].AddBuf(_T("[%s] stepStart"), m_strStateName);
 			m_Timer.Start();
 			nStep++;
@@ -37,6 +36,10 @@ int CStateMoveAZone::Run()
 		else if(m_Timer.Stop(FALSE) > 300.)
 		{
 			if(m_bRtn[0] == FALSE)	SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE_1_PDT_ROBOT_STOP, m_Shuttle));
+			// 항상 모터 체크보다 Light Curtain을 먼저 체크해서 우선권을 둔다 [9/27/2017 OSC]
+			else if(m_bRtn[2] == FALSE)	SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE1_LIGHT_CURTAIN, m_Shuttle));
+			//kjpark 20170913 MCR 위치에서 Z축  체크
+			else if(m_bRtn[3] == FALSE)	SetError(GetAlarmID_of_Shuttle(ALM_AXIS_INSPECTION_Z1_NOT_UP_POSITION, m_Shuttle));
 		}
 		break;
 	case stepShuttleMove:
@@ -50,7 +53,6 @@ int CStateMoveAZone::Run()
 	//kjpark 20180131  Robot Status interlock 회피
 		if(IsReturnOk() /*&& m_Timer.Stop(FALSE) > 1.*/)
 		{
-			// State Name을 셔틀 이름 포함해서 다시 지정한다 [9/19/2017 OSC]
 			theLog[m_LogIndex].AddBuf(_T("[%s] stepShuttleMove"), m_strStateName);
 			if(PDT_IF_ArmStatus_Check(m_Shuttle))
 			{
@@ -67,7 +69,6 @@ int CStateMoveAZone::Run()
 				else
 				{
 					theTactTimeLog.m_Shuttle_MoveAZone[m_Shuttle].Start();
-					ResetZoneEnd(m_Shuttle);				
 					nStep++;
 				}
 				
@@ -151,20 +152,12 @@ int CStateMoveAZone::Run()
 
 		CellLog_WaitTime_SetStartTime(m_Shuttle);
 
-		if(theConfigBank.m_System.m_bCIMQualMode)
-		{
-			// Loading Stop인 경우 R인 것을들 전부 L로 보고하고 리트라이를 취소한다 [12/1/2017 OSC]
-			if(theProcBank.LoadingStop_IsRequire())
-				CIM_CellLoadingStop(m_Shuttle);
-			CIM_CellTrackOut(m_Shuttle);
-			CellLog_Write(m_Shuttle);
-			InlineCellData_Remove(m_Shuttle, JIG_CH_1);
-			// CellSkip Reset [9/16/2017 OSC]
-			AZoneCellSkip_Reset(m_Shuttle);
-
-			Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF);
-		}
 		SetZoneEnd(m_Shuttle, ZONE_ID_MOVE_A);
+		ResetZoneEnd(m_Shuttle, ZONE_ID_MOVE_B);				
+		ResetZoneEnd(m_Shuttle, ZONE_ID_MOVE_C);				
+		ResetZoneEnd(m_Shuttle, ZONE_ID_A);				
+		ResetZoneEnd(m_Shuttle, ZONE_ID_B);				
+		ResetZoneEnd(m_Shuttle, ZONE_ID_C);				
 
 		nStep = stepIdle;
 		break;

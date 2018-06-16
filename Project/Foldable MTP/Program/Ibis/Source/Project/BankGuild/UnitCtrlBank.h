@@ -9,13 +9,17 @@
 #define STATE_FUNC							_T("FUNC")
 #define STATE_RESTART						_T("RESTART_")
 #define STATE_SHUTTLE1_AZONE				_T("SHUTTLE1_AZONE_")
+#define STATE_SHUTTLE1_BZONE				_T("SHUTTLE1_BZONE_")
+#define STATE_SHUTTLE1_CZONE				_T("SHUTTLE1_CZONE_")
 #define STATE_SHUTTLE1_MOVE_AZONE			_T("SHUTTLE1_MOVE_AZONE_")
 #define STATE_SHUTTLE1_MOVE_BZONE			_T("SHUTTLE1_MOVE_BZONE_")
-#define STATE_SHUTTLE1_BZONE				_T("SHUTTLE1_BZONE_")
+#define STATE_SHUTTLE1_MOVE_CZONE			_T("SHUTTLE1_MOVE_CZONE_")
 #define STATE_SHUTTLE2_AZONE				_T("SHUTTLE2_AZONE_")
+#define STATE_SHUTTLE2_BZONE				_T("SHUTTLE2_BZONE_")
+#define STATE_SHUTTLE2_CZONE				_T("SHUTTLE2_CZONE_")
 #define STATE_SHUTTLE2_MOVE_AZONE			_T("SHUTTLE2_MOVE_AZONE_")
 #define STATE_SHUTTLE2_MOVE_BZONE			_T("SHUTTLE2_MOVE_BZONE_")
-#define STATE_SHUTTLE2_BZONE				_T("SHUTTLE2_BZONE_")
+#define STATE_SHUTTLE2_MOVE_CZONE			_T("SHUTTLE2_MOVE_CZONE_")
 #define STATE_SHUTTLE3_AZONE				_T("SHUTTLE3_AZONE_")
 #define STATE_SHUTTLE3_MOVE_AZONE			_T("SHUTTLE3_MOVE_AZONE_")
 #define STATE_SHUTTLE3_MOVE_BZONE			_T("SHUTTLE3_MOVE_BZONE_")
@@ -138,7 +142,7 @@ public:
 
 	void SetZoneEnd(JIG_ID jig, ZONE_ID zone);
 	BOOL GetZoneEnd(JIG_ID jig, ZONE_ID zone);
-	void ResetZoneEnd(JIG_ID jig);
+	void ResetZoneEnd(JIG_ID jig, ZONE_ID zone);
 
 	void AZoneCellData_Create(JIG_ID jig, JIG_CH ch);
 	void InlineCellData_Create(JIG_ID jig, JIG_CH ch, CString strCellID);
@@ -347,6 +351,8 @@ public:
 	void FanAlarm_Check();
 	void MCPower_Check();
 
+	void Door_Key_On_Check();
+
 	
 	void SetProductData(JIG_ID jig, JIG_CH ch);
 	void ReadFromFilePGMS();
@@ -407,7 +413,7 @@ public:
 	BOOL Active_ALIGN_X_RIGHT_Check(JIG_ID jig);
 	//yjkim 180605 Ãß°¡ V
 	//vac
-	void Shuttle_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
+	void Shuttle_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac, BLOW_STATE blow);
 	BOOL Shuttle_Vac_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
 	BOOL Shuttle_VacOut_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
 	//blow
@@ -415,7 +421,7 @@ public:
 	BOOL Shuttle_Blow_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
 	BOOL Shuttle_BlowOut_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
 	//fpcb vac
-	void Shuttle_Fpcb_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
+	void Shuttle_Fpcb_Vac_OnOff(JIG_ID jig, JIG_CH ch, VAC_STATE vac, BLOW_STATE blow);
 	BOOL Shuttle_Fpcb_Vac_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
 	BOOL Shuttle_Fpcb_VacOut_Check(JIG_ID jig, JIG_CH ch, VAC_STATE vac);
 	//fpcb blow
@@ -424,13 +430,9 @@ public:
 	BOOL Shuttle_Fpcb_BlowOut_Check(JIG_ID jig, JIG_CH ch, BLOW_STATE blo);
 
 	//TILT
-	void Shuttle_Tilt_Up(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
-	BOOL Shuttle_Tilt_Up_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
-	BOOL Shuttle_Tilt_UpOut_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
-
-	void Shuttle_Tilt_Down(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
-	BOOL Shuttle_Tilt_Down_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
-	BOOL Shuttle_Tilt_DownOut_Check(JIG_ID jig, JIG_CH ch, TILT_STATE tilt);
+	void Shuttle_Tilt_UpDown(JIG_ID jig, TILT_STATE tilt);
+	BOOL Shuttle_Tilt_UpDown_Check(JIG_ID jig, TILT_STATE tilt);
+	BOOL Shuttle_Tilt_UpDownOut_Check(JIG_ID jig, TILT_STATE tilt);
 
 	//IONIZER
 

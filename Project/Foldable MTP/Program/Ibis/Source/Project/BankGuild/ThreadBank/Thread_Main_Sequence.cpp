@@ -103,9 +103,11 @@ UINT CThread_Main_Sequence::MainSequenceThr( LPVOID lpParam )
 		for(int i = 0; i < JIG_ID_MAX; i++)
 		{
 			pClass->ConfirmStart_AZone(_func, (JIG_ID)i);
-			pClass->ConfirmStart_MoveBZone(_func, (JIG_ID)i);
-			pClass->ConfirmStart_MoveAZone(_func, (JIG_ID)i);
 			pClass->ConfirmStart_BZone(_func, (JIG_ID)i);
+			pClass->ConfirmStart_CZone(_func, (JIG_ID)i);
+			pClass->ConfirmStart_MoveAZone(_func, (JIG_ID)i);
+			pClass->ConfirmStart_MoveBZone(_func, (JIG_ID)i);
+			pClass->ConfirmStart_MoveCZone(_func, (JIG_ID)i);
 		}
 
 		//-------------------------------------------------------------------------------------------------------------------------------
@@ -137,8 +139,10 @@ void CThread_Main_Sequence::StateAllReset()
 	{
 		m_pAZone[jig]->Reset();
 		m_pBZone[jig]->Reset();
-		m_pMoveBZone[jig]->Reset();
+		m_pCZone[jig]->Reset();
 		m_pMoveAZone[jig]->Reset();
+		m_pMoveBZone[jig]->Reset();
+		m_pMoveCZone[jig]->Reset();
 	}
 }
 
@@ -148,8 +152,10 @@ void CThread_Main_Sequence::StateAllRun()
 	{
 		m_pAZone[jig]->Run();
 		m_pBZone[jig]->Run();
-		m_pMoveBZone[jig]->Run();
+		m_pCZone[jig]->Run();
 		m_pMoveAZone[jig]->Run();
+		m_pMoveBZone[jig]->Run();
+		m_pMoveCZone[jig]->Run();
 	}
 }
 
@@ -163,11 +169,17 @@ void CThread_Main_Sequence::GetStatePointer( )
 	m_pBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_BZone;
 	m_pBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_BZone;
 
-	m_pMoveBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveBZone;
-	m_pMoveBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveBZone;
+	m_pCZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_CZone;
+	m_pCZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_CZone;
 
 	m_pMoveAZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveAZone;
 	m_pMoveAZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveAZone;
+
+	m_pMoveBZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveBZone;
+	m_pMoveBZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveBZone;
+
+	m_pMoveCZone[JIG_ID_A] = &theThreadBank.m_stateShuttle1_MoveCZone;
+	m_pMoveCZone[JIG_ID_B] = &theThreadBank.m_stateShuttle2_MoveCZone;
 
 	m_pIF[JIG_ID_A] = &theThreadBank.m_stateShuttle1_PDT_IF;
 	m_pIF[JIG_ID_B] = &theThreadBank.m_stateShuttle2_PDT_IF;
@@ -327,101 +339,29 @@ void CThread_Main_Sequence::ConfirmStart_AZone( CUnitCtrlFunc &_func, JIG_ID jig
 {
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
-	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pBZone[jig]->IsStoped();
-	m_bRtn[4] = _func.GetZoneEnd(jig, ZONE_ID_A) ? FALSE:TRUE;
-	m_bRtn[5] = _func.Shuttle_Y_LOAD_Check(jig);	
-	if(theConfigBank.m_System.m_bInlineMode)
-	{
-// 		m_bRtn[6] = theProcBank.AZoneCellSkip_Check(jig, JIG_CH_1) ? TRUE:_func.CellTagExist(jig, JIG_CH_1);	
-// 		m_bRtn[7] = theProcBank.AZoneCellSkip_Check(jig, JIG_CH_2) ? TRUE:_func.CellTagExist(jig, JIG_CH_2);
-		
-		// Inline mode에서 Loof test mode일 경우 Cell이 항상 있다고 판단한다 - LSH171124
-		if( theConfigBank.m_Option.m_bUseLoofTest )
-			m_bRtn[8] = TRUE;
-		else
-			m_bRtn[8] = ( _func.CellTagExist(jig, JIG_CH_1) ) ? TRUE:FALSE;
-		m_bRtn[9] = _func.CellInfo_CheckUnloadable(jig) ? FALSE:TRUE;	
-		m_bRtn[10] = m_pIF[jig]->IsStoped();
-	}
-	if(IsReturnOk())
-	{
-		// 원래 그랬는지 모르지만 MP2100 함수 한번 호출하면 되게 오래 걸린다..
-		// 그래서 MP2100 함수만 따로 마지막에 체크하여 호출 횟수를 최대한 줄인다 [10/17/2017 OSC]
-// 		ResetReturnValue();
-// 		m_bRtn[5] = _func.Shuttle_Y_LOAD_Check(jig);	
-// 		if(IsReturnOk())
-		{
-			m_pAZone[jig]->Start();
-		}
-	}
-}
-
-void CThread_Main_Sequence::ConfirmStart_MoveBZone( CUnitCtrlFunc &_func, JIG_ID jig )
-{
-	ResetReturnValue();
-	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
-	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pBZone[jig]->IsStoped();
-	m_bRtn[4] = _func.CellTagExist(m_CellPosCh1[jig], m_CellPosCh2[jig]);	
-	m_bRtn[5] = _func.GetZoneEnd(jig, ZONE_ID_A);
-	m_bRtn[6] = _func.GetZoneEnd(jig, ZONE_ID_B) ? FALSE:TRUE;
-	if(_func.Shuttle_Y_INSP_Check(jig) && _func.GetZoneEnd(jig, ZONE_ID_MOVE_B))
-		m_bRtn[7] = FALSE;	
-	if(theConfigBank.m_System.m_bInlineMode)
-	{
-		m_bRtn[8] = _func.CellInfo_CheckUnloadable(jig) ? FALSE:TRUE;	
-		m_bRtn[10] = m_pIF[jig]->IsStoped();
-		m_bRtn[12] = _func.PDT_IF_ArmStatus_Check(jig) ? FALSE:TRUE;
-	}
-	if(IsReturnOk())
-	{
-		// 원래 그랬는지 모르지만 MP2100 함수 한번 호출하면 되게 오래 걸린다..
-		// 그래서 MP2100 함수만 따로 마지막에 체크하여 호출 횟수를 최대한 줄인다 [10/17/2017 OSC]
-// 		ResetReturnValue();
-// 		m_bRtn[7] = _func.Shuttle_Y_INSP_Check(jig) ? FALSE:TRUE;
-// 		if(IsReturnOk())
-		{
-			m_pMoveBZone[jig]->Start();
-		}
-	}
-}
-
-void CThread_Main_Sequence::ConfirmStart_MoveAZone( CUnitCtrlFunc &_func, JIG_ID jig )
-{
-	ResetReturnValue();
-	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
-	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pBZone[jig]->IsStoped();
-	// A, C존 아무도 완료 안 됬거나, C존이 완료되어 있으면 진행 [9/8/2017 OSC]
-	if(_func.GetZoneEnd(jig, ZONE_ID_B))
-		m_bRtn[4] = TRUE;
-	else if( (_func.GetZoneEnd(jig, ZONE_ID_A) == FALSE) && (_func.GetZoneEnd(jig, ZONE_ID_B) == FALSE) )
-		m_bRtn[4] = TRUE;
-	else if( (_func.CellTagExist(jig, JIG_CH_1) == FALSE) )
-		m_bRtn[4] = TRUE;
+	m_bRtn[1] = m_pBZone[jig]->IsStoped();
+	m_bRtn[2] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[4] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[5] = m_pMoveCZone[jig]->IsStoped();
+	// Inline mode에서 Loof test mode일 경우 Cell이 항상 있다고 판단한다 - LSH171124
+	if( theConfigBank.m_Option.m_bUseLoofTest )
+		m_bRtn[6] = TRUE;
 	else
-		m_bRtn[4] = FALSE;
-	if(_func.Shuttle_Y_LOAD_Check(jig) && _func.GetZoneEnd(jig, ZONE_ID_MOVE_A))
-		m_bRtn[5] = FALSE;	
-	if(theConfigBank.m_System.m_bInlineMode)
-	{
-		m_bRtn[10] = m_pIF[jig]->IsStoped();
-		m_bRtn[12] = _func.PDT_IF_ArmStatus_Check(jig) ? FALSE:TRUE;
-	}
+		m_bRtn[6] = _func.CellTagExist(m_CellPosCh1[jig]);
+	// 이전 존이 끝났는지 확인 [6/13/2018 OSC]
+	m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_A);
+	// 현재 존이 끝났는지 확인 [6/13/2018 OSC]
+	m_bRtn[8] = _func.GetZoneEnd(jig, ZONE_ID_A) ? FALSE:TRUE;
+	// 현재 위치 확인 [6/13/2018 OSC]
+	m_bRtn[9] = _func.Shuttle_Y_LOAD_Check(jig);	
+	// PDT Interface 확인 [6/13/2018 OSC]
+	m_bRtn[10] = m_pIF[jig]->IsStoped();
+	// Inline 사용유무 확인 [6/13/2018 OSC]
+	m_bRtn[11] = theConfigBank.m_System.m_bInlineMode;
 	if(IsReturnOk())
 	{
-		// 원래 그랬는지 모르지만 MP2100 함수 한번 호출하면 되게 오래 걸린다..
-		// 그래서 MP2100 함수만 따로 마지막에 체크하여 호출 횟수를 최대한 줄인다 [10/17/2017 OSC]
-// 		ResetReturnValue();
-// 		m_bRtn[5] = _func.Shuttle_Y_LOAD_Check(jig) ? FALSE:TRUE;	
-// 		if(IsReturnOk())
-		{
-			m_pMoveAZone[jig]->Start();
-		}
+		m_pAZone[jig]->Start();
 	}
 }
 
@@ -429,22 +369,156 @@ void CThread_Main_Sequence::ConfirmStart_BZone( CUnitCtrlFunc &_func, JIG_ID jig
 {
 	ResetReturnValue();
 	m_bRtn[0] = m_pAZone[jig]->IsStoped();
-	m_bRtn[1] = m_pMoveBZone[jig]->IsStoped();
-	m_bRtn[2] = m_pMoveAZone[jig]->IsStoped();
-	m_bRtn[3] = m_pBZone[jig]->IsStoped();
-	m_bRtn[4] = _func.CellTagExist(m_CellPosCh1[jig], m_CellPosCh2[jig]);
-	m_bRtn[5] = _func.GetZoneEnd(jig, ZONE_ID_B) ? FALSE:TRUE;
-	m_bRtn[6] = _func.Shuttle_Y_INSP_Check(jig);	
+	m_bRtn[1] = m_pBZone[jig]->IsStoped();
+	m_bRtn[2] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[4] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[5] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[6] = _func.CellTagExist(m_CellPosCh1[jig]);
+	// 이전 존이 끝났는지 확인 [6/13/2018 OSC]
 	m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_B);
+	// 현재 존이 끝났는지 확인 [6/13/2018 OSC]
+	m_bRtn[8] = _func.GetZoneEnd(jig, ZONE_ID_B) ? FALSE:TRUE;
+	// 현재 위치 확인 [6/13/2018 OSC]
+	m_bRtn[9] = _func.Shuttle_Y_INSP_Check(jig);	
 	if(IsReturnOk())
 	{
-		// 원래 그랬는지 모르지만 MP2100 함수 한번 호출하면 되게 오래 걸린다..
-		// 그래서 MP2100 함수만 따로 마지막에 체크하여 호출 횟수를 최대한 줄인다 [10/17/2017 OSC]
-// 		ResetReturnValue();
-// 		m_bRtn[6] = _func.Shuttle_Y_INSP_Check(jig);	
-// 		if(IsReturnOk())
-		{
-			m_pBZone[jig]->Start();
-		}
+		m_pBZone[jig]->Start();
+	}
+}
+
+void CThread_Main_Sequence::ConfirmStart_CZone( CUnitCtrlFunc &_func, JIG_ID jig )
+{
+	ResetReturnValue();
+	m_bRtn[0] = m_pAZone[jig]->IsStoped();
+	m_bRtn[1] = m_pBZone[jig]->IsStoped();
+	m_bRtn[2] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[4] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[5] = m_pMoveCZone[jig]->IsStoped();
+	if(theConfigBank.m_System.m_bInlineMode && theConfigBank.m_System.m_bInlineConfirm)
+		m_bRtn[6] = _func.CellTagExist(m_CellPosCh1[jig]);
+	// 이전 존이 끝났는지 확인 [6/13/2018 OSC]
+	m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_C);
+	// 현재 존이 끝났는지 확인 [6/13/2018 OSC]
+	m_bRtn[8] = _func.GetZoneEnd(jig, ZONE_ID_C) ? FALSE:TRUE;
+	// 현재 위치 확인 [6/13/2018 OSC]
+	m_bRtn[9] = _func.Shuttle_Y_MANUAL_Check(jig);
+	if(theConfigBank.m_System.m_bInlineMode)
+	{
+		// 인라인일 경우 C존 사용여부 확인 [6/13/2018 OSC]
+		m_bRtn[10] = theConfigBank.m_System.m_bInlineConfirm ? FALSE:TRUE;
+	}
+	if(IsReturnOk())
+	{
+		m_pCZone[jig]->Start();
+	}
+}
+
+void CThread_Main_Sequence::ConfirmStart_MoveAZone( CUnitCtrlFunc &_func, JIG_ID jig )
+{
+	ResetReturnValue();
+	m_bRtn[0] = m_pAZone[jig]->IsStoped();
+	m_bRtn[1] = m_pBZone[jig]->IsStoped();
+	m_bRtn[2] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[4] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[5] = m_pMoveCZone[jig]->IsStoped();
+	// 이전 존이 끝났는지 확인 (Cell이 있는 경우만) [6/13/2018 OSC]
+	if(_func.CellTagExist(m_CellPosCh1[jig]))
+		m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_B);
+	// 현재 존이 끝났는지 확인 [6/13/2018 OSC]
+	if(_func.Shuttle_Y_LOAD_Check(jig) == FALSE)
+		m_bRtn[8] = TRUE;	
+	else
+		m_bRtn[8] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_A) ? FALSE:TRUE;
+	m_bRtn[9] = theConfigBank.m_System.m_bInlineMode;
+	if(theConfigBank.m_System.m_bInlineMode)
+	{
+		// PDT Robot 확인 [6/13/2018 OSC]
+		m_bRtn[10] = m_pIF[jig]->IsStoped();
+		m_bRtn[11] = _func.PDT_IF_ArmStatus_Check(jig) ? FALSE:TRUE;
+	}
+	if(IsReturnOk())
+	{
+		m_pMoveAZone[jig]->Start();
+	}
+}
+
+void CThread_Main_Sequence::ConfirmStart_MoveBZone( CUnitCtrlFunc &_func, JIG_ID jig )
+{
+	ResetReturnValue();
+	m_bRtn[0] = m_pAZone[jig]->IsStoped();
+	m_bRtn[1] = m_pBZone[jig]->IsStoped();
+	m_bRtn[2] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[4] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[5] = m_pMoveCZone[jig]->IsStoped();
+	m_bRtn[6] = _func.CellTagExist(m_CellPosCh1[jig]);	
+	// 이전 존이 끝났는지 확인 [6/13/2018 OSC]
+	if(theConfigBank.m_System.m_bInlineMode)
+	{
+		if(theConfigBank.m_System.m_bInlineConfirm)
+			m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_C);	// 물류지만 C존 사용하는 경우 [6/13/2018 OSC]
+		else
+			m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_A);
+	}
+	else
+	{
+		m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_C);
+	}
+
+	// 현재 존이 끝났는지 확인 [6/13/2018 OSC]
+	if(_func.Shuttle_Y_INSP_Check(jig) == FALSE)
+		m_bRtn[8] = TRUE;	
+	else
+		m_bRtn[8] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_B) ? FALSE:TRUE;
+	if(theConfigBank.m_System.m_bInlineMode)
+	{
+		// PDT Robot 확인 [6/13/2018 OSC]
+		m_bRtn[10] = m_pIF[jig]->IsStoped();
+		m_bRtn[11] = _func.PDT_IF_ArmStatus_Check(jig) ? FALSE:TRUE;
+	}
+	if(IsReturnOk())
+	{
+		m_pMoveBZone[jig]->Start();
+	}
+}
+
+void CThread_Main_Sequence::ConfirmStart_MoveCZone( CUnitCtrlFunc &_func, JIG_ID jig )
+{
+	ResetReturnValue();
+	m_bRtn[0] = m_pAZone[jig]->IsStoped();
+	m_bRtn[1] = m_pBZone[jig]->IsStoped();
+	m_bRtn[2] = m_pCZone[jig]->IsStoped();
+	m_bRtn[3] = m_pMoveAZone[jig]->IsStoped();
+	m_bRtn[4] = m_pMoveBZone[jig]->IsStoped();
+	m_bRtn[5] = m_pMoveCZone[jig]->IsStoped();
+	// 이전 존이 끝났는지 확인 [6/13/2018 OSC]
+	if(theConfigBank.m_System.m_bInlineMode)
+	{
+		m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_A);
+	}
+	else
+	{
+		// 단동일 경우 Cell이 있을 경우만 이전 존 확인 [6/13/2018 OSC]
+		if(_func.CellTagExist(m_CellPosCh1[jig]))
+			m_bRtn[7] = _func.GetZoneEnd(jig, ZONE_ID_B);
+	}
+	// 현재 존이 끝났는지 확인 [6/13/2018 OSC]
+	if(_func.Shuttle_Y_MANUAL_Check(jig) == FALSE)
+		m_bRtn[8] = TRUE;	
+	else
+		m_bRtn[8] = _func.GetZoneEnd(jig, ZONE_ID_MOVE_C) ? FALSE:TRUE;
+	if(theConfigBank.m_System.m_bInlineMode)
+	{
+		m_bRtn[9] = theConfigBank.m_System.m_bInlineConfirm;
+		// PDT Robot 확인 [6/13/2018 OSC]
+		m_bRtn[10] = m_pIF[jig]->IsStoped();
+		m_bRtn[11] = _func.PDT_IF_ArmStatus_Check(jig) ? FALSE:TRUE;
+	}
+	if(IsReturnOk())
+	{
+		m_pMoveCZone[jig]->Start();
 	}
 }

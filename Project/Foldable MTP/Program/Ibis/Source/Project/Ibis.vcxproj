@@ -303,6 +303,7 @@
     <ClInclude Include="BankGuild\InspModuleBank\InspModule_TeCheck.h" />
     <ClInclude Include="BankGuild\InspModuleBank\InspModule_TspStart.h" />
     <ClInclude Include="BankGuild\InspModuleBank\InspModule_WhiteCurrent.h" />
+    <ClInclude Include="BankGuild\MCDefine.h" />
     <ClInclude Include="BankGuild\ProcDataPG.h" />
     <ClInclude Include="BankGuild\RecipeInspModule.h" />
     <ClInclude Include="BankGuild\ThreadBank\ThreadBank.h" />

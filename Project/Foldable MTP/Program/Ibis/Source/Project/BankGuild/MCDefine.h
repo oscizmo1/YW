@@ -9,7 +9,7 @@
 // Y : 영우 (A : ANI)
 // M : Main Program. (L : Loader, U : Unloader, D : Data)
 // MTP : MTP설비 (MT : MT설비, FT : FT설비)
-#define PROGRAM_VERSION				_T("Y_M_MTP_18.05.31.01")		// Program Version
+#define PROGRAM_VERSION				_T("Y_M_MTP_18.06.16.02")		// Program Version
 
 // Defect Circle을 Cell에 표시하기위한 색 지정
 #define COLOR_PTN_RED				RGB(255, 0, 0)

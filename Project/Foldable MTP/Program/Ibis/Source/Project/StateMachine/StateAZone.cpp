@@ -63,6 +63,8 @@ int CStateAZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -92,6 +94,8 @@ int CStateAZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -116,7 +120,7 @@ int CStateAZone::Run()
 					// InLine모드시에는 Cell Loading 중에는 Vac Off상태로 하고 완료하면 On 한다 [12/19/2017 OSC]
 					if(CellTagExist(m_Shuttle, JIG_CH_1))
 					{
-						Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON);
+						Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON, BLOW_OFF);
 						theProcBank.m_bPDT_IF_NoCheckVacOff[m_Shuttle][JIG_CH_1] = FALSE;
 					}
 				}
@@ -134,6 +138,8 @@ int CStateAZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -186,6 +192,7 @@ int CStateAZone::Run()
 	case stepEnd:
 		theLog[m_LogIndex].AddBuf(_T("[%s] stepEnd"), m_strStateName);
 		SetZoneEnd(m_Shuttle, ZONE_ID_A);
+		ResetZoneEnd(m_Shuttle, ZONE_ID_MOVE_A);				
 		m_pCurrentModule = NULL;
 		//kjpark 20170913 MCR 위치에서 Z축  체크
 		Inspection_Z_UP_Move(m_Shuttle);

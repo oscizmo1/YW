@@ -21,15 +21,30 @@ int CStateCZone::Run()
 	switch(nStep)
 	{
 	case stepStart:
-		// State Name을 셔틀 이름 포함해서 다시 지정한다 [9/19/2017 OSC]
 		theLog[m_LogIndex].AddBuf(_T("[%s] stepStart"), m_strStateName);
 
-		// 셔틀 도착하면 뮤팅 해제 [10/2/2017 OSC]
-		theUnitFunc.LightCurtainMute_OnOff(m_Shuttle, ON);
-		theUnitFunc.LightCurtainMuteLamp_OnOff(m_Shuttle, ON);
-
+		Shuttle_Tilt_UpDown(m_Shuttle, TILT_UP);
 		m_Timer.Start();
 		nStep++;
+		break;
+
+	case stepTiltUpCheck:
+		m_bRtn[0] = Shuttle_Tilt_UpDown_Check(m_Shuttle, TILT_UP);
+		if(IsReturnOk())
+		{
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepTiltUpCheck"), m_strStateName);
+
+			// 셔틀 도착하면 뮤팅 해제 [10/2/2017 OSC]
+			theUnitFunc.LightCurtainMute_OnOff(m_Shuttle, ON);
+			theUnitFunc.LightCurtainMuteLamp_OnOff(m_Shuttle, ON);
+
+			m_Timer.Start();
+			nStep++;
+		}
+		else if(m_Timer.Stop(FALSE) > 5.)
+		{
+			SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE_1_TILT_UP, m_Shuttle));
+		}
 		break;
 
 		// 어떻게 방도가 없어서 패턴 On/Off 스위치 한번 더 누르는 거로.. [9/27/2017 OSC]
@@ -51,17 +66,19 @@ int CStateCZone::Run()
 		{
 			theLog[m_LogIndex].AddBuf(_T("[%s] stepPatternOffSwitchCheck"), m_strStateName);
 
-			if(theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_B] == FALSE)
+			if(theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_C] == FALSE)
 			{
-				theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_B] = TRUE;
+				theProcBank.m_bIsSetZone[m_Shuttle][ZONE_ID_C] = TRUE;
 
 				if(theConfigBank.m_Option.m_bUseLoofTest)
 				{
-					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON);
+					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON, BLOW_OFF);
+					Shuttle_Fpcb_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_ON, BLOW_OFF);
 				}
 				else
 				{
-					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF);
+					Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF, BLOW_ON);
+					Shuttle_Fpcb_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF, BLOW_ON);
 				}
 
 				// Loading Stop인 경우 R인 것을들 전부 L로 보고하고 리트라이를 취소한다 [12/1/2017 OSC]
@@ -113,8 +130,7 @@ int CStateCZone::Run()
 			{
 				CellLog_LoadingTactTime_SetEndTime(m_Shuttle);
 
-				if(theConfigBank.m_Option.m_bUseLoofTest
-					|| theConfigBank.m_System.m_bCIMQualMode)
+				if(theConfigBank.m_Option.m_bUseLoofTest)
 				{
 					if(theProcBank.AZoneCellNG_Check(m_Shuttle, JIG_CH_1) == FALSE)
 					{
@@ -123,16 +139,14 @@ int CStateCZone::Run()
 						CellLoading_Send(m_Shuttle, JIG_CH_1, TRUE);
 					}
 				}
-				else
-				{
-
-				}
 
 				m_Timer.Start();
 				nStep = stepBefStart;
 			}
 			else
 			{
+				Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF, BLOW_OFF);
+				Shuttle_Fpcb_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF, BLOW_OFF);
 				// 작업자 스위치 접근 허용 [9/7/2017 OSC]
 				if(theProcBank.PreInterlock_IsEmpty(EFST_LOADING))
 				{
@@ -142,7 +156,7 @@ int CStateCZone::Run()
 				nStep++;
 			}
 		}
-		else if(m_Timer.Stop(FALSE) > 5.)
+		else if(m_Timer.Stop(FALSE) > 2.)
 		{
 			SetZoneA_TimeOut(m_Shuttle);
 		}
@@ -177,6 +191,8 @@ int CStateCZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -206,6 +222,8 @@ int CStateCZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -238,6 +256,8 @@ int CStateCZone::Run()
 		{
 			m_pCurrentModule->Run();
 			bNext = m_pCurrentModule->IsStoped();
+			if(theProcBank.m_bDryRunMode)
+				bNext = TRUE;
 		}
 		if(bNext)
 		{
@@ -283,6 +303,8 @@ int CStateCZone::Run()
 			TMD_INFO_Send(m_Shuttle);
 			CellLog_SetOperatorID(m_Shuttle);
 
+			Shuttle_Tilt_UpDown(m_Shuttle, TILT_DOWN);
+
 			theTactTimeLog.m_RunTime[m_Shuttle].Start();
 			m_Timer.Start();
 			nStep++;
@@ -292,6 +314,21 @@ int CStateCZone::Run()
 			// 메인화면 표시 위해 미리 존 디펙 산출 [9/12/2017 OSC]
 			// 다시 번복될 경우 대비해서 계속 해줘야 한다 ㅠㅠ
 			JudgeZoneDefect(m_Shuttle,ZONE_ID_B);
+		}
+		break;
+
+	case stepTiltDownCheck:
+		m_bRtn[0] = Shuttle_Tilt_UpDown_Check(m_Shuttle, TILT_DOWN);
+		if(IsReturnOk())
+		{
+			theLog[m_LogIndex].AddBuf(_T("[%s] stepTiltDownCheck"), m_strStateName);
+
+			m_Timer.Start();
+			nStep++;
+		}
+		else if(m_Timer.Stop(FALSE) > 5.)
+		{
+			SetError(GetAlarmID_of_Shuttle(ALM_SHUTTLE_1_TILT_DOWN, m_Shuttle));
 		}
 		break;
 
@@ -311,7 +348,8 @@ int CStateCZone::Run()
 
 	case stepEnd:
 		theLog[m_LogIndex].AddBuf(_T("[%s] stepEnd"), m_strStateName);
-		SetZoneEnd(m_Shuttle, ZONE_ID_B);
+		SetZoneEnd(m_Shuttle, ZONE_ID_C);
+		ResetZoneEnd(m_Shuttle, ZONE_ID_MOVE_C);				
 		m_pCurrentModule = NULL;
 		//kjpark 20170913 MCR 위치에서 Z축  체크
 		Inspection_Z_UP_Move(m_Shuttle);

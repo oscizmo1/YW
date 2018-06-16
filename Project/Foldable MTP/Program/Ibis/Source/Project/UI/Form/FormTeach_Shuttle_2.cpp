@@ -331,8 +331,8 @@ void CFormTeach_Shuttle_2::UpdateShuttleState()
 	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_FPCB_VAC_CH1_LAMP,theUnitFunc.Shuttle_Fpcb_Vac_Check(JIG_ID_B, JIG_CH_1, VAC_ON)? GXCOLOR_ON:GXCOLOR_OFF);
 	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_FPCB_BLOW_CH1_LAMP,theUnitFunc.Shuttle_Fpcb_Blow_Check(JIG_ID_B, JIG_CH_1, BLOW_ON)? GXCOLOR_ON:GXCOLOR_OFF);
 	
-	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_DOWN_LAMP,theUnitFunc.Shuttle_Tilt_Down_Check	(JIG_ID_B, JIG_CH_1, TILT_DOWN)? GXCOLOR_ON:GXCOLOR_OFF);
-	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_UP_LAMP,theUnitFunc.Shuttle_Tilt_Up_Check	(JIG_ID_B, JIG_CH_1, TILT_UP)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_DOWN_LAMP,theUnitFunc.Shuttle_Tilt_UpDown_Check	(JIG_ID_B, TILT_DOWN)? GXCOLOR_ON:GXCOLOR_OFF);
+	CGxUICtrl::SetButtonColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_UP_LAMP,theUnitFunc.Shuttle_Tilt_UpDown_Check		(JIG_ID_B, TILT_UP)? GXCOLOR_ON:GXCOLOR_OFF);
 
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_Y_LOAD_LAMP,theUnitFunc.Shuttle_Y_LOAD_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
 	CGxUICtrl::SetStaticColor(this, IDC_GXBTN_TEACH_SHUTTLE_2_Y_MANUAL_LAMP,theUnitFunc.Shuttle_Y_MANUAL_Check(m_thisDlgShuttle)? Color(Color::Lime).ToCOLORREF():Color(GXCOLOR_OFF).ToCOLORREF());
@@ -352,11 +352,13 @@ void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2VacCh1()
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Vacuum_CH2"));
 	if(theUnitFunc.Shuttle_VacOut_Check(JIG_ID_B, JIG_CH_1, VAC_ON))
 	{
-		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF);	
+		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF, BLOW_ON);
+		Sleep(200);
+		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF, BLOW_OFF);	
 	}
 	else
 	{
-		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON);	
+		theUnitFunc.Shuttle_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON, BLOW_OFF);	
 	}
 }
 
@@ -380,11 +382,13 @@ void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2FpcbVacCh1()
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Fpcb_Vacuum_CH2"));
 	if(theUnitFunc.Shuttle_Fpcb_VacOut_Check(JIG_ID_B, JIG_CH_1, VAC_ON))
 	{
-		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF);	
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF, BLOW_ON);
+		Sleep(200);
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_OFF, BLOW_OFF);	
 	}
 	else
 	{
-		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON);	
+		theUnitFunc.Shuttle_Fpcb_Vac_OnOff(JIG_ID_B, JIG_CH_1, VAC_ON, BLOW_OFF);	
 	}
 }
 
@@ -406,26 +410,28 @@ void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2FpcbBlowCh2()
 void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2Down()
 {
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Tilt_Down_CH2"));
-	if(theUnitFunc.Shuttle_Tilt_DownOut_Check(JIG_ID_B,JIG_CH_1,TILT_DOWN))
-	{
-		//theUnitFunc.Shuttle_Tilt_Down(JIG_ID_B,JIG_CH_1,TILT_UP);
-	}
-	else
-	{
-		theUnitFunc.Shuttle_Tilt_Down(JIG_ID_B,JIG_CH_1,TILT_DOWN);
-	}
+	theUnitFunc.Shuttle_Tilt_UpDown(JIG_ID_B,TILT_DOWN);
 }
 
 
 void CFormTeach_Shuttle_2::ClickGxbtnTeachShuttle2Up()
 {
 	theLog[LOG_OPERATION].AddBuf(_T("[%-15s]	Click '%s'"), _T("TEACH 2"), _T("Shuttle_Tilt_Up_CH2"));
-	if(theUnitFunc.Shuttle_Tilt_UpOut_Check(JIG_ID_B,JIG_CH_1,TILT_UP))
+	if(theUnitFunc.Shuttle_Y_MANUAL_Check(JIG_ID_B))
 	{
-		//theUnitFunc.Shuttle_Tilt_Up(JIG_ID_B,JIG_CH_1,TILT_DOWN);
+		theUnitFunc.Shuttle_Tilt_UpDown(JIG_ID_B, TILT_UP);
 	}
 	else
 	{
-		theUnitFunc.Shuttle_Tilt_Up(JIG_ID_B,JIG_CH_1,TILT_UP);
+		CGxMsgBox	dlgMsgBox;
+		dlgMsgBox.SetLangName(2, _T("VTM"));		// 언어의 이름을 변경
+		dlgMsgBox.SetTitle(_T("알림"), _T("Confirm"), _T("Confirm"));
+		dlgMsgBox.SetMessage(FALSE, 
+			_T("Shuttle이 MANUAL위치가 아닙니다."), 
+			_T("Shuttle is not MANUAL position."),		
+			_T("Shuttle is not MANUAL position.") , GetMainHandler()->m_nLangIdx);
+
+		dlgMsgBox.DoModal();
+		return;
 	}
 }

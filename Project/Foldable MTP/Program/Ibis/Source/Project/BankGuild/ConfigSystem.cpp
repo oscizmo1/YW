@@ -48,6 +48,7 @@ void CConfigSystem::ReadSystemFile( CString strPath )
 	// 물류 연동 [10/5/2017 OSC]
 	m_bInlineMode = ini.GetBoolean(_T("SYSTEM_PARAMETER"), _T("m_bInlineMode"), FALSE);
 	m_MachineIndex = ini.GetLong(_T("SYSTEM_PARAMETER"), _T("m_MachineIndex"), MACHINE_1);
+	m_bInlineConfirm = ini.GetLong(_T("SYSTEM_PARAMETER"), _T("m_bInlineConfirm"), FALSE);
 
 	// 물류 연동시 CIM Qual 모드 [12/15/2017 OSC]
 	m_bCIMQualMode = ini.GetBoolean(_T("SYSTEM_PARAMETER"), _T("m_bCIMQualMode"), FALSE);

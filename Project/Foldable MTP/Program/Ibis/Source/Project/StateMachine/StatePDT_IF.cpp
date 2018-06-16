@@ -62,12 +62,12 @@ int CStatePDT_IF::Run()
 
 			m_bVacOutput[JIG_CH_1] = Shuttle_VacOut_Check(m_Shuttle, JIG_CH_1, VAC_ON);
 			MTP_IF_Start_OnOff(m_Shuttle, TRUE);
-			// 파기가 안되서 Vac Off를 미리 해 놓고 PDT 신호만 끄지 않는다 [12/8/2017 OSC]
-			if(CellTagExist(m_Shuttle, JIG_CH_1))
-			{
-				theProcBank.m_bPDT_IF_NoCheckVacOff[m_Shuttle][JIG_CH_1] = TRUE;
-			}
-			Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF);
+// 			// 파기가 안되서 Vac Off를 미리 해 놓고 PDT 신호만 끄지 않는다 [12/8/2017 OSC]
+// 			if(CellTagExist(m_Shuttle, JIG_CH_1))
+// 			{
+// 				theProcBank.m_bPDT_IF_NoCheckVacOff[m_Shuttle][JIG_CH_1] = TRUE;
+// 			}
+// 			Shuttle_Vac_OnOff(m_Shuttle, JIG_CH_1, VAC_OFF);
 			m_Timer.Start();
 			nStep++;
 		}
@@ -117,11 +117,14 @@ int CStatePDT_IF::Run()
 						theLog[m_LogIndex].AddBuf(_T("[%s] stepPDT_VacOnOff JIG%c CH%d Contact On"), 
 							m_strStateName, _T('A')+m_Shuttle, i+1);
 
+						//////////////////////////////////////////////////////////////////////////
 						// Vac On을 하지 말고 Contact 하라고 해서 다시 강제비트 On [12/19/2017 OSC]
 						theProcBank.m_bPDT_IF_NoCheckVacOff[m_Shuttle][i] = TRUE;
-// 						Shuttle_Vac_OnOff(m_Shuttle, (JIG_CH)i, VAC_ON);
-// 						theLog[m_LogIndex].AddBuf(_T("[%s] stepPDT_VacOnOff JIG%c CH%d Vac On"), 
-// 							m_strStateName, _T('A')+m_Shuttle, i+1);
+						//////////////////////////////////////////////////////////////////////////
+						Shuttle_Vac_OnOff(m_Shuttle, (JIG_CH)i, VAC_ON, BLOW_OFF);
+						theLog[m_LogIndex].AddBuf(_T("[%s] stepPDT_VacOnOff JIG%c CH%d Vac On"), 
+							m_strStateName, _T('A')+m_Shuttle, i+1);
+						//////////////////////////////////////////////////////////////////////////
 
 					}
 					bValue = PDT_IF_VacOffReq_Check(m_Shuttle, (JIG_CH)i);
@@ -130,7 +133,7 @@ int CStatePDT_IF::Run()
 						m_bVacOutput[i] = FALSE;
 						// PDT에서 On or Off신호가 오면 이전까지 강제로 On을 살려준걸 해제 [12/8/2017 OSC]
 						theProcBank.m_bPDT_IF_NoCheckVacOff[m_Shuttle][i] = FALSE;
-						Shuttle_Vac_OnOff(m_Shuttle, (JIG_CH)i, VAC_OFF);
+						Shuttle_Vac_OnOff(m_Shuttle, (JIG_CH)i, VAC_OFF, BLOW_ON);	// 나중에 OFF 구현 필요 [6/16/2018 OSC]
 						theLog[m_LogIndex].AddBuf(_T("[%s] stepPDT_VacOnOff JIG%c CH%d Vac Off"), 
 							m_strStateName, _T('A')+m_Shuttle, i+1);
 					}

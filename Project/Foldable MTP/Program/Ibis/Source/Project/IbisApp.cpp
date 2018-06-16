@@ -160,14 +160,14 @@ BOOL CIbisApp::InitInstance()
 
 	//////////////////////////////////////////////////////////////////////////
 	// Device Open
-	if(theDeviceMotion.Open_Mp2100(MP2100_THREAD_MAIN_PROCESS) == FALSE)
-	{
-		theLog[LOG_SYSTEM].AddBuf(_T("MP2100 Board Open Fail"));
-	}
-// 	if(theDeviceMotion.Open_NMC2() == FALSE)
-// 	{
-// 		theLog[LOG_SYSTEM].AddBuf(_T("NMC Open Fail"));
-// 	}
+	//if(theDeviceMotion.Open_Mp2100(MP2100_THREAD_MAIN_PROCESS) == FALSE)
+	//{
+	//	theLog[LOG_SYSTEM].AddBuf(_T("MP2100 Board Open Fail"));
+	//}
+ 	if(theDeviceMotion.Open_NMC2() == FALSE)
+ 	{
+ 		theLog[LOG_SYSTEM].AddBuf(_T("NMC Open Fail"));
+ 	}
 	if(theDeviceIO.Open() == FALSE)
 	{
 		theLog[LOG_SYSTEM].AddBuf(_T("DeviceNet Board Open Fail"));

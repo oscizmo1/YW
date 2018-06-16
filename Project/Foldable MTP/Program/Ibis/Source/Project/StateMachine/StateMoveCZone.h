@@ -14,9 +14,8 @@ public:
 	{
 		// Z축 체크 후 Y 이동
 		stepStart,				
-		stepShuttleMove,
 		// Y 위치 체크
-		stepShuttleY_AZone_Check,
+		stepShuttleY_CZone_Check,
 
 		// Vacuum Off
 		stepEnd					
